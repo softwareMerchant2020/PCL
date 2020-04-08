@@ -1,0 +1,679 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		57B949F921D3E92D007D2FF5 /* RouteDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B949F821D3E92D007D2FF5 /* RouteDetailsController.swift */; };
+		57B949FB21D3F629007D2FF5 /* AllRoutes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57B949FA21D3F629007D2FF5 /* AllRoutes.plist */; };
+		57B949FD21D4096A007D2FF5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B949FC21D4096A007D2FF5 /* Route.swift */; };
+		57B949FF21D40BA4007D2FF5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B949FE21D40BA4007D2FF5 /* Location.swift */; };
+		57B94A0121D52348007D2FF5 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0021D52348007D2FF5 /* RouteCell.swift */; };
+		57B94A0321D55BDF007D2FF5 /* DriverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0221D55BDF007D2FF5 /* DriverController.swift */; };
+		57B94A0521D5756F007D2FF5 /* CustomerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0421D5756F007D2FF5 /* CustomerController.swift */; };
+		57B94A0721D582EE007D2FF5 /* RoutesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0621D582EE007D2FF5 /* RoutesEditor.swift */; };
+		57B94A0921D6B9CA007D2FF5 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0821D6B9CA007D2FF5 /* Artwork.swift */; };
+		57B94A0B21DA6DD3007D2FF5 /* DriversController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0A21DA6DD3007D2FF5 /* DriversController.swift */; };
+		57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A0C21DA88A7007D2FF5 /* LocationCell.swift */; };
+		57B94A1221DC97FE007D2FF5 /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1121DC97FE007D2FF5 /* LocationsController.swift */; };
+		57B94A1421DCA743007D2FF5 /* AddLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1321DCA743007D2FF5 /* AddLocationCell.swift */; };
+		57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */; };
+		57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */; };
+		57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */; };
+		FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B221CBF779001293DC /* AppDelegate.swift */; };
+		FD5325B521CBF779001293DC /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B421CBF779001293DC /* RoutesController.swift */; };
+		FD5325B821CBF779001293DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5325B621CBF779001293DC /* Main.storyboard */; };
+		FD5325BA21CBF77B001293DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5325B921CBF77B001293DC /* Assets.xcassets */; };
+		FD5325BD21CBF77B001293DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5325BB21CBF77B001293DC /* LaunchScreen.storyboard */; };
+		FD5325C821CBF77B001293DC /* PCL_AdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325C721CBF77B001293DC /* PCL_AdminTests.swift */; };
+		FD5325D321CBF77B001293DC /* PCL_AdminUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325D221CBF77B001293DC /* PCL_AdminUITests.swift */; };
+		FD5325E121CBFA90001293DC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325E021CBFA90001293DC /* SettingsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD5325C421CBF77B001293DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD5325A721CBF779001293DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD5325AE21CBF779001293DC;
+			remoteInfo = "PCL Admin";
+		};
+		FD5325CF21CBF77B001293DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD5325A721CBF779001293DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD5325AE21CBF779001293DC;
+			remoteInfo = "PCL Admin";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		57B949F821D3E92D007D2FF5 /* RouteDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailsController.swift; sourceTree = "<group>"; };
+		57B949FA21D3F629007D2FF5 /* AllRoutes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AllRoutes.plist; sourceTree = "<group>"; };
+		57B949FC21D4096A007D2FF5 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		57B949FE21D40BA4007D2FF5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		57B94A0021D52348007D2FF5 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
+		57B94A0221D55BDF007D2FF5 /* DriverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverController.swift; sourceTree = "<group>"; };
+		57B94A0421D5756F007D2FF5 /* CustomerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerController.swift; sourceTree = "<group>"; };
+		57B94A0621D582EE007D2FF5 /* RoutesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesEditor.swift; sourceTree = "<group>"; };
+		57B94A0821D6B9CA007D2FF5 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		57B94A0A21DA6DD3007D2FF5 /* DriversController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversController.swift; sourceTree = "<group>"; };
+		57B94A0C21DA88A7007D2FF5 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		57B94A1121DC97FE007D2FF5 /* LocationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsController.swift; sourceTree = "<group>"; };
+		57B94A1321DCA743007D2FF5 /* AddLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationCell.swift; sourceTree = "<group>"; };
+		57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRouteCell.swift; sourceTree = "<group>"; };
+		57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingRoutesController.swift; sourceTree = "<group>"; };
+		57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
+		FD5325AF21CBF779001293DC /* PCL Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PCL Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD5325B221CBF779001293DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FD5325B421CBF779001293DC /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
+		FD5325B721CBF779001293DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FD5325B921CBF77B001293DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD5325BC21CBF77B001293DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FD5325BE21CBF77B001293DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD5325C321CBF77B001293DC /* PCL AdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PCL AdminTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD5325C721CBF77B001293DC /* PCL_AdminTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCL_AdminTests.swift; sourceTree = "<group>"; };
+		FD5325C921CBF77B001293DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD5325CE21CBF77B001293DC /* PCL AdminUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PCL AdminUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD5325D221CBF77B001293DC /* PCL_AdminUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCL_AdminUITests.swift; sourceTree = "<group>"; };
+		FD5325D421CBF77B001293DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD5325E021CBFA90001293DC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FD5325AC21CBF779001293DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD5325C021CBF77B001293DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD5325CB21CBF77B001293DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57B94A0E21DC930A007D2FF5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD5325B421CBF779001293DC /* RoutesController.swift */,
+				57B94A0621D582EE007D2FF5 /* RoutesEditor.swift */,
+				57B949F821D3E92D007D2FF5 /* RouteDetailsController.swift */,
+				57B94A0221D55BDF007D2FF5 /* DriverController.swift */,
+				57B94A0A21DA6DD3007D2FF5 /* DriversController.swift */,
+				57B94A0421D5756F007D2FF5 /* CustomerController.swift */,
+				FD5325E021CBFA90001293DC /* SettingsViewController.swift */,
+				57B94A1121DC97FE007D2FF5 /* LocationsController.swift */,
+				57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */,
+				57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		57B94A0F21DC9342007D2FF5 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				57B949FC21D4096A007D2FF5 /* Route.swift */,
+				57B949FE21D40BA4007D2FF5 /* Location.swift */,
+				57B94A0821D6B9CA007D2FF5 /* Artwork.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		57B94A1021DC9360007D2FF5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				57B94A0021D52348007D2FF5 /* RouteCell.swift */,
+				57B94A0C21DA88A7007D2FF5 /* LocationCell.swift */,
+				57B94A1321DCA743007D2FF5 /* AddLocationCell.swift */,
+				57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FD5325A621CBF779001293DC = {
+			isa = PBXGroup;
+			children = (
+				FD5325B121CBF779001293DC /* PCL Admin */,
+				FD5325C621CBF77B001293DC /* PCL AdminTests */,
+				FD5325D121CBF77B001293DC /* PCL AdminUITests */,
+				FD5325B021CBF779001293DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FD5325B021CBF779001293DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD5325AF21CBF779001293DC /* PCL Admin.app */,
+				FD5325C321CBF77B001293DC /* PCL AdminTests.xctest */,
+				FD5325CE21CBF77B001293DC /* PCL AdminUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD5325B121CBF779001293DC /* PCL Admin */ = {
+			isa = PBXGroup;
+			children = (
+				57B94A1021DC9360007D2FF5 /* Cells */,
+				57B94A0F21DC9342007D2FF5 /* Modals */,
+				57B94A0E21DC930A007D2FF5 /* Controllers */,
+				FD5325B221CBF779001293DC /* AppDelegate.swift */,
+				FD5325B621CBF779001293DC /* Main.storyboard */,
+				FD5325B921CBF77B001293DC /* Assets.xcassets */,
+				FD5325BB21CBF77B001293DC /* LaunchScreen.storyboard */,
+				FD5325BE21CBF77B001293DC /* Info.plist */,
+				57B949FA21D3F629007D2FF5 /* AllRoutes.plist */,
+			);
+			path = "PCL Admin";
+			sourceTree = "<group>";
+		};
+		FD5325C621CBF77B001293DC /* PCL AdminTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD5325C721CBF77B001293DC /* PCL_AdminTests.swift */,
+				FD5325C921CBF77B001293DC /* Info.plist */,
+			);
+			path = "PCL AdminTests";
+			sourceTree = "<group>";
+		};
+		FD5325D121CBF77B001293DC /* PCL AdminUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FD5325D221CBF77B001293DC /* PCL_AdminUITests.swift */,
+				FD5325D421CBF77B001293DC /* Info.plist */,
+			);
+			path = "PCL AdminUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FD5325AE21CBF779001293DC /* PCL Admin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD5325D721CBF77B001293DC /* Build configuration list for PBXNativeTarget "PCL Admin" */;
+			buildPhases = (
+				FD5325AB21CBF779001293DC /* Sources */,
+				FD5325AC21CBF779001293DC /* Frameworks */,
+				FD5325AD21CBF779001293DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PCL Admin";
+			productName = "PCL Admin";
+			productReference = FD5325AF21CBF779001293DC /* PCL Admin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FD5325C221CBF77B001293DC /* PCL AdminTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD5325DA21CBF77B001293DC /* Build configuration list for PBXNativeTarget "PCL AdminTests" */;
+			buildPhases = (
+				FD5325BF21CBF77B001293DC /* Sources */,
+				FD5325C021CBF77B001293DC /* Frameworks */,
+				FD5325C121CBF77B001293DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD5325C521CBF77B001293DC /* PBXTargetDependency */,
+			);
+			name = "PCL AdminTests";
+			productName = "PCL AdminTests";
+			productReference = FD5325C321CBF77B001293DC /* PCL AdminTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FD5325CD21CBF77B001293DC /* PCL AdminUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD5325DD21CBF77B001293DC /* Build configuration list for PBXNativeTarget "PCL AdminUITests" */;
+			buildPhases = (
+				FD5325CA21CBF77B001293DC /* Sources */,
+				FD5325CB21CBF77B001293DC /* Frameworks */,
+				FD5325CC21CBF77B001293DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD5325D021CBF77B001293DC /* PBXTargetDependency */,
+			);
+			name = "PCL AdminUITests";
+			productName = "PCL AdminUITests";
+			productReference = FD5325CE21CBF77B001293DC /* PCL AdminUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FD5325A721CBF779001293DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = Abihshek;
+				TargetAttributes = {
+					FD5325AE21CBF779001293DC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					FD5325C221CBF77B001293DC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = FD5325AE21CBF779001293DC;
+					};
+					FD5325CD21CBF77B001293DC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = FD5325AE21CBF779001293DC;
+					};
+				};
+			};
+			buildConfigurationList = FD5325AA21CBF779001293DC /* Build configuration list for PBXProject "PCL Admin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FD5325A621CBF779001293DC;
+			productRefGroup = FD5325B021CBF779001293DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FD5325AE21CBF779001293DC /* PCL Admin */,
+				FD5325C221CBF77B001293DC /* PCL AdminTests */,
+				FD5325CD21CBF77B001293DC /* PCL AdminUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD5325AD21CBF779001293DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57B949FB21D3F629007D2FF5 /* AllRoutes.plist in Resources */,
+				FD5325BD21CBF77B001293DC /* LaunchScreen.storyboard in Resources */,
+				FD5325BA21CBF77B001293DC /* Assets.xcassets in Resources */,
+				FD5325B821CBF779001293DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD5325C121CBF77B001293DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD5325CC21CBF77B001293DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FD5325AB21CBF779001293DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57B94A0721D582EE007D2FF5 /* RoutesEditor.swift in Sources */,
+				57B94A0921D6B9CA007D2FF5 /* Artwork.swift in Sources */,
+				57B94A0B21DA6DD3007D2FF5 /* DriversController.swift in Sources */,
+				57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */,
+				57B949F921D3E92D007D2FF5 /* RouteDetailsController.swift in Sources */,
+				57B94A0321D55BDF007D2FF5 /* DriverController.swift in Sources */,
+				57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */,
+				FD5325B521CBF779001293DC /* RoutesController.swift in Sources */,
+				FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */,
+				57B94A1221DC97FE007D2FF5 /* LocationsController.swift in Sources */,
+				57B949FD21D4096A007D2FF5 /* Route.swift in Sources */,
+				57B949FF21D40BA4007D2FF5 /* Location.swift in Sources */,
+				FD5325E121CBFA90001293DC /* SettingsViewController.swift in Sources */,
+				57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */,
+				57B94A1421DCA743007D2FF5 /* AddLocationCell.swift in Sources */,
+				57B94A0121D52348007D2FF5 /* RouteCell.swift in Sources */,
+				57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */,
+				57B94A0521D5756F007D2FF5 /* CustomerController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD5325BF21CBF77B001293DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD5325C821CBF77B001293DC /* PCL_AdminTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD5325CA21CBF77B001293DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD5325D321CBF77B001293DC /* PCL_AdminUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FD5325C521CBF77B001293DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD5325AE21CBF779001293DC /* PCL Admin */;
+			targetProxy = FD5325C421CBF77B001293DC /* PBXContainerItemProxy */;
+		};
+		FD5325D021CBF77B001293DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD5325AE21CBF779001293DC /* PCL Admin */;
+			targetProxy = FD5325CF21CBF77B001293DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FD5325B621CBF779001293DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD5325B721CBF779001293DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FD5325BB21CBF77B001293DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD5325BC21CBF77B001293DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FD5325D521CBF77B001293DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FD5325D621CBF77B001293DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FD5325D821CBF77B001293DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8QRSS72HD;
+				INFOPLIST_FILE = "PCL Admin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-Admin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		FD5325D921CBF77B001293DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8QRSS72HD;
+				INFOPLIST_FILE = "PCL Admin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-Admin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		FD5325DB21CBF77B001293DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "PCL AdminTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PCL Admin.app/PCL Admin";
+			};
+			name = Debug;
+		};
+		FD5325DC21CBF77B001293DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "PCL AdminTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PCL Admin.app/PCL Admin";
+			};
+			name = Release;
+		};
+		FD5325DE21CBF77B001293DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "PCL AdminUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "PCL Admin";
+			};
+			name = Debug;
+		};
+		FD5325DF21CBF77B001293DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "PCL AdminUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "PCL Admin";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FD5325AA21CBF779001293DC /* Build configuration list for PBXProject "PCL Admin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD5325D521CBF77B001293DC /* Debug */,
+				FD5325D621CBF77B001293DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD5325D721CBF77B001293DC /* Build configuration list for PBXNativeTarget "PCL Admin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD5325D821CBF77B001293DC /* Debug */,
+				FD5325D921CBF77B001293DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD5325DA21CBF77B001293DC /* Build configuration list for PBXNativeTarget "PCL AdminTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD5325DB21CBF77B001293DC /* Debug */,
+				FD5325DC21CBF77B001293DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD5325DD21CBF77B001293DC /* Build configuration list for PBXNativeTarget "PCL AdminUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD5325DE21CBF77B001293DC /* Debug */,
+				FD5325DF21CBF77B001293DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FD5325A721CBF779001293DC /* Project object */;
+}

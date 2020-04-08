@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Route Name</key>
+		<string>Floater Route #1</string>
+		<key>Vehicle No.</key>
+		<string>PA 0001</string>
+		<key>Route No.</key>
+		<string>1</string>
+		<key>Asignee</key>
+		<string>Adam</string>
+		<key>Locations</key>
+		<array>
+			<dict>
+				<key>PickUpType</key>
+				<string>Inside Live </string>
+				<key>LabName</key>
+				<string>Aldie Langhorne</string>
+				<key>Address</key>
+				<string>2291 Cabot Ctr. West Langhorne, PA 19047</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#1017</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Merakey</string>
+				<key>PickUpType</key>
+				<string>Inside</string>
+				<key>Address</key>
+				<string>11082 Knights Rd. Philadelphia , Pa.19154</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#1272</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>North American S&amp;P</string>
+				<key>PickUpType</key>
+				<string>Inside</string>
+				<key>Address</key>
+				<string>404 Creek Crossing Blvd. Hainesport, N.J.</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#1000</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Founders</string>
+				<key>PickUpType</key>
+				<string>Inside</string>
+				<key>Address</key>
+				<string>7901 Bustleton Ave. Philadelphia, Pa.</string>
+				<key>CollectionStatus</key>
+				<string>Missed</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#2102</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>North American S&amp;P</string>
+				<key>PickUpType</key>
+				<string>Outside</string>
+				<key>Address</key>
+				<string>3501 Mason Mills RD. Ste. 501 Huntingdon Valley, Pa. 19006</string>
+				<key>CollectionStatus</key>
+				<string>Closed</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#2142</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Injury Care Center</string>
+				<key>PickUpType</key>
+				<string>Outside</string>
+				<key>Address</key>
+				<string>3300 Grant Ave. Philadelphia, Pa. 19114</string>
+				<key>CollectionStatus</key>
+				<string>Rescheduled</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#2136</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Oxford Crossing Internal Med.</string>
+				<key>PickUpType</key>
+				<string>Outside</string>
+				<key>Address</key>
+				<string>333 N. Oxford Valley RD. Fairless Hills ,Pa. 19030</string>
+				<key>CollectionStatus</key>
+				<string>Other</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#2186</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Route Name</key>
+		<string>Floater Route #2</string>
+		<key>Vehicle No.</key>
+		<string>PA 0002</string>
+		<key>Route No.</key>
+		<string>2</string>
+		<key>Asignee</key>
+		<string>Charles</string>
+		<key>Locations</key>
+		<array>
+			<dict>
+				<key>LabName</key>
+				<string>Aldie Doylestown</string>
+				<key>PickUpType</key>
+				<string>Inside Box</string>
+				<key>Address</key>
+				<string>11 Weldon Dr. Doylestown, PA 18901</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#1005</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Oxford Crossing Internal Med.</string>
+				<key>PickUpType</key>
+				<string>Inside Box</string>
+				<key>Address</key>
+				<string>333 N. Oxford Valley Rd. Fairless Hills ,Pa. 19030</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#2186</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Merakey</string>
+				<key>PickUpType</key>
+				<string>Inside Box</string>
+				<key>Address</key>
+				<string>11082 Knights Rd. Philadelphia , Pa. 19154</string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#1272</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Route Name</key>
+		<string>Livengrin Route	</string>
+		<key>Vehicle No.</key>
+		<string>PA 0003</string>
+		<key>Route No.</key>
+		<string>3</string>
+		<key>Asignee</key>
+		<string>John</string>
+		<key>Locations</key>
+		<array>
+			<dict>
+				<key>LabName</key>
+				<string>Livengrin Allentown</string>
+				<key>PickUpType</key>
+				<string>Inside Live</string>
+				<key>Address</key>
+				<string>31 South Commerce Way, Ste. 300 Bethlehem, PA 18017</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#8508</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Livengrin Fort Washington</string>
+				<key>PickUpType</key>
+				<string>Inside Live</string>
+				<key>Address</key>
+				<string>550 Pinetown Rd, Suite 150 Fort Washington, PA 19034</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#8505</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Livengrin Lower Bucks</string>
+				<key>PickUpType</key>
+				<string>Inside Live</string>
+				<key>Address</key>
+				<string>1609 Woodbourne Rd Levittown, PA 19057</string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#8504</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Livengrin Northeast</string>
+				<key>PickUpType</key>
+				<string>Inside Live</string>
+				<key>Address</key>
+				<string>9140 Academy Rd Philadelphia, PA 19114</string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#8503</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Institute of Advanced Medicine - Aria Health</string>
+				<key>PickUpType</key>
+				<string>Inside Live</string>
+				<key>Address</key>
+				<string>5000 Frankford Ave., #2 Philadelphia, PA 19124</string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#1027</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Injury Care Center -NE Philadelphia</string>
+				<key>PickUpType</key>
+				<string>Outside box</string>
+				<key>Address</key>
+				<string>3300 Grant Avenue Philadelphia, PA 19114</string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#2136</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>Route No.</key>
+		<string>4</string>
+		<key>Vehicle No.</key>
+		<string>PA 0004</string>
+		<key>Route Name</key>
+		<string>North New Jersey Route</string>
+		<key>Asignee</key>
+		<string>Mathew</string>
+		<key>Locations</key>
+		<array>
+			<dict>
+				<key>LabName</key>
+				<string>Bonnie Brae Educational Center</string>
+				<key>PickUpType</key>
+				<string>Inside Live</string>
+				<key>Address</key>
+				<string>3415 Valley Road Basking Ridge, NJ 07938</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#8252</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Regional Orthopaedic Medical</string>
+				<key>PickUpType</key>
+				<string>Inside Box</string>
+				<key>Address</key>
+				<string>1460 Livingston Ave, Bldg. 400 North Brunswick, NJ 08902</string>
+				<key>CollectionStatus</key>
+				<string>Collected</string>
+				<key>SpecimenCollected</key>
+				<string>50</string>
+				<key>LocationId</key>
+				<string>#2138</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Jersey Anesthesia</string>
+				<key>PickUpType</key>
+				<string>Outside Box</string>
+				<key>Address</key>
+				<string>940 Amboy Ave ste #104a Edison N.J.08837</string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#2017</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>4:30 PM</string>
+			</dict>
+			<dict>
+				<key>LabName</key>
+				<string>Oasis BHVL</string>
+				<key>PickUpType</key>
+				<string>Outside Box</string>
+				<key>Address</key>
+				<string>499 Marlboro Rd. Ste 1 Old Bridge, N.J. </string>
+				<key>CollectionStatus</key>
+				<string>NotCollected</string>
+				<key>SpecimenCollected</key>
+				<string>0</string>
+				<key>LocationId</key>
+				<string>#3331</string>
+				<key>PickedUpBy</key>
+				<string>Adam</string>
+				<key>PickUpTime</key>
+				<string>3:30 PM</string>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>

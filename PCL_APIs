@@ -1,0 +1,48 @@
+APIs
+
+addDriver <Post>
+input: first name, last name, phone number
+output: result (success/ fail)
+
+addCustomer <Post>
+inputs: CustomerName, StreetAddress, City, State, ZIP, pickUpTime [change to the STATE and ZIP UI, make uniform by changing from text inout to picker input]
+output: Result (success/ fail)
+
+getRouteNumber <Get>
+output: LatestRouteNumber
+
+addRoute <Post>
+input: RouteNumber, RouteName, Driver, Vehicle, [customers]
+output: Result (success/ fail) OR RouteName already Exists
+
+getRoutes <Get>
+output: [Route]
+
+Route {routeNumber, routeName, Driver, VehicleNumber}
+
+change in UI to "update" from "add"
+
+editRoute<Post>
+input: routeNumber, routeName, Driver, Vehicle Number
+output: Result(success/ fail)
+change in UI to "update" from "add"
+
+addVehicle<Post>
+input: PlateNumber, Manfuacturer, Model
+output: Result (success/ fail)
+
+specimensCollected<Get>
+output: totalNumberOfSpecimens
+
+getAvailDrivers<Get>
+output: [Drivers who are not driving]
+
+adminHome<Get>
+output: RouteNumber, NumberStops, StopStatus(in Order), LastPickUpTime, DriverName, NumberOfScpecimensCollectedOnRoute, NextPickupTime, PickUpStatus
+
+routeDetails<Post>
+input: RouteNumber
+output: customerName, customerAddress, numberOfSpecimens collected, distanceFromPickUp, scheduledPickUp, pickUpStatus
+
+getDriverCoordinates<Get>
+output: driverX, driverY
