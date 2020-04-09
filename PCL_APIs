@@ -1,24 +1,26 @@
 APIs
 
+
+Admin-side app APIs
 addDriver <Post>
-input: first name, last name, phone number
+input: dirverID, firstName, lastName, phoneNumber
 output: result (success/ fail)
 
 addCustomer <Post>
-inputs: CustomerName, StreetAddress, City, State, ZIP, pickUpTime [change to the STATE and ZIP UI, make uniform by changing from text inout to picker input]
+inputs: customerID, customerName, streetAddress, city, state, ZIP, pickUpTime [change to the STATE and ZIP UI, make uniform by changing from text inout to picker input]
 output: Result (success/ fail)
 
 getRouteNumber <Get>
 output: LatestRouteNumber
 
 addRoute <Post>
-input: RouteNumber, RouteName, Driver, Vehicle, [customers]
+input: routeNumber, routeName, driver, vehicle, [customers]
 output: Result (success/ fail) OR RouteName already Exists
 
 getRoutes <Get>
 output: [Route]
 
-Route {routeNumber, routeName, Driver, VehicleNumber}
+Route = {routeNumber, routeName, Driver, VehicleNumber}
 
 change in UI to "update" from "add"
 
@@ -46,3 +48,7 @@ output: customerName, customerAddress, numberOfSpecimens collected, distanceFrom
 
 getDriverCoordinates<Get>
 output: driverX, driverY
+
+
+
+Driver-side app APIs
