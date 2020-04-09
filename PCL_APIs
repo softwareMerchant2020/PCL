@@ -4,10 +4,10 @@ APIs
 Admin-side app APIs
 addDriver <Post>
 input: dirverID, firstName, lastName, phoneNumber
-output: result (success/ fail)
+output: result (success/ fail "phone number exists in db")
 
 addCustomer <Post>
-inputs: customerID, customerName, streetAddress, city, state, ZIP, pickUpTime [change to the STATE and ZIP UI, make uniform by changing from text inout to picker input]
+inputs: customerID, customerName, streetAddress, city, state, ZIP, pickUpTime [change to the STATE and ZIP UI, make uniform by changing from text input to picker input]
 output: Result (success/ fail)
 
 getRouteNumber <Get>
@@ -40,15 +40,24 @@ getAvailDrivers<Get>
 output: [Drivers who are not driving]
 
 adminHome<Get>
-output: RouteNumber, NumberStops, StopStatus(in Order), LastPickUpTime, DriverName, NumberOfScpecimensCollectedOnRoute, NextPickupTime, PickUpStatus
+output: RouteNumber, NumberStops, StopStatus(in Order), LastPickUpTime, DriverName, NumberOfScpecimensCollectedOnRoute, NextPickupTime, pickUpStatus
 
 routeDetails<Post>
 input: RouteNumber
-output: customerName, customerAddress, numberOfSpecimens collected, distanceFromPickUp, scheduledPickUp, pickUpStatus
+output: customerName, customerAddress, numberOfSpecimens collected, nextPickUpTime, pickUpStatus
 
-getDriverCoordinates<Get>
+getDriverCoordinates<Post>
+input: driverID
 output: driverX, driverY
 
 
 
 Driver-side app APIs
+
+driverLogin<Post>
+input: driverPhoneNumber, password
+output: result(success/ fail)
+
+updateStatus<Post>
+input: customerID, routeID, numberOfSpecimens, Status
+output: result (success/ fail)
