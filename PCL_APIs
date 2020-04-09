@@ -33,6 +33,9 @@ addVehicle<Post>
 input: PlateNumber, Manfuacturer, Model
 output: Result (success/ fail)
 
+getVehicle<get>
+output: [VehiclePlates]
+
 specimensCollected<Get>
 output: totalNumberOfSpecimens
 
@@ -50,6 +53,8 @@ getDriverCoordinates<Post>
 input: driverID
 output: driverX, driverY
 
+getCustomers<Get>
+output: customerName, customerID, [Address]
 
 
 Driver-side app APIs
