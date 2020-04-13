@@ -23,6 +23,7 @@
 		57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */; };
 		57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */; };
 		57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */; };
+		EF59DE142440E2AC0081D719 /* statedictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF59DE132440E2AC0081D719 /* statedictionary.plist */; };
 		F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B1E24449DFA00CECEE8 /* RestManager.swift */; };
 		FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B221CBF779001293DC /* AppDelegate.swift */; };
 		FD5325B521CBF779001293DC /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B421CBF779001293DC /* RoutesController.swift */; };
@@ -68,6 +69,7 @@
 		57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRouteCell.swift; sourceTree = "<group>"; };
 		57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingRoutesController.swift; sourceTree = "<group>"; };
 		57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
+		EF59DE132440E2AC0081D719 /* statedictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = statedictionary.plist; sourceTree = "<group>"; };
 		F3659B1E24449DFA00CECEE8 /* RestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
 		FD5325AF21CBF779001293DC /* PCL Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PCL Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5325B221CBF779001293DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				57B94A0E21DC930A007D2FF5 /* Controllers */,
 				FD5325B221CBF779001293DC /* AppDelegate.swift */,
 				FD5325B621CBF779001293DC /* Main.storyboard */,
+				EF59DE132440E2AC0081D719 /* statedictionary.plist */,
 				FD5325B921CBF77B001293DC /* Assets.xcassets */,
 				FD5325BB21CBF77B001293DC /* LaunchScreen.storyboard */,
 				FD5325BE21CBF77B001293DC /* Info.plist */,
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF59DE142440E2AC0081D719 /* statedictionary.plist in Resources */,
 				57B949FB21D3F629007D2FF5 /* AllRoutes.plist in Resources */,
 				FD5325BD21CBF77B001293DC /* LaunchScreen.storyboard in Resources */,
 				FD5325BA21CBF77B001293DC /* Assets.xcassets in Resources */,

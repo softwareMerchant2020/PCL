@@ -43,10 +43,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         // popover
         // none
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
-            presentingController.modalPresentationStyle = UIModalPresentationStyle.formSheet
+            presentingController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         case 1:
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
-            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+            presentingController.modalPresentationStyle = .pageSheet
         case 2:
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
             presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
