@@ -23,6 +23,11 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.allRoutes.append(Route(aRoute as! [String : Any])!)
             }
         }
+        
+        RestManager.APIData(url: "", httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            
+        }
+        
         // Do any additional setup after loading the view.
     }
     

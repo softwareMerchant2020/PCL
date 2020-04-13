@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Route {
+struct Route: Decodable {
     let routeNo: String
     let assignee: String
     let routeName: String
