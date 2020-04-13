@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CollectionStatus: String {
+enum CollectionStatus: String, Decodable {
     case notCollected = "NotCollected"
     case collected = "Collected"
     case rescheduled = "Rescheduled"
@@ -17,7 +17,7 @@ enum CollectionStatus: String {
     case other = "Other"
 }
 
-struct Location{
+struct Location: Decodable{
     let labName: String
     let address: String
     let collectionStatus: CollectionStatus
