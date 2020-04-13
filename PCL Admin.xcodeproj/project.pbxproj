@@ -23,6 +23,7 @@
 		57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */; };
 		57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */; };
 		57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */; };
+		F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B1E24449DFA00CECEE8 /* RestManager.swift */; };
 		FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B221CBF779001293DC /* AppDelegate.swift */; };
 		FD5325B521CBF779001293DC /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B421CBF779001293DC /* RoutesController.swift */; };
 		FD5325B821CBF779001293DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5325B621CBF779001293DC /* Main.storyboard */; };
@@ -67,6 +68,7 @@
 		57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRouteCell.swift; sourceTree = "<group>"; };
 		57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingRoutesController.swift; sourceTree = "<group>"; };
 		57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
+		F3659B1E24449DFA00CECEE8 /* RestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
 		FD5325AF21CBF779001293DC /* PCL Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PCL Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5325B221CBF779001293DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5325B421CBF779001293DC /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				FD5325BB21CBF77B001293DC /* LaunchScreen.storyboard */,
 				FD5325BE21CBF77B001293DC /* Info.plist */,
 				57B949FA21D3F629007D2FF5 /* AllRoutes.plist */,
+				F3659B1E24449DFA00CECEE8 /* RestManager.swift */,
 			);
 			path = "PCL Admin";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				57B94A0B21DA6DD3007D2FF5 /* DriversController.swift in Sources */,
 				57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */,
 				57B949F921D3E92D007D2FF5 /* RouteDetailsController.swift in Sources */,
+				F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */,
 				57B94A0321D55BDF007D2FF5 /* DriverController.swift in Sources */,
 				57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */,
 				FD5325B521CBF779001293DC /* RoutesController.swift in Sources */,
