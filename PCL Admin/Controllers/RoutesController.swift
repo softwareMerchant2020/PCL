@@ -24,9 +24,9 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         }
         
-        RestManager.APIData(url: "", httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+        //RestManager.APIData(url: "", httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             
-        }
+        //}
         
         // Do any additional setup after loading the view.
     }
