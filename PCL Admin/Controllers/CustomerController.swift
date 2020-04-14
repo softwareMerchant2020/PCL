@@ -16,6 +16,10 @@ class CustomerController: UIViewController {
     var statePlist:Dictionary<String,Array<String>>?
     var stateList:[String] = []
     var selectedState:String?
+    var stateTextField:UITextField!
+    var zipTextField:UITextField!
+    
+    
     
    
     override func viewDidLoad() {
@@ -38,6 +42,13 @@ class CustomerController: UIViewController {
             aField.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
             aField.layer.borderWidth = 1
             aField.layer.cornerRadius = 8
+            if aField.tag == 3 {
+                stateTextField = aField
+            }
+            else if aField.tag == 4
+            {
+                zipTextField = aField
+            }
         }
         for aButton in buttons
         {
@@ -94,12 +105,12 @@ extension CustomerController:UIPickerViewDelegate, UIPickerViewDataSource, UITex
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if isSelectingState {
-            fields?[3].text = stateList[row]
+            stateTextField.text = stateList[row]
             selectedState = stateList[row]
         }
         else
         {
-            fields?[4].text = statePlist?[selectedState ?? ""]?[row]
+            zipTextField.text = statePlist?[selectedState ?? ""]?[row]
         }
         
     }

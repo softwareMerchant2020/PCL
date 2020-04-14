@@ -33,17 +33,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let presentingController: UIViewController
         switch indexPath.row {
         case 0:
-        // fullScreen
-        // pageSheet
-        // formSheet
-        // currentContext
-        // custom
-        // overFullScreen
-        // overCurrentContext
-        // popover
-        // none
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
-            presentingController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         case 1:
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
             presentingController.modalPresentationStyle = .pageSheet

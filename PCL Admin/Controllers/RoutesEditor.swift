@@ -17,6 +17,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     @IBOutlet var cancelButton: UIButton!
     var myRoute: Route?
     
+    @IBOutlet weak var buttonStackView: UIStackView!
     var selectedDriver: String = "   ---   "
     var selectedVehicle: String = "   ---   "
     var routeLocations: [Location] = []
@@ -49,6 +50,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     
     @IBAction func driverButtonTapped(_ sender: UIButton){
+        print(buttonStackView)
         let presentingController: DriversController
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriversController") as! DriversController
         presentingController.delegate = self
@@ -59,7 +61,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         let popoverPresentationController = presentingController.popoverPresentationController
         popoverPresentationController?.sourceView = self.view
-        popoverPresentationController?.sourceRect = sender.frame
+        popoverPresentationController?.sourceRect = buttonStackView.convert(buttonStackView.arrangedSubviews[0].frame, to: self.view)
         
     }
     
@@ -74,7 +76,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         let popoverPresentationController = presentingController.popoverPresentationController
         popoverPresentationController?.sourceView = self.view
-        popoverPresentationController?.sourceRect = sender.frame
+        popoverPresentationController?.sourceRect = buttonStackView.convert(buttonStackView.arrangedSubviews[1].frame, to: self.view)
         
     }
     
