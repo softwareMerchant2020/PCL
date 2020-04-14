@@ -24,6 +24,7 @@
 		57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */; };
 		57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */; };
 		EF59DE142440E2AC0081D719 /* statedictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF59DE132440E2AC0081D719 /* statedictionary.plist */; };
+		EF9191B6244646D900137E2B /* AddVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */; };
 		F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B1E24449DFA00CECEE8 /* RestManager.swift */; };
 		F3659B212444C8AA00CECEE8 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B202444C8AA00CECEE8 /* Driver.swift */; };
 		F3659B232444C8BC00CECEE8 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B222444C8BC00CECEE8 /* Vehicle.swift */; };
@@ -72,6 +73,7 @@
 		57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingRoutesController.swift; sourceTree = "<group>"; };
 		57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
 		EF59DE132440E2AC0081D719 /* statedictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = statedictionary.plist; sourceTree = "<group>"; };
+		EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehiclesViewController.swift; sourceTree = "<group>"; };
 		F3659B1E24449DFA00CECEE8 /* RestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
 		F3659B202444C8AA00CECEE8 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		F3659B222444C8BC00CECEE8 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				FD5325E021CBFA90001293DC /* SettingsViewController.swift */,
 				57B94A1121DC97FE007D2FF5 /* LocationsController.swift */,
 				57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */,
+				EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */,
 				57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */,
 			);
 			path = Controllers;
@@ -360,6 +363,7 @@
 				57B949FF21D40BA4007D2FF5 /* Location.swift in Sources */,
 				FD5325E121CBFA90001293DC /* SettingsViewController.swift in Sources */,
 				57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */,
+				EF9191B6244646D900137E2B /* AddVehiclesViewController.swift in Sources */,
 				F3659B212444C8AA00CECEE8 /* Driver.swift in Sources */,
 				57B94A1421DCA743007D2FF5 /* AddLocationCell.swift in Sources */,
 				57B94A0121D52348007D2FF5 /* RouteCell.swift in Sources */,

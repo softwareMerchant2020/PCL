@@ -433,7 +433,7 @@ Philadelphia, PA 19151</string>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kO1-7h-HBg">
                                                 <rect key="frame" x="0.0" y="0.0" width="222.5" height="62.5"/>
-                                                <color key="backgroundColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.42352941179999998" green="0.043137254899999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                                 <state key="normal" title="Reset">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1182,6 +1182,106 @@ Philadelphia, PA 19151</string>
             </objects>
             <point key="canvasLocation" x="2880.46875" y="1419.140625"/>
         </scene>
+        <!--AddVehicle Controller-->
+        <scene sceneID="8qA-TW-TAa">
+            <objects>
+                <viewController storyboardIdentifier="AddVehicleController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p6U-Fc-MYg" userLabel="AddVehicle Controller" customClass="AddVehiclesViewController" customModule="PCL_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M3b-9t-cYX">
+                        <rect key="frame" x="0.0" y="0.0" width="763" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="xCM-Xr-x0Y">
+                                <rect key="frame" x="30" y="30" width="703" height="708"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Vehicle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwM-l0-KLb">
+                                        <rect key="frame" x="0.0" y="0.0" width="703" height="63"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <color key="textColor" red="0.42352941179999998" green="0.043137254899999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="License Plate Number" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="ist-ZM-K8X">
+                                        <rect key="frame" x="0.0" y="129" width="703" height="63"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vehicle Make" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="kCg-tM-rb3">
+                                        <rect key="frame" x="0.0" y="258" width="703" height="63"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vehicle Model" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="r3s-dY-EGJ">
+                                        <rect key="frame" x="0.0" y="387" width="703" height="63"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="71" translatesAutoresizingMaskIntoConstraints="NO" id="yg4-RP-emh">
+                                        <rect key="frame" x="0.0" y="516" width="703" height="63"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozl-29-sN3">
+                                                <rect key="frame" x="0.0" y="0.0" width="316" height="63"/>
+                                                <color key="backgroundColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                                <state key="normal" title="Reset">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="resetButtonClicked:" destination="p6U-Fc-MYg" eventType="touchUpInside" id="4Dg-C3-ud3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghu-vU-Ey8">
+                                                <rect key="frame" x="387" y="0.0" width="316" height="63"/>
+                                                <color key="backgroundColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonClicked:" destination="p6U-Fc-MYg" eventType="touchUpInside" id="gPH-WF-7Qe"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQd-4j-rLu">
+                                        <rect key="frame" x="0.0" y="645" width="703" height="63"/>
+                                        <color key="backgroundColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addVehicleClicked:" destination="p6U-Fc-MYg" eventType="touchUpInside" id="pwj-Iv-nRg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="igu-7n-ZIS" firstAttribute="trailing" secondItem="xCM-Xr-x0Y" secondAttribute="trailing" constant="30" id="Fbn-ho-i3Y"/>
+                            <constraint firstItem="igu-7n-ZIS" firstAttribute="bottom" secondItem="xCM-Xr-x0Y" secondAttribute="bottom" constant="30" id="GYd-dx-YgD"/>
+                            <constraint firstItem="xCM-Xr-x0Y" firstAttribute="leading" secondItem="igu-7n-ZIS" secondAttribute="leading" constant="30" id="XtJ-k0-q9d"/>
+                            <constraint firstItem="xCM-Xr-x0Y" firstAttribute="top" secondItem="igu-7n-ZIS" secondAttribute="top" constant="30" id="zhC-CJ-YVz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="igu-7n-ZIS"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="763" height="768"/>
+                    <connections>
+                        <outlet property="addButton" destination="sQd-4j-rLu" id="CZM-CE-Z5k"/>
+                        <outlet property="cancelButton" destination="ghu-vU-Ey8" id="s4B-5C-upE"/>
+                        <outlet property="resetButton" destination="ozl-29-sN3" id="Ein-XN-Bus"/>
+                        <outletCollection property="fields" destination="ist-ZM-K8X" collectionClass="NSMutableArray" id="AoD-MK-jSF"/>
+                        <outletCollection property="fields" destination="kCg-tM-rb3" collectionClass="NSMutableArray" id="HJn-Oy-xgQ"/>
+                        <outletCollection property="fields" destination="r3s-dY-EGJ" collectionClass="NSMutableArray" id="C72-b6-rBz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F73-B3-cnj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2858.49609375" y="2113.28125"/>
+        </scene>
         <!--Home-->
         <scene sceneID="fBZ-u3-r2v">
             <objects>
@@ -1294,8 +1394,25 @@ Philadelphia, PA 19151</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="3" rowHeight="70" id="D3x-jU-XbX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="3" rowHeight="70" id="JKU-TQ-WVO">
                                         <rect key="frame" x="0.0" y="238" width="1024" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JKU-TQ-WVO" id="rsL-8I-b56">
+                                            <rect key="frame" x="0.0" y="0.0" width="998" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Vehicle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puw-oj-tRs">
+                                                    <rect key="frame" x="26" y="24" width="295" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="4" rowHeight="70" id="D3x-jU-XbX">
+                                        <rect key="frame" x="0.0" y="308" width="1024" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D3x-jU-XbX" id="OBC-Vb-pUC">
                                             <rect key="frame" x="0.0" y="0.0" width="998" height="70"/>
