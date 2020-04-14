@@ -28,6 +28,9 @@
 		F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B1E24449DFA00CECEE8 /* RestManager.swift */; };
 		F3659B212444C8AA00CECEE8 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B202444C8AA00CECEE8 /* Driver.swift */; };
 		F3659B232444C8BC00CECEE8 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B222444C8BC00CECEE8 /* Vehicle.swift */; };
+		F3659B352446215F00CECEE8 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B342446215F00CECEE8 /* CommonFunctions.swift */; };
+		F3659B372446238C00CECEE8 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B362446238C00CECEE8 /* Customer.swift */; };
+		F3659B392446241B00CECEE8 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B382446241B00CECEE8 /* RequestResult.swift */; };
 		FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B221CBF779001293DC /* AppDelegate.swift */; };
 		FD5325B521CBF779001293DC /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B421CBF779001293DC /* RoutesController.swift */; };
 		FD5325B821CBF779001293DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5325B621CBF779001293DC /* Main.storyboard */; };
@@ -77,6 +80,9 @@
 		F3659B1E24449DFA00CECEE8 /* RestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
 		F3659B202444C8AA00CECEE8 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		F3659B222444C8BC00CECEE8 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		F3659B342446215F00CECEE8 /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
+		F3659B362446238C00CECEE8 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		F3659B382446241B00CECEE8 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		FD5325AF21CBF779001293DC /* PCL Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PCL Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5325B221CBF779001293DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5325B421CBF779001293DC /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 				57B94A0821D6B9CA007D2FF5 /* Artwork.swift */,
 				F3659B202444C8AA00CECEE8 /* Driver.swift */,
 				F3659B222444C8BC00CECEE8 /* Vehicle.swift */,
+				F3659B362446238C00CECEE8 /* Customer.swift */,
+				F3659B382446241B00CECEE8 /* RequestResult.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -157,6 +165,14 @@
 				57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F3659B332446214F00CECEE8 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F3659B342446215F00CECEE8 /* CommonFunctions.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		FD5325A621CBF779001293DC = {
@@ -182,6 +198,7 @@
 		FD5325B121CBF779001293DC /* PCL Admin */ = {
 			isa = PBXGroup;
 			children = (
+				F3659B332446214F00CECEE8 /* Utility */,
 				57B94A1021DC9360007D2FF5 /* Cells */,
 				57B94A0F21DC9342007D2FF5 /* Modals */,
 				57B94A0E21DC930A007D2FF5 /* Controllers */,
@@ -283,13 +300,16 @@
 				TargetAttributes = {
 					FD5325AE21CBF779001293DC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1140;
 					};
 					FD5325C221CBF77B001293DC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1140;
 						TestTargetID = FD5325AE21CBF779001293DC;
 					};
 					FD5325CD21CBF77B001293DC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1140;
 						TestTargetID = FD5325AE21CBF779001293DC;
 					};
 				};
@@ -353,6 +373,8 @@
 				57B94A0B21DA6DD3007D2FF5 /* DriversController.swift in Sources */,
 				57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */,
 				57B949F921D3E92D007D2FF5 /* RouteDetailsController.swift in Sources */,
+				F3659B372446238C00CECEE8 /* Customer.swift in Sources */,
+				F3659B392446241B00CECEE8 /* RequestResult.swift in Sources */,
 				F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */,
 				57B94A0321D55BDF007D2FF5 /* DriverController.swift in Sources */,
 				57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */,
@@ -369,6 +391,7 @@
 				57B94A0121D52348007D2FF5 /* RouteCell.swift in Sources */,
 				F3659B232444C8BC00CECEE8 /* Vehicle.swift in Sources */,
 				57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */,
+				F3659B352446215F00CECEE8 /* CommonFunctions.swift in Sources */,
 				57B94A0521D5756F007D2FF5 /* CustomerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,7 +576,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-Admin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -571,7 +594,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-Admin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -590,7 +613,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PCL Admin.app/PCL Admin";
 			};
@@ -610,7 +633,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PCL Admin.app/PCL Admin";
 			};
@@ -629,7 +652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "PCL Admin";
 			};
@@ -648,7 +671,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.softwaremerchant.pcl.PCL-AdminUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "PCL Admin";
 			};

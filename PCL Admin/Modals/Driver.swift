@@ -9,8 +9,6 @@
 import Foundation
 
 struct Driver: Decodable{
-    let Driver_Id: Int
-    let First_Name: String
-    let Last_Name: String
-    let Contact_No: Double
+    var DriverId: Int
+    var DriverName: String
 }

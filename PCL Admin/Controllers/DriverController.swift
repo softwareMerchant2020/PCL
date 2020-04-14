@@ -27,6 +27,46 @@ class DriverController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func addButtonClicked(_ sender: Any) {
+        if fields[0].text == "" || fields[1].text == "" || fields[2].text == ""{
+            let alert = Alert(message: "Please fill all the three fields.")
+            self.present(alert, animated: true)
+        } else {
+            let jsonBody = [
+                "FirstName": fields[0].text,
+            "LastName": fields[1].text,
+            "PhoneNumber": fields[2].text
+            ]
+            RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/driver/AddDriver", httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+                if Error == nil {
+                    do {
+                        let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                        if resultData.Result == "success"{
+                            DispatchQueue.main.async {
+                                let alert = Alert(message: "Driver Added")
+                                self.present(alert, animated: true)
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let alert = Alert(message: resultData.Result)
+                                self.present(alert, animated: true)
+                            }
+                        }
+                        
+                    } catch let JSONErr{
+                        DispatchQueue.main.async {
+                            let alert = Alert(message: JSONErr.localizedDescription)
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        
+    }
     @IBAction func cancelButtonClicked(){
         self.dismiss(animated: true, completion: nil)
     }

@@ -12,11 +12,23 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var driversTable: UITableView!
     var delegate: RoutesEditor?
-    let drivers = ["Adam", "Charles", "John", "Mathew"]
+    var drivers = [Driver]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Driver/GetDriver", httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+            (Data, Error) in
+            if Error == nil{
+                do {
+                    self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
+                    DispatchQueue.main.async {
+                        self.driversTable.reloadData()
+                    }
+                } catch let JSONErr{
+                    print(JSONErr.localizedDescription)
+                }
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -26,13 +38,13 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = drivers[indexPath.row]
+        cell.textLabel?.text = drivers[indexPath.row].DriverName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.selectedDriver = drivers[indexPath.row]
+        delegate?.selectedDriver = drivers[indexPath.row].DriverName
         delegate?.refreshDriver()
         self.dismiss(animated: true, completion: nil)
         
