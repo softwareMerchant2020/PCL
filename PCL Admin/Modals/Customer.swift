@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Customer: Decodable{
+struct Customer: Decodable
+{
+    var CustomerId: Int
     var CustomerName: String
     var StreetAddress: String
     var City: String
