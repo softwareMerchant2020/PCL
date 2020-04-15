@@ -59,9 +59,20 @@ output: customerName, customerID, [Address]
 
 Driver-side app APIs
 
-driverLogin<Post>
-input: driverPhoneNumber, password
-output: result(success/ fail)
+DriverLogin<Post>
+input: {
+  "PhoneNumber": "string",
+  "Password": "string"
+}
+output: result(Login successful/ Login failed)
+
+DriverSignUp<Post>
+input: {
+  "PhoneNumber": "string",
+  "Password": "string",
+  "ConfirmPassword": "string"
+}
+output: result(success/ Phone number not exists)
 
 updateStatus<Post>
 input: customerID, routeID, numberOfSpecimens, Status
