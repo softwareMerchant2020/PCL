@@ -20,7 +20,7 @@ output: Result (success/ fail) OR RouteName already Exists
 getRoutes <Get>
 output: [Route]
 
-Route = {routeNumber, routeName, Driver, VehicleNumber, [customers]}
+Route = {routeNumber, routeName, Driver, VehicleNumber, [customersAddress]}
 
 change in UI to "update" from "add"
 
