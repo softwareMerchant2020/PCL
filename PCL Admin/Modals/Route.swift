@@ -9,11 +9,11 @@
 import Foundation
 
 struct Route: Decodable {
-    let RouteNo: Int
-    let RouteName: String
-    let DriverId: Int
+    let routeNo: String
+    let routeName: String
+    let assignee: String
     let vehicleNo: String
-    var Location: [Location]
+    var locations: [Location]
 }
 
 extension Route {

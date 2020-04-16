@@ -50,7 +50,6 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     
     @IBAction func driverButtonTapped(_ sender: UIButton){
-        print(buttonStackView)
         let presentingController: DriversController
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriversController") as! DriversController
         presentingController.delegate = self

@@ -20,7 +20,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let routes = NSArray(contentsOfFile: path)
             for aRoute in routes!
             {
-                self.allRoutes.append(Route(aRoute as! [String : Any] as! Decoder)!)
+                self.allRoutes.append(Route(aRoute as! [String : Any])!)
             }
         }
         
