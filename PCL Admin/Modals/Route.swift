@@ -10,16 +10,16 @@ import Foundation
 
 struct Route: Decodable {
     let routeNo: String
-    let assignee: String
     let routeName: String
+    let assignee: String
     let vehicleNo: String
     var locations: [Location]
 }
 
 extension Route {
-    init?(_ route: [String: Any]) {
+        init?(_ route: [String: Any]) {
         guard let routeNo = route["Route No."] as? String,
-            let assignee = route["Asignee"] as? String, let locations = route["Locations"] as? Array<[String:Any]> else {
+        let assignee = route["Asignee"] as? String, let locations = route["Locations"] as? Array<[String:Any]> else {
                 return nil
         }
         self.routeName = route["Route Name"] as! String
