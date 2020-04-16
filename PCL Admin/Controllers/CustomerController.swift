@@ -74,11 +74,6 @@ class CustomerController: UIViewController {
         if fields[0].text == "" || fields[1].text == "" || fields[2].text == "" || fields[3].text == "" || fields[4].text == ""{
             
         } else {
-            print(fields[0].text!)
-            print(fields[1].text!)
-            print(fields[2].text!)
-            print(fields[3].text!)
-            print(fields[4].text!)
             let jsonBody = [
                 "CustomerName": fields[0].text,
                 "City": fields[1].text,
@@ -92,13 +87,11 @@ class CustomerController: UIViewController {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
                         if resultData.Result == "success"{
-                            self.dismiss(animated: true, completion: nil)
                             DispatchQueue.main.async {
                                 let alert = Alert(message: "Customer Added")
                                 self.present(alert, animated: true)
                             }
                         } else {
-                            self.dismiss(animated: true, completion: nil)
                             DispatchQueue.main.async {
                                 let alert = Alert(message: resultData.Result)
                                 self.present(alert, animated: true)
@@ -113,6 +106,7 @@ class CustomerController: UIViewController {
                     }
                 }
             }
+            self.dismiss(animated: true, completion: nil)
         }
     }
     func createPickerView(field:UITextField) {

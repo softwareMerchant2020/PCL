@@ -37,35 +37,36 @@ class DriverController: UIViewController {
             "LastName": fields[1].text,
             "PhoneNumber": fields[2].text
             ]
+            var message = ""
             RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/driver/AddDriver", httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
                 if Error == nil {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
                         if resultData.Result == "success"{
+                            message = "Driver Added"
                             DispatchQueue.main.async {
-                                let alert = Alert(message: "Driver Added")
-                                self.present(alert, animated: true)
-                                self.dismiss(animated: true, completion: nil)
+                                let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+                                self.present(alert,animated: true)
                             }
                         } else {
+                            message = resultData.Result
                             DispatchQueue.main.async {
-                                let alert = Alert(message: resultData.Result)
-                                self.present(alert, animated: true)
+                                let alert = Alert(message: message)
+                                self.present(alert,animated: true)
                             }
                         }
                         
                     } catch let JSONErr{
+                        message = JSONErr.localizedDescription
                         DispatchQueue.main.async {
-                            let alert = Alert(message: JSONErr.localizedDescription)
-                            self.present(alert, animated: true)
+                            let alert = Alert(message: message)
+                            self.present(alert,animated: true)
                         }
                     }
                 }
-                
             }
+            //self.dismiss(animated: true, completion: nil)
         }
-        
-        
     }
     @IBAction func cancelButtonClicked(){
         self.dismiss(animated: true, completion: nil)

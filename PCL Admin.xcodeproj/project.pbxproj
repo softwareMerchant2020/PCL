@@ -25,6 +25,7 @@
 		57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */; };
 		EF59DE142440E2AC0081D719 /* statedictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF59DE132440E2AC0081D719 /* statedictionary.plist */; };
 		EF9191B6244646D900137E2B /* AddVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */; };
+		F34659722448BCA20006DC65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34659712448BCA20006DC65 /* Constants.swift */; };
 		F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B1E24449DFA00CECEE8 /* RestManager.swift */; };
 		F3659B212444C8AA00CECEE8 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B202444C8AA00CECEE8 /* Driver.swift */; };
 		F3659B232444C8BC00CECEE8 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B222444C8BC00CECEE8 /* Vehicle.swift */; };
@@ -77,6 +78,7 @@
 		57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
 		EF59DE132440E2AC0081D719 /* statedictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = statedictionary.plist; sourceTree = "<group>"; };
 		EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehiclesViewController.swift; sourceTree = "<group>"; };
+		F34659712448BCA20006DC65 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F3659B1E24449DFA00CECEE8 /* RestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestManager.swift; sourceTree = "<group>"; };
 		F3659B202444C8AA00CECEE8 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		F3659B222444C8BC00CECEE8 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				F3659B342446215F00CECEE8 /* CommonFunctions.swift */,
+				F34659712448BCA20006DC65 /* Constants.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				57B949F921D3E92D007D2FF5 /* RouteDetailsController.swift in Sources */,
 				F3659B372446238C00CECEE8 /* Customer.swift in Sources */,
 				F3659B392446241B00CECEE8 /* RequestResult.swift in Sources */,
+				F34659722448BCA20006DC65 /* Constants.swift in Sources */,
 				F3659B1F24449DFA00CECEE8 /* RestManager.swift in Sources */,
 				57B94A0321D55BDF007D2FF5 /* DriverController.swift in Sources */,
 				57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */,

@@ -39,5 +39,10 @@ class AddVehiclesViewController: UIViewController {
     }
     
     @IBAction func addVehicleClicked(_ sender: Any) {
+        var jsonBody = [
+            "PlateNumber": fields[0].text,
+          "Manufacturer": fields[1].text,
+          "Model": fields[2].text
+        ]
     }
 }
