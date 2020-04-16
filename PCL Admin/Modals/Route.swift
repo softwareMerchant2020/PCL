@@ -13,7 +13,7 @@ struct Route: Decodable {
     let assignee: String
     let routeName: String
     let vehicleNo: String
-    var locations: [Location]
+    var Location: [Location]
 }
 
 extension Route {

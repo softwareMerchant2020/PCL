@@ -1091,6 +1091,9 @@ Philadelphia, PA 19151</string>
                                         <date key="date" timeIntervalSinceReferenceDate="567638699.11035895">
                                             <!--2018-12-27 21:24:59 +0000-->
                                         </date>
+                                        <connections>
+                                            <action selector="datePickerValueChanged:" destination="xdO-2q-ine" eventType="valueChanged" id="cWb-a0-a6W"/>
+                                        </connections>
                                     </datePicker>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="71" translatesAutoresizingMaskIntoConstraints="NO" id="bj3-HW-sa5">
                                         <rect key="frame" x="0.0" y="573" width="708" height="55"/>
@@ -1207,19 +1210,16 @@ Philadelphia, PA 19151</string>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="License Plate Number" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="ist-ZM-K8X">
                                         <rect key="frame" x="0.0" y="129" width="703" height="63"/>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vehicle Make" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="kCg-tM-rb3">
                                         <rect key="frame" x="0.0" y="258" width="703" height="63"/>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vehicle Model" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="r3s-dY-EGJ">
                                         <rect key="frame" x="0.0" y="387" width="703" height="63"/>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>

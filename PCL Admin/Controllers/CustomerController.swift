@@ -18,6 +18,7 @@ class CustomerController: UIViewController {
     var selectedState:String?
     var stateTextField:UITextField!
     var zipTextField:UITextField!
+    var strDate:String?
     
     
     
@@ -56,6 +57,13 @@ class CustomerController: UIViewController {
         }
     }
     
+    
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        self.strDate = dateFormatter.string(from: sender.date)
+    }
     @IBAction func cancelButtonClicked(){
         self.dismiss(animated: true, completion: nil)
     }
@@ -63,6 +71,49 @@ class CustomerController: UIViewController {
     @IBAction func addButtonClicked(_ sender: Any) {
         
         
+        if fields[0].text == "" || fields[1].text == "" || fields[2].text == "" || fields[3].text == "" || fields[4].text == ""{
+            
+        } else {
+            print(fields[0].text!)
+            print(fields[1].text!)
+            print(fields[2].text!)
+            print(fields[3].text!)
+            print(fields[4].text!)
+            let jsonBody = [
+                "CustomerName": fields[0].text,
+                "City": fields[1].text,
+                "StreetAddress": fields[2].text,
+                "State":fields[3].text,
+                "Zip":fields[4].text,
+                "PickUpTime":strDate
+            ]
+            RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Customer/AddCustomer", httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+                if Error == nil {
+                    do {
+                        let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                        if resultData.Result == "success"{
+                            self.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.async {
+                                let alert = Alert(message: "Customer Added")
+                                self.present(alert, animated: true)
+                            }
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
+                            DispatchQueue.main.async {
+                                let alert = Alert(message: resultData.Result)
+                                self.present(alert, animated: true)
+                            }
+                        }
+                        
+                    } catch let JSONErr{
+                        DispatchQueue.main.async {
+                            let alert = Alert(message: JSONErr.localizedDescription)
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+        }
     }
     func createPickerView(field:UITextField) {
         let pickerView = UIPickerView()
