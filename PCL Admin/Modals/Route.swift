@@ -16,20 +16,20 @@ struct Route: Decodable {
     var Location: [Location]
 }
 
-//extension Route {
-//    init?(_ route: [String: Any]) {
-//        guard let routeNo = route["Route No."] as? String,
-//            let assignee = route["Asignee"] as? String, let locations = route["Locations"] as? Array<[String:Any]> else {
-//                return nil
-//        }
-//        self.routeName = route["Route Name"] as! String
-//        self.vehicleNo = route["Vehicle No."] as! String
-//        self.routeNo = routeNo
-//        self.assignee = assignee
-//        self.locations = []
-//        for aLocation in locations
-//        {
-//            self.locations.append(Location(aLocation)!)
-//        }
-//    }
-//}
+extension Route {
+        init?(_ route: [String: Any]) {
+        guard let routeNo = route["Route No."] as? String,
+        let assignee = route["Asignee"] as? String, let locations = route["Locations"] as? Array<[String:Any]> else {
+                return nil
+        }
+        self.routeName = route["Route Name"] as! String
+        self.vehicleNo = route["Vehicle No."] as! String
+        self.routeNo = routeNo
+        self.assignee = assignee
+        self.locations = []
+        for aLocation in locations
+        {
+            self.locations.append(Location(aLocation)!)
+        }
+    }
+}
