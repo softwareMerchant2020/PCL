@@ -77,3 +77,9 @@ output: result(success/ Phone number not exists)
 updateStatus<Post>
 input: customerID, routeID, numberOfSpecimens, Status
 output: result (success/ fail)
+
+getCustomerList<Post>
+input: {
+"DriverPhoneNumer" : "string"
+}
+Output: RouteId,List of Customers[Customer Id, customer Name, Address]
