@@ -64,7 +64,14 @@ input: {
   "PhoneNumber": "string",
   "Password": "string"
 }
-output: result(Login successful/ Login failed)
+output: If Login success {
+"result" : "Success",
+"Route Number" : Int
+}
+else
+{
+"result" : "Login failed"
+}
 
 DriverSignUp<Post>
 input: {
@@ -78,8 +85,3 @@ updateStatus<Post>
 input: customerID, routeID, numberOfSpecimens, Status
 output: result (success/ fail)
 
-getCustomerList<Post>
-input: {
-"DriverPhoneNumer" : "string"
-}
-Output: RouteId,List of Customers[Customer Id, customer Name, Address]
