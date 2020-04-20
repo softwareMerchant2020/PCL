@@ -16,7 +16,7 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Driver/GetDriver", httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
             (Data, Error) in
             if Error == nil{
                 do {
@@ -45,6 +45,7 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.selectedDriver = drivers[indexPath.row].DriverName
+        delegate?.selectedDriverID = drivers[indexPath.row].DriverId
         delegate?.refreshDriver()
         self.dismiss(animated: true, completion: nil)
         

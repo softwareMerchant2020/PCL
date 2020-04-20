@@ -11,4 +11,5 @@ import Foundation
 struct Driver: Decodable{
     var DriverId: Int
     var DriverName: String
+    var DriverNumber: Int?
 }

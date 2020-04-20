@@ -13,6 +13,7 @@ class DriverController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var fields: [UITextField]!
+    var message:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 8
@@ -37,35 +38,42 @@ class DriverController: UIViewController {
             "LastName": fields[1].text,
             "PhoneNumber": fields[2].text
             ]
-            var message = ""
-            RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/driver/AddDriver", httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+            RestManager.APIData(url: baseURL + addDriver, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
                 if Error == nil {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
                         if resultData.Result == "success"{
-                            message = "Driver Added"
+                            self.message = "Driver Added"
                             DispatchQueue.main.async {
-                                let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-                                self.present(alert,animated: true)
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
                             }
                         } else {
-                            message = resultData.Result
+                            self.message = resultData.Result
                             DispatchQueue.main.async {
-                                let alert = Alert(message: message)
-                                self.present(alert,animated: true)
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
                             }
                         }
                         
                     } catch let JSONErr{
-                        message = JSONErr.localizedDescription
+                        self.message = JSONErr.localizedDescription
                         DispatchQueue.main.async {
-                            let alert = Alert(message: message)
-                            self.present(alert,animated: true)
+                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                             self.present(alert, animated: true, completion: {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                            })
                         }
                     }
                 }
             }
-            //self.dismiss(animated: true, completion: nil)
         }
     }
     @IBAction func cancelButtonClicked(){

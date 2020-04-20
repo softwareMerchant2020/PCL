@@ -19,7 +19,7 @@ class CustomerController: UIViewController {
     var stateTextField:UITextField!
     var zipTextField:UITextField!
     var strDate:String?
-    
+    var message:String?
     
     
    
@@ -76,38 +76,51 @@ class CustomerController: UIViewController {
         } else {
             let jsonBody = [
                 "CustomerName": fields[0].text,
-                "City": fields[1].text,
-                "StreetAddress": fields[2].text,
-                "State":fields[3].text,
-                "Zip":fields[4].text,
+                "City": fields[3].text,
+                "StreetAddress": fields[1].text,
+                "State":fields[4].text,
+                "Zip":fields[2].text,
                 "PickUpTime":strDate
             ]
-            RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Customer/AddCustomer", httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+            
+            RestManager.APIData(url: baseURL + addCustomer, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
                 if Error == nil {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                        
                         if resultData.Result == "success"{
+                            self.message = "Customer Added"
                             DispatchQueue.main.async {
-                                let alert = Alert(message: "Customer Added")
-                                self.present(alert, animated: true)
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
                             }
                         } else {
+                            self.message = resultData.Result
                             DispatchQueue.main.async {
-                                let alert = Alert(message: resultData.Result)
-                                self.present(alert, animated: true)
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
                             }
                         }
-                        
+
                     } catch let JSONErr{
+                        self.message = JSONErr.localizedDescription
                         DispatchQueue.main.async {
-                            let alert = Alert(message: JSONErr.localizedDescription)
-                            self.present(alert, animated: true)
+                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                             self.present(alert, animated: true, completion: {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                            })
                         }
                     }
                 }
             }
-            self.dismiss(animated: true, completion: nil)
-        }
+       }
     }
     func createPickerView(field:UITextField) {
         let pickerView = UIPickerView()

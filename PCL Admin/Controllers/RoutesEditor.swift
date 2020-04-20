@@ -12,15 +12,20 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     @IBOutlet var driverButton: UIButton!
     @IBOutlet var locationsTable: UITableView!
     @IBOutlet var routeName: UITextField!
+    @IBOutlet weak var RouteNumberLbl: UILabel!
     @IBOutlet var vehicleButton: UIButton!
     @IBOutlet var addButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     var myRoute: Route?
+    var message:String?
     
     @IBOutlet weak var buttonStackView: UIStackView!
     var selectedDriver: String = "   ---   "
+    var selectedDriverID:Int?
     var selectedVehicle: String = "   ---   "
-    var routeLocations: [Location] = []
+    var routeLocations = [Location]()
+    var routeNumberModel:RouteNumber?
+    var routeNumber:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +44,26 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         addButton.layer.cornerRadius = 8
         cancelButton.layer.cornerRadius = 8
         
+        RestManager.APIData(url: baseURL + getLatestRouteNumber, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+            (Data, Error) in
+            if Error == nil{
+                do {
+                    self.routeNumberModel = try JSONDecoder().decode(RouteNumber.self, from: Data as! Data )
+                    DispatchQueue.main.async {
+                        self.RouteNumberLbl.text = "Route No.: " + String(self.routeNumberModel?.RouteNo ?? 0)
+                    }
+                } catch let JSONErr{
+                    print(JSONErr.localizedDescription)
+                }
+            }
+        }
+        
+        
         if let aRoute = myRoute {
-            self.routeName.text = aRoute.routeName
-            self.selectedDriver = aRoute.assignee
-            self.selectedVehicle = aRoute.vehicleNo
-            self.routeLocations = aRoute.locations
+            self.routeName.text = aRoute.RouteName
+            self.selectedDriver = String(aRoute.DriverId)
+            self.selectedVehicle = aRoute.VehicleNo
+            //self.routeLocations = aRoute.locations
         }
         refreshDriver()
         refreshVehicle()
@@ -122,7 +142,64 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         }
 //        performSegue(withIdentifier: "RouteDetails", sender: self)
     }
-    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        var customerIDs = ""
+        if routeLocations.count != 1 {
+            var count = 0
+            for location in routeLocations{
+                count = count + 1
+                customerIDs.append(contentsOf: String(location.CustomerId))
+                if count != routeLocations.count - 1{
+                    customerIDs.append(",")
+                }
+            }
+        } else {
+            customerIDs.append(contentsOf: String(routeLocations[0].CustomerId))
+        }
+        let jsonBody = [
+            "RouteName": routeName.text ?? "",
+            "DriverId": selectedDriverID!,
+            "VehicleNo": selectedVehicle,
+            "CustomerID": customerIDs
+            ] as [String : Any]
+        
+        RestManager.APIData(url: baseURL + addRoute, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+            if Error == nil {
+                do {
+                    let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                    if resultData.Result == "success"{
+                        self.message = "Route Added"
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                             self.present(alert, animated: true, completion: {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                            })
+                        }
+                    } else {
+                        self.message = resultData.Result
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                             self.present(alert, animated: true, completion: {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                            })
+                        }
+                    }
+                    
+                } catch let JSONErr{
+                    self.message = JSONErr.localizedDescription
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                         self.present(alert, animated: true, completion: {
+                            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                        })
+                    }
+                }
+            }
+        }
+    }
     @IBAction func cancelButtonClicked(){
         self.dismiss(animated: true, completion: nil)
     }

@@ -27,10 +27,10 @@ class AddLocationCell: UITableViewCell {
     }
     
     func populateCell(_ location: Location) {
-        name.text = location.labName
-        address.text = location.address
-        accNo.text = location.locationId
-        if location.isSelected {
+        name.text = location.CustomerName
+        address.text = location.StreetAddress
+        accNo.text = String(location.CustomerId)
+        if location.IsSelected ?? false {
             selectButton.isSelected = true
         }
         else

@@ -9,27 +9,26 @@
 import Foundation
 
 struct Route: Decodable {
-    let routeNo: String
-    let routeName: String
-    let assignee: String
-    let vehicleNo: String
-    var locations: [Location]
+    var RouteNo: Int
+    var RouteName: String
+    var DriverId: Int
+    var VehicleNo: String
 }
 
 extension Route {
         init?(_ route: [String: Any]) {
-        guard let routeNo = route["Route No."] as? String,
-        let assignee = route["Asignee"] as? String, let locations = route["Locations"] as? Array<[String:Any]> else {
+        guard let routeNo = route["Route No."] as? Int,
+        let assignee = route["Asignee"] as? Int, let locations = route["Locations"] as? Array<[String:Any]> else {
                 return nil
         }
-        self.routeName = route["Route Name"] as! String
-        self.vehicleNo = route["Vehicle No."] as! String
-        self.routeNo = routeNo
-        self.assignee = assignee
-        self.locations = []
-        for aLocation in locations
-        {
-            self.locations.append(Location(aLocation)!)
-        }
+        self.RouteName = route["Route Name"] as! String
+        self.VehicleNo = route["Vehicle No."] as! String
+        self.RouteNo = routeNo
+        self.DriverId = assignee
+        //self.locations = []
+//        for aLocation in locations
+//        {
+//            self.locations.append(Location(aLocation)!)
+//        }
     }
 }
