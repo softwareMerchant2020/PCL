@@ -11,10 +11,9 @@ import Foundation
 struct Customer: Decodable
 {
     var CustomerId: Int
-    var CustomerName: String
-    var StreetAddress: String
-    var City: String
-    var State: String
-    var Zip: Int
-    var PickupTime: String
+    var CustomerName: String?
+    var StreetAddress: String?
+    var City: String?
+    var State: String?
+    var Zip: Int?
 }

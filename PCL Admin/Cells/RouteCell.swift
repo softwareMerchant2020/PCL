@@ -24,40 +24,40 @@ class RouteCell: UITableViewCell {
     @IBOutlet var vehicleStatus: UILabel!
     @IBOutlet var locationStatus: UILabel!
     
-    func populateCell(_ route: Route) {
-        self.routeNo.text = route.routeNo
-        self.pickedUpBy.text = route.assignee
+    func populateCell(_ route: GetRoute) {
+        self.routeNo.text = String(route.Route.RouteNo)
+        self.pickedUpBy.text = String(route.Route.DriverId)
         let centerPt: CGPoint = statusContainer.center
         
         var x = 0
         var specimenCount = 0
         var lastPickUpTime: String = "-"
         
-        for aLocation in route.locations
-        {
-            specimenCount += Int(aLocation.specimenCount)!
-            var imageName = ""
-            switch aLocation.collectionStatus
-            {
-                case .collected:
-                    imageName = "greenDot.png"
-                    lastPickUpTime = aLocation.pickUpTime
-                case .notCollected:
-                    imageName = "greyDot.png"
-                case .rescheduled:
-                    imageName = "blueDot.png"
-                case .missed:
-                    imageName = "yellowDot.png"
-                case .closed:
-                    imageName = "closedDot.png"
-                case .other:
-                    imageName = "redDot.png"
-            }
-            let imageView = UIImageView(image: UIImage(named: imageName)!)
-            statusContainer.addSubview(imageView)
-            imageView.frame = CGRect(x: (statusPixel+5)*x, y: 0, width: statusPixel, height: statusPixel)
-            x+=1
-        }
+//        for aLocation in route.locations
+//        {
+//            specimenCount += Int(aLocation.specimenCount)!
+//            var imageName = ""
+//            switch aLocation.collectionStatus
+//            {
+//                case .collected:
+//                    imageName = "greenDot.png"
+//                    lastPickUpTime = aLocation.pickUpTime
+//                case .notCollected:
+//                    imageName = "greyDot.png"
+//                case .rescheduled:
+//                    imageName = "blueDot.png"
+//                case .missed:
+//                    imageName = "yellowDot.png"
+//                case .closed:
+//                    imageName = "closedDot.png"
+//                case .other:
+//                    imageName = "redDot.png"
+//            }
+//            let imageView = UIImageView(image: UIImage(named: imageName)!)
+//            statusContainer.addSubview(imageView)
+//            imageView.frame = CGRect(x: (statusPixel+5)*x, y: 0, width: statusPixel, height: statusPixel)
+//            x+=1
+//        }
         
         let routeStatus: [RouteStatus] = [RouteStatus.completed,
                                           RouteStatus.delaying,
@@ -78,7 +78,7 @@ class RouteCell: UITableViewCell {
         
         self.pickedUpAt.text = lastPickUpTime
         self.specimenCount.text = String(specimenCount)
-        statusContainer.frame=CGRect(x: statusContainer.frame.origin.x, y: statusContainer.frame.origin.y, width: CGFloat((statusPixel+5)*route.locations.count-10), height: statusContainer.frame.size.height)
+        //statusContainer.frame=CGRect(x: statusContainer.frame.origin.x, y: statusContainer.frame.origin.y, width: CGFloat((statusPixel+5)*route.locations.count-10), height: statusContainer.frame.size.height)
         statusContainer.center = centerPt
     }
 }

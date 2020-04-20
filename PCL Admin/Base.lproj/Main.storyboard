@@ -710,6 +710,9 @@ Philadelphia, PA 19151</string>
                                                         <integer key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="addButtonPressed:" destination="vQG-d4-yGx" eventType="touchUpInside" id="LVw-PC-GDc"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEJ-Zi-HWj">
                                                 <rect key="frame" x="360.5" y="0.0" width="327.5" height="45"/>
@@ -761,6 +764,7 @@ Philadelphia, PA 19151</string>
                     <navigationItem key="navigationItem" id="xt3-fa-SVW"/>
                     <size key="freeformSize" width="768" height="758"/>
                     <connections>
+                        <outlet property="RouteNumberLbl" destination="oJi-KX-qcr" id="KIq-gN-sjY"/>
                         <outlet property="addButton" destination="71J-uj-A3O" id="jGy-PU-wfA"/>
                         <outlet property="buttonStackView" destination="e9R-1p-QYk" id="IPq-CK-EHm"/>
                         <outlet property="cancelButton" destination="iEJ-Zi-HWj" id="Y1f-En-PuN"/>
@@ -969,6 +973,7 @@ Philadelphia, PA 19151</string>
                     <size key="freeformSize" width="768" height="758"/>
                     <connections>
                         <outlet property="addButton" destination="PKl-BE-iIR" id="GCF-8Q-mSf"/>
+                        <outlet property="locationTableView" destination="21M-mF-yGy" id="ZhO-fG-ad1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNg-Zg-vtc" userLabel="First Responder" sceneMemberID="firstResponder"/>

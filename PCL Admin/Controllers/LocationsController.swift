@@ -11,18 +11,32 @@ import UIKit
 class LocationsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var addButton: UIButton!
     var allLocations: [Location] = []
+    @IBOutlet weak var locationTableView: UITableView!
     var delegate: RoutesEditor?
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 8
-        if let path = Bundle.main.path(forResource: "AllRoutes", ofType: "plist") {
-            let routes = NSArray(contentsOfFile: path)
-            for aRoute in routes!
-            {
-                let thisRoute = Route(aRoute as! [String : Any])!
-                self.allLocations.append(contentsOf: thisRoute.locations)
+//        if let path = Bundle.main.path(forResource: "AllRoutes", ofType: "plist") {
+//            let routes = NSArray(contentsOfFile: path)
+//            for aRoute in routes!
+//            {
+//                let thisRoute = Route(aRoute as! [String : Any])!
+//                self.allLocations.append(contentsOf: thisRoute.locations)
+//            }
+//        }
+        RestManager.APIData(url: baseURL + getCustomer, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.allLocations = try JSONDecoder().decode([Location].self, from: Data as! Data )
+                    DispatchQueue.main.async {
+                        self.locationTableView.reloadData()
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
             }
         }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -39,7 +53,7 @@ class LocationsController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         var selectedLocation = allLocations[indexPath.row]
-        selectedLocation.isSelected = !selectedLocation.isSelected
+        selectedLocation.IsSelected = !selectedLocation.IsSelected
         allLocations.remove(at: indexPath.row)
         allLocations.insert(selectedLocation, at: indexPath.row)
         tableView.reloadData()
@@ -50,7 +64,7 @@ class LocationsController: UIViewController, UITableViewDataSource, UITableViewD
     {
         for aLocation in allLocations
         {
-            if aLocation.isSelected
+            if aLocation.IsSelected
             {
                 self.delegate?.routeLocations.append(aLocation)
             }

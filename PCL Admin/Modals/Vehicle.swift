@@ -9,7 +9,7 @@
 import Foundation
 
 struct Vehicle: Decodable {
-    let plateNumber: String
-    let manucfacturer: String
-    let model: String
+    var PlateNumber: String
+    var Manufacturer: String
+    var Model: String
 }
