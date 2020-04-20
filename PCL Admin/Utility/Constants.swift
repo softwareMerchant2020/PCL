@@ -25,3 +25,6 @@ let editRoute = "Route/EditRoute"
 let getVehicle = "vehicle/GetVehicle"
 let addVehicle = "vehicle/AddVehicle"
 let addUpdateTransactionStatus = "admin/AddUpdateTransactionStatus"
+let getAdminDetails = "admin/GetDetailForAdmin"
+let getTotalSpecimensCollected = "admin/GetTotalSpecimensCollected"
+let CollectionStatus = ["notCollected","collected","rescheduled","missed","closed","other"]

@@ -34,6 +34,7 @@
 		F3659B352446215F00CECEE8 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B342446215F00CECEE8 /* CommonFunctions.swift */; };
 		F3659B372446238C00CECEE8 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B362446238C00CECEE8 /* Customer.swift */; };
 		F3659B392446241B00CECEE8 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B382446241B00CECEE8 /* RequestResult.swift */; };
+		F3DA9C17244DE99100D0ECA1 /* RouteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA9C16244DE99100D0ECA1 /* RouteDetail.swift */; };
 		FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B221CBF779001293DC /* AppDelegate.swift */; };
 		FD5325B521CBF779001293DC /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5325B421CBF779001293DC /* RoutesController.swift */; };
 		FD5325B821CBF779001293DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5325B621CBF779001293DC /* Main.storyboard */; };
@@ -89,6 +90,7 @@
 		F3659B342446215F00CECEE8 /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 		F3659B362446238C00CECEE8 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		F3659B382446241B00CECEE8 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
+		F3DA9C16244DE99100D0ECA1 /* RouteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetail.swift; sourceTree = "<group>"; };
 		FD5325AF21CBF779001293DC /* PCL Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PCL Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5325B221CBF779001293DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5325B421CBF779001293DC /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				F3659B382446241B00CECEE8 /* RequestResult.swift */,
 				F34659752449DF9C0006DC65 /* GetRoute.swift */,
 				F3465977244A10420006DC65 /* RouteNumber.swift */,
+				F3DA9C16244DE99100D0ECA1 /* RouteDetail.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */,
 				FD5325B521CBF779001293DC /* RoutesController.swift in Sources */,
 				FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */,
+				F3DA9C17244DE99100D0ECA1 /* RouteDetail.swift in Sources */,
 				57B94A1221DC97FE007D2FF5 /* LocationsController.swift in Sources */,
 				57B949FD21D4096A007D2FF5 /* Route.swift in Sources */,
 				57B949FF21D40BA4007D2FF5 /* Location.swift in Sources */,
