@@ -30,7 +30,7 @@ class AddLocationCell: UITableViewCell {
         name.text = location.CustomerName
         address.text = location.StreetAddress
         accNo.text = String(location.CustomerId)
-        if location.IsSelected ?? false {
+        if location.IsSelected {
             selectButton.isSelected = true
         }
         else

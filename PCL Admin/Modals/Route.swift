@@ -14,21 +14,3 @@ struct Route: Decodable {
     var DriverId: Int
     var VehicleNo: String
 }
-
-extension Route {
-        init?(_ route: [String: Any]) {
-        guard let routeNo = route["Route No."] as? Int,
-        let assignee = route["Asignee"] as? Int, let locations = route["Locations"] as? Array<[String:Any]> else {
-                return nil
-        }
-        self.RouteName = route["Route Name"] as! String
-        self.VehicleNo = route["Vehicle No."] as! String
-        self.RouteNo = routeNo
-        self.DriverId = assignee
-        //self.locations = []
-//        for aLocation in locations
-//        {
-//            self.locations.append(Location(aLocation)!)
-//        }
-    }
-}

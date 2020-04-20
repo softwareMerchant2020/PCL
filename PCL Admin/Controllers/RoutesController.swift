@@ -13,24 +13,35 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet var routesTable: UITableView?
     
     var allRoutes : [Route] = []
-    var getRoutes : [GetRoute] = []
+    var getRoutes : [RouteDetail] = []
+    var routeDictionary: [Int:Any]? = [:]
+    var routeNumbers: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if let path = Bundle.main.path(forResource: "AllRoutes", ofType: "plist") {
-//            let routes = NSArray(contentsOfFile: path)
-//            for aRoute in routes!
-//            {
-//                self.allRoutes.append(Route(aRoute as! [String : Any])!)
-//            }
-//        }
-        
-        RestManager.APIData(url: baseURL + getRoute, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+        RestManager.APIData(url: baseURL + getAdminDetails, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
-                    self.getRoutes = try JSONDecoder().decode([GetRoute].self, from: Data as! Data )
-                    print(self.getRoutes)
+                    self.getRoutes = try JSONDecoder().decode([RouteDetail].self, from: Data as! Data )
+                    for eachResult in self.getRoutes {
+                        if (self.routeDictionary?[eachResult.RouteNo] == nil) {
+                            var eachRoute : [RouteDetail] = []
+                            self.routeNumbers.append(eachResult.RouteNo)
+                            eachRoute.append(eachResult)
+                            self.routeDictionary?[eachResult.RouteNo] = eachRoute
+                        }
+                        else
+                        {
+                            var dataArr = self.routeDictionary?[eachResult.RouteNo] as! [RouteDetail]
+                            dataArr.append(eachResult)
+                            self.routeDictionary?[eachResult.RouteNo] = dataArr
+                            
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
+                        self.routesTable?.dataSource = self
+                        self.routesTable?.delegate = self
                         self.routesTable?.reloadData()
                     }
                 } catch let JSONErr{
@@ -41,12 +52,12 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getRoutes.count
+        return self.routeNumbers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.routesTable!.dequeueReusableCell(withIdentifier: "RouteCell") as! RouteCell
-        cell.populateCell(getRoutes[indexPath.row])
+        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail]())
         return cell
     }
     

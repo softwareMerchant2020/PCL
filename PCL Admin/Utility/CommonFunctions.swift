@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: Set<Iterator.Element> = []
+        return filter { seen.insert($0).inserted }
+    }
+}
+
+
 func Alert(message:String) -> UIAlertController {
     let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { [weak alert] (_) in

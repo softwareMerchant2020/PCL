@@ -24,40 +24,42 @@ class RouteCell: UITableViewCell {
     @IBOutlet var vehicleStatus: UILabel!
     @IBOutlet var locationStatus: UILabel!
     
-    func populateCell(_ route: GetRoute) {
-        self.routeNo.text = String(route.Route.RouteNo)
-        self.pickedUpBy.text = String(route.Route.DriverId)
+    func populateCell(_ route: [RouteDetail]) {
+        self.routeNo.text = String(route[0].RouteNo)
+        self.pickedUpBy.text = route[0].UpdatedByDriver
         let centerPt: CGPoint = statusContainer.center
         
         var x = 0
         var specimenCount = 0
         var lastPickUpTime: String = "-"
         
-//        for aLocation in route.locations
-//        {
-//            specimenCount += Int(aLocation.specimenCount)!
-//            var imageName = ""
-//            switch aLocation.collectionStatus
-//            {
-//                case .collected:
-//                    imageName = "greenDot.png"
-//                    lastPickUpTime = aLocation.pickUpTime
-//                case .notCollected:
-//                    imageName = "greyDot.png"
-//                case .rescheduled:
-//                    imageName = "blueDot.png"
-//                case .missed:
-//                    imageName = "yellowDot.png"
-//                case .closed:
-//                    imageName = "closedDot.png"
-//                case .other:
-//                    imageName = "redDot.png"
-//            }
-//            let imageView = UIImageView(image: UIImage(named: imageName)!)
-//            statusContainer.addSubview(imageView)
-//            imageView.frame = CGRect(x: (statusPixel+5)*x, y: 0, width: statusPixel, height: statusPixel)
-//            x+=1
-//        }
+        for aLocation in route
+        {
+            specimenCount += Int(aLocation.NumberOfSpecimens)
+            var imageName = ""
+            switch CollectionStatus[aLocation.Status]
+            {
+                case "collected":
+                    imageName = "greenDot.png"
+                    lastPickUpTime = aLocation.PickUp_Time
+                case "notCollected":
+                    imageName = "greyDot.png"
+                case "rescheduled":
+                    imageName = "blueDot.png"
+                case "missed":
+                    imageName = "yellowDot.png"
+                case "closed":
+                    imageName = "closedDot.png"
+                case "other":
+                    imageName = "redDot.png"
+            default:
+                imageName = "redDot.png"
+            }
+            let imageView = UIImageView(image: UIImage(named: imageName)!)
+            statusContainer.addSubview(imageView)
+            imageView.frame = CGRect(x: (statusPixel+5)*x, y: 0, width: statusPixel, height: statusPixel)
+            x+=1
+        }
         
         let routeStatus: [RouteStatus] = [RouteStatus.completed,
                                           RouteStatus.delaying,
