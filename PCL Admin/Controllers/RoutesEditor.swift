@@ -17,6 +17,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     @IBOutlet var addButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     var myRoute: Route?
+    var myLocation: [Location]?
     var message:String?
     
     @IBOutlet weak var buttonStackView: UIStackView!
@@ -63,7 +64,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
             self.routeName.text = aRoute.RouteName
             self.selectedDriver = String(aRoute.DriverId)
             self.selectedVehicle = aRoute.VehicleNo
-            //self.routeLocations = aRoute.locations
+            self.routeLocations = myLocation!
         }
         refreshDriver()
         refreshVehicle()

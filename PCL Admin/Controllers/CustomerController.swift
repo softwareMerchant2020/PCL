@@ -25,36 +25,36 @@ class CustomerController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = Bundle.main.url(forResource: "statedictionary", withExtension: "plist")!
-           let stateData = try! Data(contentsOf: url)
-        statePlist = try! PropertyListSerialization.propertyList(from: stateData, options: [], format: nil) as! Dictionary<String,Array<String>>
-        if ((statePlist?.keys) != nil)
-        {
-            stateList.append(contentsOf: statePlist!.keys)
-        }
-        stateList = stateList.sorted()
-
-        timePicker.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
-        timePicker.layer.borderWidth = 1
-        timePicker.layer.cornerRadius = 8
-        for aField in fields
-        {
-            aField.delegate = self
-            aField.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
-            aField.layer.borderWidth = 1
-            aField.layer.cornerRadius = 8
-            if aField.tag == 3 {
-                stateTextField = aField
-            }
-            else if aField.tag == 4
-            {
-                zipTextField = aField
-            }
-        }
-        for aButton in buttons
-        {
-            aButton.layer.cornerRadius = 8
-        }
+//        let url = Bundle.main.url(forResource: "statedictionary", withExtension: "plist")!
+//           let stateData = try! Data(contentsOf: url)
+//        statePlist = try! PropertyListSerialization.propertyList(from: stateData, options: [], format: nil) as! Dictionary<String,Array<String>>
+//        if ((statePlist?.keys) != nil)
+//        {
+//            stateList.append(contentsOf: statePlist!.keys)
+//        }
+//        stateList = stateList.sorted()
+//
+//        timePicker.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
+//        timePicker.layer.borderWidth = 1
+//        timePicker.layer.cornerRadius = 8
+//        for aField in fields
+//        {
+//            aField.delegate = self
+//            aField.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
+//            aField.layer.borderWidth = 1
+//            aField.layer.cornerRadius = 8
+//            if aField.tag == 3 {
+//                stateTextField = aField
+//            }
+//            else if aField.tag == 4
+//            {
+//                zipTextField = aField
+//            }
+//        }
+//        for aButton in buttons
+//        {
+//            aButton.layer.cornerRadius = 8
+//        }
     }
     
     

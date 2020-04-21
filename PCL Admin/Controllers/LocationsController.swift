@@ -16,14 +16,6 @@ class LocationsController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 8
-//        if let path = Bundle.main.path(forResource: "AllRoutes", ofType: "plist") {
-//            let routes = NSArray(contentsOfFile: path)
-//            for aRoute in routes!
-//            {
-//                let thisRoute = Route(aRoute as! [String : Any])!
-//                self.allLocations.append(contentsOf: thisRoute.locations)
-//            }
-//        }
         RestManager.APIData(url: baseURL + getCustomer, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {

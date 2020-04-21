@@ -12,6 +12,7 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet var routesTable: UITableView?
     var getRoutes : [GetRoute] = []
+    var editRoutes : [EditRoute] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.routesTable!.dequeueReusableCell(withIdentifier: "EditRouteCell") as! EditRouteCell
-        cell.populateCell(getRoutes[indexPath.row].Route)
+        cell.populateCell(self.getRoutes[indexPath.row].Route)
         return cell
     }
     
@@ -45,7 +46,8 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
         let presentingController: RoutesEditor
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
-        presentingController.myRoute = getRoutes[indexPath.row].Route
+        presentingController.myRoute = editRoutes[indexPath.row].Route
+        presentingController.myLocation = editRoutes[indexPath.row].Location
         presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         present(presentingController, animated: true, completion: nil)
 //        performSegue(withIdentifier: "RouteDetails", sender: self)
