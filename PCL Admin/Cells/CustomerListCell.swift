@@ -21,21 +21,25 @@ class CustomerListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
     func populateCell(_ location: Location) {
-            self.CustomerNameLbl.text = location.CustomerName
+        self.CustomerNameLbl.text = location.CustomerName
         let address = location.StreetAddress
         self.AddressLbl.text = address
-            self.CustomerIDLbl.text = String(location.CustomerId)
-    //        self.seqNo.text = self.i
-        }
+        self.CustomerIDLbl.text = String(location.CustomerId)
+        self.CustomerNameLbl.text = String(location.CustomerName!)
+        self.PickUpTimeLbl.text = String(location.NextPickUpTime ?? "this is bricked")
+        self.SpecimensDistanceLbl.text = ("Specimen collected: "+String(location.SpecimensCollected ?? 0))
+        self.CollectionStatusLbl.text = location.CollectionStatus
+        //        self.seqNo.text = self.i
+    }
     
     
-
+    
 }

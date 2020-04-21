@@ -173,7 +173,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
             let jsonBody = [
                 "RouteNumber":String(self.routeNumber ?? 0),
                 "RouteName": routeName.text ?? "",
-                "DriverId": selectedDriverID!,
+                "DriverId": selectedDriverID ?? 0,
                 "VehicleNo": selectedVehicle,
                 "CustomerID": customerIDs
                 ] as [String : Any]

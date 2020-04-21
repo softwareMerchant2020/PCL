@@ -24,8 +24,8 @@ struct Location: Decodable{
     var Zip: Int?
     var City: String?
     var CollectionStatus: String?
-    var SpecimenCount: Int?
-    var PickUpTime: String?
+    var SpecimensCollected: Int?
+    var NextPickUpTime: String?
     var CustomerId: Int
     var IsSelected: Bool
 }

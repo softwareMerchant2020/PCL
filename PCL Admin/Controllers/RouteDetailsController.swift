@@ -24,8 +24,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        getDriverLoc(driverNo: 3)
         mapViewDisplay.layer.cornerRadius = 8
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
@@ -239,7 +238,9 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     {
         let delayTime = DispatchTime.now() + 5.0
         DispatchQueue.main.asyncAfter(deadline: delayTime, execute:
-            {self.helloDriver()
+            {
+                self.getDriverLoc(driverNo: 3)
+                self.helloDriver()
         })
     }
     
