@@ -11,4 +11,5 @@ import Foundation
 struct DriverLocation: Decodable {
     var Lat: Double?
     var Log: Double?
+    var Geofence: Bool?
 }

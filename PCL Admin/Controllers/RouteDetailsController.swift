@@ -23,12 +23,13 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDriverLoc(driverNo: 3)
+        
+        
         mapViewDisplay.layer.cornerRadius = 8
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
         routeNumberToUse = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
-        getLocs(RouteNumber: routeNumberToUse ?? 9)
+        getLocs(RouteNumber: routeNumberToUse ?? 7)
         
         self.navigationController?.isNavigationBarHidden = false
         locationManager.delegate = self // Sets the delegate to self
@@ -40,6 +41,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         mapViewDisplay.showsScale = true
         mapViewDisplay.showsUserLocation = true
         gettingLoc()
+        
         
     }
     
@@ -72,7 +74,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         let destinationRequest = MKDirections.Request() // Initialises requests to apple Maps to get route
         destinationRequest.source = sourceItem // Requesting where to start from
         destinationRequest.destination = destItem // Requesting where to end
-        destinationRequest.transportType = .walking // Requesting what mode of transport is being used
+        destinationRequest.transportType = .automobile // Requesting what mode of transport is being used
         destinationRequest.requestsAlternateRoutes = true // Requesting Alternate Routes
         
         let directions = MKDirections(request: destinationRequest) //Initialsing the directions with the request
@@ -211,7 +213,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
                 do {
                     print(baseURL + getDriverLocation + "?DriverId=" + String(driverNo))
                     self.driverLoc = try JSONDecoder().decode([DriverLocation].self, from: Data as! Data )
-                
+                    
                 } catch let JSONErr{
                     print(JSONErr.localizedDescription)
                 }
@@ -243,4 +245,42 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         print("updating location")
         gettingLoc()
     }
+
+    
+    
+    func tempFunc()-> CLLocationCoordinate2D
+    {
+        let destX = 40.078574
+        let destY = -75.859861
+        let trial: CLLocationCoordinate2D = CLLocationCoordinate2DMake(destX,destY)
+        return trial
+    }
+    
+    func getETA(destination: CLLocationCoordinate2D)
+    {
+        let driverPoint = makeDriverRealAgain()
+        let sourcePlacemark = MKPlacemark(coordinate: driverPoint)
+        let destinationPlacemark = MKPlacemark(coordinate: destination)
+        
+        let sourceItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationItem = MKMapItem(placemark: destinationPlacemark)
+        
+        let destinationRequest = MKDirections.Request()
+        
+        destinationRequest.source = sourceItem
+        destinationRequest.destination = destinationItem
+        destinationRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: destinationRequest)
+        
+        directions.calculate { response, error in
+            guard error == nil, let response = response else {return}
+
+            for route in response.routes {
+                let eta = route.expectedTravelTime
+                print(eta)
+            }
+        }
+    }
+    
 }
