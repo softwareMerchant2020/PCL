@@ -9,7 +9,8 @@
 import UIKit
 
 class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    @IBOutlet weak var TotalSpecimensLbl: UILabel!
+    
     @IBOutlet var routesTable: UITableView?
     
     var allRoutes : [Route] = []
@@ -49,6 +50,21 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
+        
+        RestManager.APIData(url: baseURL + getTotalSpecimensCollected, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    let totalSpecimensCollected = try JSONDecoder().decode(TotalNumberOfSpecimens.self, from: Data as! Data )
+                    
+                    DispatchQueue.main.async {
+                        self.TotalSpecimensLbl.text = String(totalSpecimensCollected.TotalNumberOfSpecimens)
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,9 +80,9 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         UserDefaults.standard.set(routeNumbers[indexPath.row], forKey: "RouteNumberForMap")
+        let presentingController: RouteDetailsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RouteDetails") as! RouteDetailsController
+        presentingController.routeNumber = self.routeNumbers[indexPath.row]
         performSegue(withIdentifier: "RouteDetails", sender: self)
     }
-    
-    
 }
 

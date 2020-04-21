@@ -26,9 +26,9 @@ class EditRouteCell: UITableViewCell {
     }
 
     func populateCell(_ route: Route) {
-        self.routeNo.text = String(route.RouteNo)
+        self.routeNo.text = String(route.RouteNo ?? 0)
         self.routeName.text = route.RouteName
-        self.driver.text = String(route.DriverId)
+        self.driver.text = String(route.DriverId ?? 0)
         self.vehicle.text = route.VehicleNo
     }
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 struct Route: Decodable {
-    var RouteNo: Int
-    var RouteName: String
-    var DriverId: Int
-    var VehicleNo: String
+    var RouteNo: Int?
+    var RouteName: String?
+    var DriverId: Int?
+    var VehicleNo: String?
 }

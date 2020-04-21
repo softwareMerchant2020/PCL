@@ -69,8 +69,8 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         if let aRoute = myRoute {
             self.routeNumber = aRoute.RouteNo
             self.routeName.text = aRoute.RouteName
-            self.selectedDriver = String(aRoute.DriverId)
-            self.selectedVehicle = aRoute.VehicleNo
+            self.selectedDriver = String(aRoute.DriverId ?? 0)
+            self.selectedVehicle = aRoute.VehicleNo ?? ""
             self.routeLocations = myLocation!
         }
         if isEditMode{

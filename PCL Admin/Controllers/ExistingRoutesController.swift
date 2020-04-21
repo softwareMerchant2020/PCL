@@ -42,7 +42,7 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(getRoutes[indexPath.row].Route.RouteNo)
+        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(getRoutes[indexPath.row].Route.RouteNo ?? 0)
         RestManager.APIData(url: url, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {

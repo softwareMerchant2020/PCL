@@ -13,11 +13,12 @@ import CoreLocation
 class RouteDetailsController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate
 {
     var location1:CLLocation?
-    var routeDetails:[RouteForMap]?
+    var routeDetails:[EditRoute]?
     let locationManager = CLLocationManager()
     var driverLoc: [DriverLocation]?
-    var routeNumberToUse: Int?
+    var routeNumber: Int?
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var mapViewDisplay: MKMapView!
     
     
@@ -28,8 +29,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         mapViewDisplay.layer.cornerRadius = 8
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
-        routeNumberToUse = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
-        getLocs(RouteNumber: routeNumberToUse ?? 7)
+        getLocs(RouteNumber: routeNumber ?? 7)
         
         self.navigationController?.isNavigationBarHidden = false
         locationManager.delegate = self // Sets the delegate to self
@@ -47,13 +47,13 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return routeDetails?[0].Customer.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier  = String(indexPath.row)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        return cell!
+        let cell = self.tableView!.dequeueReusableCell(withIdentifier: "CustomerListCell") as! CustomerListCell
+        cell.populateCell((self.routeDetails?[0].Customer[indexPath.row])!)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -134,8 +134,14 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             (Data, Error) in
             if Error == nil{
                 do {
-                    self.routeDetails = try JSONDecoder().decode([RouteForMap].self, from: Data as! Data )
+                    self.routeDetails = try JSONDecoder().decode([EditRoute].self, from: Data as! Data )
                     self.getAllCoordsForRoute()
+                    DispatchQueue.main.async {
+                        self.tableView.delegate = self
+                        self.tableView.dataSource = self
+                        self.tableView.reloadData()
+                    }
+                    
                 } catch let JSONErr{
                     print(JSONErr.localizedDescription)
                 }
@@ -145,10 +151,10 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func createAddress(entry: Int)-> String
     {
-        let streetAddress: String = (routeDetails?[0].Customer?[entry].StreetAddress ?? "this was empty ")
-        let city: String = (routeDetails?[0].Customer?[entry].City) ?? " this was empty "
-        let state: String = (routeDetails?[0].Customer?[entry].State) ?? " this was empty "
-        let ZIPint = (routeDetails?[0].Customer?[entry].Zip) ?? 0
+        let streetAddress: String = (routeDetails?[0].Customer[entry].StreetAddress ?? "this was empty ")
+        let city: String = (routeDetails?[0].Customer[entry].City) ?? " this was empty "
+        let state: String = (routeDetails?[0].Customer[entry].State) ?? " this was empty "
+        let ZIPint = (routeDetails?[0].Customer[entry].Zip) ?? 0
         let ZIP = String(ZIPint)
         let Seperator: String = ", "
         
@@ -164,7 +170,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         var coordsOfATA = [CLLocationCoordinate2D]()
         var ListOfAddresses = [String]()
         var coordToAppend = CLLocationCoordinate2D()
-        for i in Range(0...(routeDetails![0].Customer!.count-1))
+        for i in Range(0...(routeDetails![0].Customer.count-1))
         {
             print(i)
             addressToAdd = createAddress(entry: i)

@@ -132,6 +132,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="LIj-oU-h3q"/>
                     <connections>
+                        <outlet property="TotalSpecimensLbl" destination="rDA-fr-C5R" id="Xnd-fr-8Ol"/>
                         <outlet property="routesTable" destination="Vsw-cz-2a2" id="G12-jr-Ywn"/>
                         <segue destination="cS5-d5-vL6" kind="show" identifier="RouteDetails" id="uVB-AI-kaY"/>
                     </connections>
@@ -143,7 +144,7 @@
         <!--Route Details Controller-->
         <scene sceneID="vj7-5o-cco">
             <objects>
-                <viewController id="cS5-d5-vL6" customClass="RouteDetailsController" customModule="PCL_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RouteDetails" id="cS5-d5-vL6" customClass="RouteDetailsController" customModule="PCL_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F8D-Kq-P5g">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="668"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -153,7 +154,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="0" id="FRD-fB-RLP" userLabel="0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomerListCell" id="FRD-fB-RLP" customClass="CustomerListCell" customModule="PCL_Admin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="1024" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FRD-fB-RLP" id="tu2-dX-iWF">
@@ -208,6 +209,15 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="AddressLbl" destination="Cbk-kr-I0r" id="XSW-Lh-2VQ"/>
+                                            <outlet property="CollectionStatusImage" destination="F1U-qg-JAD" id="qKi-cK-wfb"/>
+                                            <outlet property="CollectionStatusLbl" destination="sHJ-Hs-z5L" id="a1X-L5-xo3"/>
+                                            <outlet property="CustomerIDLbl" destination="1Dg-3d-H5a" id="PRl-x5-EFU"/>
+                                            <outlet property="CustomerNameLbl" destination="TU1-C7-fIc" id="0RV-X7-a4h"/>
+                                            <outlet property="PickUpTimeLbl" destination="g2k-9e-AoL" id="yrF-fN-QAe"/>
+                                            <outlet property="SpecimensDistanceLbl" destination="lEp-PT-SoW" id="6Vh-qP-znJ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="1" id="dm8-xu-XyN" userLabel="1">
                                         <rect key="frame" x="0.0" y="128" width="1024" height="100"/>
@@ -367,6 +377,7 @@ Philadelphia, PA 19151</string>
                     </view>
                     <connections>
                         <outlet property="mapViewDisplay" destination="ud2-Mt-fS1" id="zmp-ze-wMk"/>
+                        <outlet property="tableView" destination="kse-f6-CRw" id="59S-9c-Yp4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMu-9n-E1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
