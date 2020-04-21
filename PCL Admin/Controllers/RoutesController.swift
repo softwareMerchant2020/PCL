@@ -16,7 +16,6 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var getRoutes : [RouteDetail] = []
     var routeDictionary: [Int:Any]? = [:]
     var routeNumbers: [Int] = []
-    let routeNoPasser = routeNoPass()
     
     override func viewDidLoad() {
         super.viewDidLoad()

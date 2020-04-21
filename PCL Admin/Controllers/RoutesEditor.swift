@@ -19,6 +19,8 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     var myRoute: Route?
     var myLocation: [Location]?
     var message:String?
+    var isEditMode:Bool = false
+    @IBOutlet weak var addNewRouteLbl: UILabel!
     
     @IBOutlet weak var buttonStackView: UIStackView!
     var selectedDriver: String = "   ---   "
@@ -51,7 +53,11 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
                 do {
                     self.routeNumberModel = try JSONDecoder().decode(RouteNumber.self, from: Data as! Data )
                     DispatchQueue.main.async {
-                        self.RouteNumberLbl.text = "Route No.: " + String(self.routeNumberModel?.RouteNo ?? 0)
+                        if self.isEditMode{
+                            self.RouteNumberLbl.text = "Route No.: " + String(self.routeNumber ?? 0)
+                        } else {
+                            self.RouteNumberLbl.text = "Route No.: " + String(self.routeNumberModel?.RouteNo ?? 0)
+                        }
                     }
                 } catch let JSONErr{
                     print(JSONErr.localizedDescription)
@@ -61,11 +67,17 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         
         if let aRoute = myRoute {
+            self.routeNumber = aRoute.RouteNo
             self.routeName.text = aRoute.RouteName
             self.selectedDriver = String(aRoute.DriverId)
             self.selectedVehicle = aRoute.VehicleNo
             self.routeLocations = myLocation!
         }
+        if isEditMode{
+            self.addButton.setTitle("Update", for: .normal)
+            self.addNewRouteLbl.text = "Update Route"
+        }
+        
         refreshDriver()
         refreshVehicle()
     }
@@ -144,41 +156,54 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
 //        performSegue(withIdentifier: "RouteDetails", sender: self)
     }
     @IBAction func addButtonPressed(_ sender: Any) {
-        var customerIDs = ""
-        if routeLocations.count != 1 {
-            var count = 0
-            for location in routeLocations{
-                count = count + 1
-                customerIDs.append(contentsOf: String(location.CustomerId))
-                if count != routeLocations.count - 1{
-                    customerIDs.append(",")
+        if isEditMode{
+            var customerIDs = ""
+            if self.routeLocations.count != 1 {
+                var count = 0
+                for location in self.routeLocations{
+                    count = count + 1
+                    customerIDs.append(contentsOf: String(location.CustomerId))
+                    if count != self.routeLocations.count{
+                        customerIDs.append(",")
+                    }
                 }
+            } else {
+                customerIDs.append(contentsOf: String(self.routeLocations[0].CustomerId))
             }
-        } else {
-            customerIDs.append(contentsOf: String(routeLocations[0].CustomerId))
-        }
-        let jsonBody = [
-            "RouteName": routeName.text ?? "",
-            "DriverId": selectedDriverID!,
-            "VehicleNo": selectedVehicle,
-            "CustomerID": customerIDs
-            ] as [String : Any]
-        
-        RestManager.APIData(url: baseURL + addRoute, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
-            if Error == nil {
-                do {
-                    let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
-                    if resultData.Result == "success"{
-                        self.message = "Route Added"
-                        DispatchQueue.main.async {
-                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                             self.present(alert, animated: true, completion: {
-                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                            })
+            let jsonBody = [
+                "RouteNumber":String(self.routeNumber ?? 0),
+                "RouteName": routeName.text ?? "",
+                "DriverId": selectedDriverID!,
+                "VehicleNo": selectedVehicle,
+                "CustomerID": customerIDs
+                ] as [String : Any]
+            
+            RestManager.APIData(url: baseURL + editRoute, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+                if Error == nil {
+                    do {
+                        let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                        if resultData.Result == "success"{
+                            self.message = "Route Updated"
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
+                            }
+                        } else {
+                            self.message = resultData.Result
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
+                            }
                         }
-                    } else {
-                        self.message = resultData.Result
+                        
+                    } catch let JSONErr{
+                        self.message = JSONErr.localizedDescription
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
                              self.present(alert, animated: true, completion: {
@@ -187,15 +212,62 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
                             })
                         }
                     }
-                    
-                } catch let JSONErr{
-                    self.message = JSONErr.localizedDescription
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                         self.present(alert, animated: true, completion: {
-                            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                        })
+                }
+            }
+        } else {
+            var customerIDs = ""
+            if routeLocations.count != 1 {
+                var count = 0
+                for location in routeLocations{
+                    count = count + 1
+                    customerIDs.append(contentsOf: String(location.CustomerId))
+                    if count != routeLocations.count{
+                        customerIDs.append(",")
+                    }
+                }
+            } else {
+                customerIDs.append(contentsOf: String(routeLocations[0].CustomerId))
+            }
+            let jsonBody = [
+                "RouteName": routeName.text ?? "",
+                "DriverId": selectedDriverID!,
+                "VehicleNo": selectedVehicle,
+                "CustomerID": customerIDs
+                ] as [String : Any]
+            
+            RestManager.APIData(url: baseURL + addRoute, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+                if Error == nil {
+                    do {
+                        let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                        if resultData.Result == "success"{
+                            self.message = "Route Added"
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
+                            }
+                        } else {
+                            self.message = resultData.Result
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                 self.present(alert, animated: true, completion: {
+                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                })
+                            }
+                        }
+                        
+                    } catch let JSONErr{
+                        self.message = JSONErr.localizedDescription
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                             self.present(alert, animated: true, completion: {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                            })
+                        }
                     }
                 }
             }

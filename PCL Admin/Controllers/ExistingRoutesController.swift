@@ -20,7 +20,6 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
             if Error == nil{
                 do {
                     self.getRoutes = try JSONDecoder().decode([GetRoute].self, from: Data as! Data )
-                    print(self.getRoutes)
                     DispatchQueue.main.async {
                         self.routesTable?.reloadData()
                     }
@@ -43,13 +42,27 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let presentingController: RoutesEditor
-        presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
-        presentingController.myRoute = editRoutes[indexPath.row].Route
-        presentingController.myLocation = editRoutes[indexPath.row].Location
-        presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-        present(presentingController, animated: true, completion: nil)
-//        performSegue(withIdentifier: "RouteDetails", sender: self)
+        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(getRoutes[indexPath.row].Route.RouteNo)
+        RestManager.APIData(url: url, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.editRoutes = try JSONDecoder().decode([EditRoute].self, from: Data as! Data )
+                    DispatchQueue.main.async {
+                        tableView.deselectRow(at: indexPath, animated: true)
+                        let presentingController: RoutesEditor
+                        presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
+                        presentingController.isEditMode = true
+                        presentingController.myRoute = self.editRoutes[0].Route
+                        presentingController.myLocation = self.editRoutes[0].Customer
+                        presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+                        self.present(presentingController, animated: true, completion: nil)
+                        //        performSegue(withIdentifier: "RouteDetails", sender: self)
+                        
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
     }
 }

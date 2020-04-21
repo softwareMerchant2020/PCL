@@ -28,7 +28,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
         routeNumberToUse = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
-        print("this is the line you're looking for: ", routeNumberToUse)
         getLocs(RouteNumber: routeNumberToUse ?? 9)
         
         self.navigationController?.isNavigationBarHidden = false

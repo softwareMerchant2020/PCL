@@ -9,5 +9,5 @@
 import Foundation
 
 struct RouteNumber: Decodable {
-    var RouteNo: Int
+    var RouteNo: Int?
 }
