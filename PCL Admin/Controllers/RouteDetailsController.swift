@@ -8,46 +8,42 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class RouteDetailsController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-    @IBOutlet var mapView: MKMapView!
+class RouteDetailsController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate
+{
+    var location1:CLLocation?
+    var routeDetails:[RouteForMap]?
+    let locationManager = CLLocationManager()
+    var driverLoc: [DriverLocation]?
+    var routeNumberToUse: Int?
+    
+    @IBOutlet var mapViewDisplay: MKMapView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.layer.cornerRadius = 8
-        mapView.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
-        mapView.layer.borderWidth = 1
+        getDriverLoc(driverNo: 3)
+        mapViewDisplay.layer.cornerRadius = 8
+        mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
+        mapViewDisplay.layer.borderWidth = 1
+        routeNumberToUse = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
+        print("this is the line you're looking for: ", routeNumberToUse)
+        getLocs(RouteNumber: routeNumberToUse ?? 9)
         
-        let initialLocation = CLLocation(latitude: 40.000, longitude: -75.21943)
-        let regionRadius: CLLocationDistance = 12000
-        func centerMapOnLocation(location: CLLocation) {
-            let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                      latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-            mapView.setRegion(coordinateRegion, animated: true)
-        }
-        centerMapOnLocation(location: initialLocation)
+        self.navigationController?.isNavigationBarHidden = false
+        locationManager.delegate = self // Sets the delegate to self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // Sets the accuracy of the GPS to best in this case
+        locationManager.requestAlwaysAuthorization() // Asks for permission
+        locationManager.requestWhenInUseAuthorization() //Asks for permission when in use
+        locationManager.startUpdatingLocation() //Updates location when moving
+        mapViewDisplay.delegate = self
+        mapViewDisplay.showsScale = true
+        mapViewDisplay.showsUserLocation = true
+        gettingLoc()
         
-        let artwork = Artwork(title: "Merakey Germantown",
-                              locationName: "Merakey Germantown",
-                              discipline: "",
-                              coordinate: CLLocationCoordinate2D(latitude: 40.03337, longitude: -75.171005))
-        let artwork2 = Artwork(title: "New Directions (Adolescents)",
-                              locationName: "New Directions (Adolescents)",
-                              discipline: "",
-                              coordinate: CLLocationCoordinate2D(latitude: 39.978996, longitude: -75.21943))
-        let artwork3 = Artwork(title: "Merakey Parkside",
-                              locationName: "Merakey Parkside",
-                              discipline: "",
-                              coordinate: CLLocationCoordinate2D(latitude: 39.979996, longitude: -75.21943))
-        let artwork4 = Artwork(title: "Re-Enter",
-                              locationName: "Re-Enter",
-                              discipline: "",
-                              coordinate: CLLocationCoordinate2D(latitude: 39.960274, longitude: -75.19033))
-        mapView.addAnnotation(artwork)
-        mapView.addAnnotation(artwork2)
-        mapView.addAnnotation(artwork3)
-        mapView.addAnnotation(artwork4)
-        // Do any additional setup after loading the view.
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -62,5 +58,190 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    // MARK: map stuff
+    func mapThis(originCoordinate: CLLocationCoordinate2D, destinationCord : CLLocationCoordinate2D)
+    {
+        
+        let soucePlaceMark = MKPlacemark(coordinate: originCoordinate) // Start point as coordinate
+        let destPlaceMark = MKPlacemark(coordinate: destinationCord) // End point as coordinate
+        
+        let sourceItem = MKMapItem(placemark: soucePlaceMark) // Start point as placemark (MapItem)
+        let destItem = MKMapItem(placemark: destPlaceMark)// Start point as placemark (MapItem)
+        
+        let destinationRequest = MKDirections.Request() // Initialises requests to apple Maps to get route
+        destinationRequest.source = sourceItem // Requesting where to start from
+        destinationRequest.destination = destItem // Requesting where to end
+        destinationRequest.transportType = .walking // Requesting what mode of transport is being used
+        destinationRequest.requestsAlternateRoutes = true // Requesting Alternate Routes
+        
+        let directions = MKDirections(request: destinationRequest) //Initialsing the directions with the request
+        directions.calculate { (response, error) in // Calculates route Using MKDirections
+            //            error handling for unforseen problems such as User denying location access, or start point = end point etc.
+            guard let response = response else {
+                if error != nil {
+                    print("Something is wrong :(")
+                }
+                return
+            }
+            
+            let route = response.routes[0] // Retrieves useful information for plotting the route
+            self.mapViewDisplay.addOverlay(route.polyline) // Creates route as a road map that is similar to that on google maps/ apple maps
+            self.mapViewDisplay.setVisibleMapRect(route.polyline.boundingMapRect, animated: true) // Makes the route visible to user and animates it
+        }
+    }
+    
+    func getCoordinate( addressString : String,
+                        completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void )
+    {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(addressString){ (placemarks, error) in
+            if error == nil {
+                if let placemark = placemarks?[0] {
+                    self.location1 = placemark.location!
+                    completionHandler(self.location1?.coordinate ?? CLLocationCoordinate2D(), nil)
+                    return
+                }
+            }
+            
+            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+        }
+    }
+    
+    func createAnnot(locations:[[String: Any]])
+    {
+        for location in locations
+        {
+            let annot = MKPointAnnotation()
+            annot.title = location["title"] as? String
+            annot.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude: location["longitude"] as! CLLocationDegrees)
+            mapViewDisplay.addAnnotation(annot)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
+    {
+        let render = MKPolylineRenderer(overlay: overlay as! MKPolyline) // Tells hardware what the render is going to look like
+        render.strokeColor = .blue // Tells hardware what colour to make the render
+        return render
+    }
+    
+    func getLocs(RouteNumber: Int)
+    {
+        RestManager.APIData(url: baseURL + getRouteDetail + "?RouteNumber=" + String(RouteNumber), httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){
+            (Data, Error) in
+            if Error == nil{
+                do {
+                    self.routeDetails = try JSONDecoder().decode([RouteForMap].self, from: Data as! Data )
+                    self.getAllCoordsForRoute()
+                } catch let JSONErr{
+                    print(JSONErr.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func createAddress(entry: Int)-> String
+    {
+        let streetAddress: String = (routeDetails?[0].Customer?[entry].StreetAddress ?? "this was empty ")
+        let city: String = (routeDetails?[0].Customer?[entry].City) ?? " this was empty "
+        let state: String = (routeDetails?[0].Customer?[entry].State) ?? " this was empty "
+        let ZIPint = (routeDetails?[0].Customer?[entry].Zip) ?? 0
+        let ZIP = String(ZIPint)
+        let Seperator: String = ", "
+        
+        
+        let addressToGeocode: String = (streetAddress+Seperator+state+Seperator+city+Seperator+ZIP)
+        return(addressToGeocode)
+    }
+    
+    func getAllCoordsForRoute()
+    {
+        
+        var addressToAdd = String()
+        var coordsOfATA = [CLLocationCoordinate2D]()
+        var ListOfAddresses = [String]()
+        var coordToAppend = CLLocationCoordinate2D()
+        for i in Range(0...(routeDetails![0].Customer!.count-1))
+        {
+            print(i)
+            addressToAdd = createAddress(entry: i)
+            ListOfAddresses.append(addressToAdd)
+        }
+        print("List of addresses",ListOfAddresses)
+        
+        for j in ListOfAddresses
+        {
+            print(j)
+            getCoordinate(addressString: j) { (CLLocationCoordinate2D, NSError) in
+                coordToAppend = CLLocationCoordinate2D
+                coordsOfATA.append(coordToAppend)
+                print("yf",coordsOfATA)
+                print(ListOfAddresses.count)
+                if ListOfAddresses.count>0
+                {
+                    for k in coordsOfATA
+                    {
+                        print(k)
+                        let listOfDropOffs = [["title":"Pick Up Here!", "latitude":k.latitude, "longitude":k.longitude]]
+                        self.createAnnot(locations: listOfDropOffs)
+                        let geoFenceRegion = CLCircularRegion(center: k, radius: 100, identifier: "PickUp Location")
+                        geoFenceRegion.notifyOnEntry = true
+                        geoFenceRegion.notifyOnExit = true
+                        self.locationManager.startMonitoring(for: geoFenceRegion)
+                    }
+                    
+                    if coordsOfATA.count>2
+                    {
+                        for z in Range(0...coordsOfATA.count-2)
+                        {
+                            self.mapThis(originCoordinate: coordsOfATA[z], destinationCord: coordsOfATA[z+1])
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func getDriverLoc(driverNo: Int)
+    {
+        RestManager.APIData(url: baseURL + getDriverLocation + "?DriverId=" + String(driverNo), httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+            (Data, Error) in
+            if Error == nil{
+                do {
+                    print(baseURL + getDriverLocation + "?DriverId=" + String(driverNo))
+                    self.driverLoc = try JSONDecoder().decode([DriverLocation].self, from: Data as! Data )
+                
+                } catch let JSONErr{
+                    print(JSONErr.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func makeDriverRealAgain() -> CLLocationCoordinate2D
+    {
+        let xCoord: Double = driverLoc![0].Lat!
+        let yCoord: Double = driverLoc![0].Log!
+        let driverPoint: CLLocationCoordinate2D = CLLocationCoordinate2DMake(xCoord,yCoord)
+        return driverPoint
+    }
+    
+    func gettingLoc()
+    {
+        let delayTime = DispatchTime.now() + 5.0
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute:
+            {self.helloDriver()
+        })
+    }
+    
+    func helloDriver()
+    {
+        let DL = self.makeDriverRealAgain()
+        let locationOfDriver = [["title":"driver is here","latitude":DL.latitude,"longitude":DL.longitude]]
+        self.createAnnot(locations: locationOfDriver)
+        print("updating location")
+        gettingLoc()
     }
 }

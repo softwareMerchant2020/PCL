@@ -28,3 +28,4 @@ let addUpdateTransactionStatus = "admin/AddUpdateTransactionStatus"
 let getAdminDetails = "admin/GetDetailForAdmin"
 let getTotalSpecimensCollected = "admin/GetTotalSpecimensCollected"
 let CollectionStatus = ["notCollected","collected","rescheduled","missed","closed","other"]
+let getDriverLocation = "driver/GetDriverLocation"

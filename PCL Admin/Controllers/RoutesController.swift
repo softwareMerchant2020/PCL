@@ -16,6 +16,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var getRoutes : [RouteDetail] = []
     var routeDictionary: [Int:Any]? = [:]
     var routeNumbers: [Int] = []
+    let routeNoPasser = routeNoPass()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,10 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        UserDefaults.standard.set(routeNumbers[indexPath.row], forKey: "RouteNumberForMap")
         performSegue(withIdentifier: "RouteDetails", sender: self)
     }
+    
+    
 }
 
