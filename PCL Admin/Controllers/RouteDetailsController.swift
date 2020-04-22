@@ -16,7 +16,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     var routeDetails:[EditRoute]?
     let locationManager = CLLocationManager()
     var driverLoc: [DriverLocation]?
-    var routeNumber: Int?
+    var routeNo: Int?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var mapViewDisplay: MKMapView!
@@ -24,11 +24,10 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDriverLoc(driverNo: 3)
         mapViewDisplay.layer.cornerRadius = 8
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
-        getLocs(RouteNumber: routeNumber ?? 7)
+        getLocs(RouteNumber: self.routeNo ?? 7)
         
         self.navigationController?.isNavigationBarHidden = false
         locationManager.delegate = self // Sets the delegate to self
@@ -129,11 +128,13 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func getLocs(RouteNumber: Int)
     {
-        RestManager.APIData(url: baseURL + getRouteDetail + "?RouteNumber=" + String(RouteNumber), httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){
+        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(self.routeNo ?? 0)
+        RestManager.APIData(url: url, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){
             (Data, Error) in
             if Error == nil{
                 do {
                     self.routeDetails = try JSONDecoder().decode([EditRoute].self, from: Data as! Data )
+                    self.getDriverLoc(driverNo: self.routeDetails?[0].Route.DriverId ?? 0)
                     self.getAllCoordsForRoute()
                     DispatchQueue.main.async {
                         self.tableView.delegate = self

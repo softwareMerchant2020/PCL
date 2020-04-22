@@ -132,7 +132,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         UserDefaults.standard.set(routeNumbers[indexPath.row], forKey: "RouteNumberForMap")
         let presentingController: RouteDetailsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RouteDetails") as! RouteDetailsController
-        presentingController.routeNumber = self.routeNumbers[indexPath.row]
+        presentingController.routeNo = self.getRoutes[indexPath.row].RouteNo
         performSegue(withIdentifier: "RouteDetails", sender: self)
     }
 }

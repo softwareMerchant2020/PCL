@@ -26,7 +26,7 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+            super.viewDidLoad()
         RestManager.APIData(url: baseURL + getRoute, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {

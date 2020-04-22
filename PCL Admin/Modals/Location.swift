@@ -28,6 +28,8 @@ struct Location: Decodable{
     var NextPickUpTime: String?
     var CustomerId: Int
     var IsSelected: Bool
+    var Cust_Lat: Double?
+    var Cust_Log: Double?
 }
 
 //extension Location {
