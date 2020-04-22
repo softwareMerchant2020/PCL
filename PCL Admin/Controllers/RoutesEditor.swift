@@ -17,6 +17,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     @IBOutlet var addButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     var myRoute: Route?
+    var driverName: String?
     var myLocation: [Location]?
     var message:String?
     var isEditMode:Bool = false
@@ -69,7 +70,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         if let aRoute = myRoute {
             self.routeNumber = aRoute.RouteNo
             self.routeName.text = aRoute.RouteName
-            self.selectedDriver = String(aRoute.DriverId ?? 0)
+            self.selectedDriver = driverName ?? "" 
             self.selectedVehicle = aRoute.VehicleNo ?? ""
             self.routeLocations = myLocation!
         }
@@ -273,7 +274,6 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
             }
         }
     }
-    @IBAction func cancelButtonClicked(){
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func cancelButtonClicked(){        self.dismiss(animated: true, completion: nil)
     }
 }

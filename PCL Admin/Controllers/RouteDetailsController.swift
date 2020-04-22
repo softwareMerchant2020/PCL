@@ -46,7 +46,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routeDetails?[0].Customer.count ?? 0
+        return self.routeDetails?[0].Customer.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

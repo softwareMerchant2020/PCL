@@ -36,8 +36,15 @@ class CustomerListCell: UITableViewCell {
         self.CustomerNameLbl.text = String(location.CustomerName!)
         self.PickUpTimeLbl.text = String(location.NextPickUpTime ?? "this is bricked")
         self.SpecimensDistanceLbl.text = ("Specimen collected: "+String(location.SpecimensCollected ?? 0))
-        self.CollectionStatusLbl.text = location.CollectionStatus
-        //        self.seqNo.text = self.i
+        if location.CollectionStatus == "NotCollected"{
+            self.CollectionStatusLbl.text = "In-Process"
+            self.CollectionStatusImage.isHidden = true
+            self.CollectionStatusLbl.adjustsFontSizeToFitWidth = true
+        } else{
+            self.CollectionStatusLbl.text = location.CollectionStatus
+            self.CollectionStatusImage.isHidden = false
+        }
+        
     }
     
     

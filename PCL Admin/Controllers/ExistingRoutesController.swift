@@ -13,6 +13,17 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var routesTable: UITableView?
     var getRoutes : [GetRoute] = []
     var editRoutes : [EditRoute] = []
+    var getDrivers : [Driver]? = []
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("ViewWIllAPpear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("ViewDidAppear")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +39,21 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
+        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.getDrivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
+                    DispatchQueue.main.async {
+                        self.routesTable?.reloadData()
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
+        
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -37,7 +63,8 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.routesTable!.dequeueReusableCell(withIdentifier: "EditRouteCell") as! EditRouteCell
-        cell.populateCell(self.getRoutes[indexPath.row].Route)
+        let driver =  self.getDrivers?.filter({$0.DriverId == self.getRoutes[indexPath.row].Route.DriverId}).first
+        cell.populateCell(self.getRoutes[indexPath.row].Route, driver:driver?.DriverName ?? "")
         return cell
     }
     
@@ -53,6 +80,8 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
                         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
                         presentingController.isEditMode = true
                         presentingController.myRoute = self.editRoutes[0].Route
+                        let driver =  self.getDrivers?.filter({$0.DriverId == self.editRoutes[0].Route.DriverId}).first
+                        presentingController.driverName = driver?.DriverName
                         presentingController.myLocation = self.editRoutes[0].Customer
                         presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
                         self.present(presentingController, animated: true, completion: nil)
