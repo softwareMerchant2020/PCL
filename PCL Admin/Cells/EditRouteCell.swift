@@ -25,10 +25,10 @@ class EditRouteCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func populateCell(_ route: Route) {
+    func populateCell(_ route: Route, driver: String) {
         self.routeNo.text = String(route.RouteNo ?? 0)
         self.routeName.text = route.RouteName
-        self.driver.text = String(route.DriverId ?? 0)
+        self.driver.text = driver
         self.vehicle.text = route.VehicleNo
     }
 }

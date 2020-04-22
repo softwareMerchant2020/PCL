@@ -20,6 +20,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.routesTable?.addSubview(self.refreshControl)
         RestManager.APIData(url: baseURL + getAdminDetails, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
@@ -66,6 +67,56 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
     }
+    
+    @objc func getAdminData(_ refreshControl: UIRefreshControl){
+        self.routeNumbers.removeAll()
+        self.routeDictionary?.removeAll()
+        self.getRoutes.removeAll()
+        RestManager.APIData(url: baseURL + getAdminDetails, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.getRoutes = try JSONDecoder().decode([RouteDetail].self, from: Data as! Data )
+                    for eachResult in self.getRoutes {
+                        if (self.routeDictionary?[eachResult.RouteNo] == nil) {
+                            var eachRoute : [RouteDetail] = []
+                            self.routeNumbers.append(eachResult.RouteNo)
+                            eachRoute.append(eachResult)
+                            self.routeDictionary?[eachResult.RouteNo] = eachRoute
+                        }
+                        else
+                        {
+                            var dataArr = self.routeDictionary?[eachResult.RouteNo] as! [RouteDetail]
+                            dataArr.append(eachResult)
+                            self.routeDictionary?[eachResult.RouteNo] = dataArr
+                            
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.routesTable?.dataSource = self
+                        self.routesTable?.delegate = self
+                        self.routesTable?.reloadData()
+                        self.refreshControl.endRefreshing()
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
+    }
+    
+    
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(self.getAdminData(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.routeNumbers.count
