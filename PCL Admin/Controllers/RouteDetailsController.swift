@@ -248,8 +248,15 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     {
         let DL = self.makeDriverRealAgain()
         let locationOfDriver = [["title":"driver is here","latitude":DL.latitude,"longitude":DL.longitude]]
-        self.createAnnot(locations: locationOfDriver)
         print("updating location")
+        let filteredAnnotations = mapViewDisplay.annotations.filter { annotation in
+            if annotation is MKUserLocation { return false }          // don't remove MKUserLocation
+            guard let title = annotation.title else { return false }  // don't remove annotations without any title
+            return title == "driver is here"                             // remove those whose title does not match search string
+        }
+        self.createAnnot(locations: locationOfDriver)
+
+        mapViewDisplay.removeAnnotations(filteredAnnotations)
         gettingLoc()
     }
 
