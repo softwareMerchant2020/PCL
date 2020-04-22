@@ -15,6 +15,16 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     var editRoutes : [EditRoute] = []
     var getDrivers : [Driver]? = []
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("ViewWIllAPpear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("ViewDidAppear")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         RestManager.APIData(url: baseURL + getRoute, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
