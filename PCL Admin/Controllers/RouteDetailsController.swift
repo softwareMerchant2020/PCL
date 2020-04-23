@@ -131,7 +131,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func getLocs(RouteNumber: Int)
     {
-        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(self.routeNo ?? 0)
+        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(self.routeNumber ?? 0)
         RestManager.APIData(url: url, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){
             (Data, Error) in
             if Error == nil{
