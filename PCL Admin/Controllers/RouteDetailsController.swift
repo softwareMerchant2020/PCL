@@ -23,7 +23,8 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var mapViewDisplay: MKMapView!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.routeNumber = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
         getDriverLoc(driverNo: driverNumber ?? 3)
@@ -42,8 +43,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         mapViewDisplay.showsScale = true
         mapViewDisplay.showsUserLocation = true
         gettingLoc()
-        
-        
     }
     
     
@@ -65,7 +64,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: map stuff
     func mapThis(originCoordinate: CLLocationCoordinate2D, destinationCord : CLLocationCoordinate2D)
     {
-        
         let soucePlaceMark = MKPlacemark(coordinate: originCoordinate) // Start point as coordinate
         let destPlaceMark = MKPlacemark(coordinate: destinationCord) // End point as coordinate
         
@@ -131,7 +129,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func getLocs(RouteNumber: Int)
     {
-        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(self.routeNo ?? 0)
+        let url = baseURL + getRouteDetail + "?RouteNumber=" + String(self.routeNumber ?? 0)
         RestManager.APIData(url: url, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil){
             (Data, Error) in
             if Error == nil{
@@ -231,8 +229,8 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func makeDriverRealAgain() -> CLLocationCoordinate2D
     {
-        let xCoord: Double = driverLoc![0].Lat!
-        let yCoord: Double = driverLoc![0].Log!
+        let xCoord: Double = driverLoc![0].Lat ?? 0.0
+        let yCoord: Double = driverLoc![0].Log ?? 0.0
         let driverPoint: CLLocationCoordinate2D = CLLocationCoordinate2DMake(xCoord,yCoord)
         return driverPoint
     }

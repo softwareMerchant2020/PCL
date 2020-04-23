@@ -14,7 +14,7 @@ struct RouteDetail: Decodable {
     var CustomerId:Int
     var Status:Int
     var PickUp_Dt: String
-    var PickUp_Time: String
+    var PickUp_Time: String?
     var NumberOfSpecimens: Int
     var CreatedDate: String
     var UpdatedByDriver: String

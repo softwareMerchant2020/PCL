@@ -41,7 +41,7 @@ class RouteCell: UITableViewCell {
             {
                 case "collected":
                     imageName = "greenDot.png"
-                    lastPickUpTime = aLocation.PickUp_Time
+                    lastPickUpTime = aLocation.PickUp_Time ?? ""
                 case "notCollected":
                     imageName = "greyDot.png"
                 case "rescheduled":
@@ -106,7 +106,7 @@ class RouteCell: UITableViewCell {
         for aLocation in route {
                 if aLocation.Status == 0 {
                     numberCompleted = numberCompleted + 1
-                    let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time)
+                    let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time ?? "")
                     i.append(result)
                 }
             }
@@ -137,7 +137,7 @@ class RouteCell: UITableViewCell {
             let dateObj = dateFormatter.date(from: customer.NextPickUpTime ?? "4:30 PM")
                let dateobj2 = dateFormatter.date(from: recentPickupTime)
 
-               switch dateObj?.compare(dateobj2!)
+               switch dateObj?.compare(dateobj2 ?? Date())
                {
                case .orderedAscending:
                    print("picked earlier")
