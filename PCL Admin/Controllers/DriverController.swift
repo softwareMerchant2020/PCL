@@ -13,7 +13,9 @@ class DriverController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var fields: [UITextField]!
-    var message:String?
+    var driverId:Int?
+    
+//    var message:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 8
@@ -27,53 +29,69 @@ class DriverController: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
-    
+    func setValuesForInputField(driver:Driver)  {
+        print("setValuesForInputField")
+        let driverName:[String] = driver.DriverName.components(separatedBy: " ")
+        fields[0].text = driverName[0]
+        fields[1].text = driverName[1]
+        fields[2].text = driver.PhoneNumber
+        self.driverId = driver.DriverId
+        addButton.setTitle("Update", for: .normal)
+    }
     @IBAction func addButtonClicked(_ sender: Any) {
-        if fields[0].text == "" || fields[1].text == "" || fields[2].text == ""{
-            let alert = Alert(message: "Please fill all the three fields.")
-            self.present(alert, animated: true)
-        } else {
-            let jsonBody = [
-                "FirstName": fields[0].text,
-            "LastName": fields[1].text,
-            "PhoneNumber": fields[2].text
-            ]
-            RestManager.APIData(url: baseURL + addDriver, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+        let button:UIButton = sender as! UIButton
+        if !isFieldsEmpty()
+       {
+        let jsonBody:Dictionary<String,Any>
+        var urlStr:String!
+        
+        if button.titleLabel?.text == "Add" {
+            jsonBody = [
+                "FirstName": fields[0].text as Any,
+                "LastName": fields[1].text as Any,
+                "PhoneNumber": fields[2].text as Any
+                           ]
+            urlStr = baseURL + addDriver
+        }
+        else {
+            jsonBody = [
+                "DriverId": self.driverId as Any,
+                "FirstName": fields[0].text as Any,
+                "LastName": fields[1].text as Any,
+                "PhoneNumber": fields[2].text!
+                        ]
+            urlStr = baseURL + updateDriver
+        }
+            RestManager.APIData(url: urlStr, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
                 if Error == nil {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
-                        if resultData.Result == "success"{
-                            self.message = "Driver Added"
-                            DispatchQueue.main.async {
-                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                                 self.present(alert, animated: true, completion: {
-                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                                })
-                            }
-                        } else {
-                            self.message = resultData.Result
-                            DispatchQueue.main.async {
-                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                                 self.present(alert, animated: true, completion: {
-                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                                })
-                            }
-                        }
+                        self.displayAlertWith(message: resultData.Result)
                         
                     } catch let JSONErr{
-                        self.message = JSONErr.localizedDescription
-                        DispatchQueue.main.async {
-                            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                             self.present(alert, animated: true, completion: {
-                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                    self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                            })
-                        }
+                        self.displayAlertWith(message: JSONErr.localizedDescription)
                     }
                 }
             }
+        }
+    }
+    func isFieldsEmpty() -> Bool{
+        if fields[0].text!.isEmpty || fields[1].text!.isEmpty || fields[2].text!.isEmpty {
+            let alert = Alert(message: "Please fill all the three fields.")
+            self.present(alert, animated: true)
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    func displayAlertWith(message:String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title:message, message: nil, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: {
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+            self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+            })
         }
     }
     @IBAction func cancelButtonClicked(){

@@ -33,8 +33,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let presentingController: UIViewController
         switch indexPath.row {
         case 0:
-            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
-            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+//            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
+//            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+           let driversVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriversController") as! DriversController
+           driversVC.isEditMode = true
+            self.navigationController?.pushViewController(driversVC, animated: true)
         case 1:
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
             presentingController.modalPresentationStyle = .pageSheet
@@ -51,6 +54,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             return
         }
-        present(presentingController, animated: true, completion: nil)
+//        present(presentingController, animated: true, completion: nil)
     }
 }
