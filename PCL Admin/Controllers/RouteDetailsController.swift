@@ -17,6 +17,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     let locationManager = CLLocationManager()
     var driverLoc: [DriverLocation]?
     var routeNumber: Int?
+    var driverNumber: Int?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var mapViewDisplay: MKMapView!
@@ -24,11 +25,12 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDriverLoc(driverNo: 3)
+        self.routeNumber = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
+        getDriverLoc(driverNo: driverNumber ?? 3)
         mapViewDisplay.layer.cornerRadius = 8
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
-        getLocs(RouteNumber: routeNumber ?? 7)
+        getLocs(RouteNumber: self.routeNumber ?? 2)
         
         self.navigationController?.isNavigationBarHidden = false
         locationManager.delegate = self // Sets the delegate to self
@@ -134,6 +136,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             if Error == nil{
                 do {
                     self.routeDetails = try JSONDecoder().decode([EditRoute].self, from: Data as! Data )
+                    self.driverNumber =  self.routeDetails?[0].Route.DriverId
                     self.getAllCoordsForRoute()
                     DispatchQueue.main.async {
                         self.tableView.delegate = self
@@ -156,7 +159,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         let ZIPint = (routeDetails?[0].Customer[entry].Zip) ?? 0
         let ZIP = String(ZIPint)
         let Seperator: String = ", "
-        
         
         let addressToGeocode: String = (streetAddress+Seperator+state+Seperator+city+Seperator+ZIP)
         return(addressToGeocode)
@@ -296,5 +298,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
+    
     
 }
