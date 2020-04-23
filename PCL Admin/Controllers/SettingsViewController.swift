@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,13 +41,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case 1:
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
             presentingController.modalPresentationStyle = .pageSheet
+//        case 2:
+//            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
+//            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         case 2:
-            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
-            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-        case 3:
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddVehicleController") as! AddVehiclesViewController
                        presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-        case 4:
+        case 3:
            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
             self.performSegue(withIdentifier: "EditRoute", sender: self)
             return
