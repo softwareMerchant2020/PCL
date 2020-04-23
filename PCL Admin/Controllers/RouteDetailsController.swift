@@ -18,6 +18,8 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     var driverLoc: [DriverLocation]?
     var routeNumber: Int?
     var driverNumber: Int?
+    var routeNo:Int?
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var mapViewDisplay: MKMapView!
