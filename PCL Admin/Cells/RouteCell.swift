@@ -101,7 +101,7 @@ class RouteCell: UITableViewCell {
     func calculateRouteStatus(route:[RouteDetail]) -> RouteStatus {
         var i:[Int] = [Int]()
         var numberCompleted = 0
-        var status:RouteStatus!
+        var status:RouteStatus = RouteStatus.delaying
         
         for aLocation in route {
                 if aLocation.Status == 0 {
@@ -138,7 +138,7 @@ class RouteCell: UITableViewCell {
             let dateObj = dateFormatter.date(from: customer.PickUpTime ?? "4:30 PM")
                let dateobj2 = dateFormatter.date(from: recentPickupTime)
 
-               switch dateObj?.compare(dateobj2 ?? Date())
+            switch dateObj?.compare(dateobj2 ?? Date())
                {
                case .orderedAscending:
                    print("picked earlier")

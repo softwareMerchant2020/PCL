@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNh-9J-ong">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNh-9J-ong">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -839,9 +839,8 @@ Philadelphia, PA 19151</string>
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jde-MI-DDi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jde-MI-DDi">
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="0o8-sx-SzG">
@@ -860,6 +859,12 @@ Philadelphia, PA 19151</string>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Jde-MI-DDi" firstAttribute="leading" secondItem="HHY-zk-pR4" secondAttribute="leading" id="HWg-eZ-FzL"/>
+                            <constraint firstItem="Jde-MI-DDi" firstAttribute="trailing" secondItem="HHY-zk-pR4" secondAttribute="trailing" id="axL-cc-TV7"/>
+                            <constraint firstItem="Jde-MI-DDi" firstAttribute="bottom" secondItem="HHY-zk-pR4" secondAttribute="bottom" id="kUQ-wQ-aFg"/>
+                            <constraint firstItem="Jde-MI-DDi" firstAttribute="top" secondItem="HHY-zk-pR4" secondAttribute="top" id="xxS-SZ-aRZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HHY-zk-pR4"/>
                     </view>
                     <size key="freeformSize" width="540" height="620"/>
@@ -1210,10 +1215,10 @@ Philadelphia, PA 19151</string>
             </objects>
             <point key="canvasLocation" x="2880.46875" y="1419.140625"/>
         </scene>
-        <!--AddVehicle Controller-->
+        <!--AddVehiclesViewController-->
         <scene sceneID="8qA-TW-TAa">
             <objects>
-                <viewController storyboardIdentifier="AddVehicleController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p6U-Fc-MYg" userLabel="AddVehicle Controller" customClass="AddVehiclesViewController" customModule="PCL_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddVehiclesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p6U-Fc-MYg" userLabel="AddVehiclesViewController" customClass="AddVehiclesViewController" customModule="PCL_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M3b-9t-cYX">
                         <rect key="frame" x="0.0" y="0.0" width="763" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1264,7 +1269,7 @@ Philadelphia, PA 19151</string>
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="cancelButtonClicked:" destination="p6U-Fc-MYg" eventType="touchUpInside" id="gPH-WF-7Qe"/>
+                                                    <action selector="cancelButtonClicked:" destination="p6U-Fc-MYg" eventType="touchUpInside" id="vj7-3S-zmQ"/>
                                                 </connections>
                                             </button>
                                         </subviews>

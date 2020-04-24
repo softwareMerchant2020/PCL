@@ -13,9 +13,10 @@ class DriverController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var fields: [UITextField]!
+    var delegate:DriversController?
+    
     var driverId:Int?
     
-//    var message:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 8
@@ -66,8 +67,7 @@ class DriverController: UIViewController {
                 if Error == nil {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
-                        self.displayAlertWith(message: resultData.Result)
-                        
+                        self.displayAlertWith(message: resultData.Result)                        
                     } catch let JSONErr{
                         self.displayAlertWith(message: JSONErr.localizedDescription)
                     }
@@ -95,6 +95,7 @@ class DriverController: UIViewController {
         }
     }
     @IBAction func cancelButtonClicked(){
+        delegate?.refreshTable()
         self.dismiss(animated: true, completion: nil)
     }
 }

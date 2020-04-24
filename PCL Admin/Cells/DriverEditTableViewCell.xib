@@ -13,55 +13,26 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="KGk-i7-Jjw" customClass="DriverEditTableViewCell" customModule="PCL_Admin" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="321" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="321" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="oFJ-ou-7LO">
-                        <rect key="frame" x="15" y="10" width="291" height="36"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ctj-wU-eQM">
-                                <rect key="frame" x="0.0" y="0.0" width="160" height="36"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="IiT-04-zEq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15f-lP-Qi8">
-                                <rect key="frame" x="175" y="0.0" width="51" height="36"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Update">
-                                    <color key="titleColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="updateButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z9Y-Tp-rC4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5W-Z0-gw0">
-                                <rect key="frame" x="246" y="0.0" width="45" height="36"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.42352941179999998" green="0.043137254899999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Delete">
-                                    <color key="titleColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HS2-qn-q3x"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ctj-wU-eQM">
+                        <rect key="frame" x="15" y="10" width="160" height="36"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="IiT-04-zEq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="s5W-Z0-gw0" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.140187" id="5Ab-CI-CqG"/>
-                    <constraint firstItem="15f-lP-Qi8" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.158879" id="613-vr-Q0U"/>
-                    <constraint firstItem="Ctj-wU-eQM" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.498442" id="BtL-i3-4CK"/>
-                    <constraint firstAttribute="trailing" secondItem="oFJ-ou-7LO" secondAttribute="trailing" constant="15" id="Si2-Vw-K3n"/>
-                    <constraint firstAttribute="bottom" secondItem="oFJ-ou-7LO" secondAttribute="bottom" constant="10" id="Wwv-HS-Raw"/>
-                    <constraint firstItem="oFJ-ou-7LO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="mW6-1f-N6F"/>
-                    <constraint firstItem="oFJ-ou-7LO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="mWt-tw-QAZ"/>
+                    <constraint firstItem="Ctj-wU-eQM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="2JF-36-vlg"/>
+                    <constraint firstAttribute="bottom" secondItem="Ctj-wU-eQM" secondAttribute="bottom" constant="10" id="Dn8-05-Ddl"/>
+                    <constraint firstAttribute="trailing" secondItem="Ctj-wU-eQM" secondAttribute="trailing" constant="15" id="VbP-Q9-7Ge"/>
+                    <constraint firstItem="Ctj-wU-eQM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="jjK-MX-a9h"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
