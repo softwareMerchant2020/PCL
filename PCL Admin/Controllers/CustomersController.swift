@@ -19,7 +19,7 @@ class CustomersController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addCustomer))
-        RestManager.APIData(url: baseURL + getCustomer, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+        RestManager.APIData(url: baseURL + getCustomerURL, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
                     self.getCustomers = try JSONDecoder().decode([Location].self, from: Data as! Data )

@@ -83,7 +83,7 @@ class RouteCell: UITableViewCell {
         statusContainer.center = centerPt
     }
     func getCustomer(customerId:Int,  completionHandler: @escaping (Location) -> ())  {
-        RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Customer/GetCustomer" , httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil) { Data,Error in
+        RestManager.APIData(url: baseURL + getCustomerURL , httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil) { Data,Error in
             if Error==nil {
                 do {
                     let customerList = try JSONDecoder().decode([Location].self, from: Data as! Data)

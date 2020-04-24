@@ -23,8 +23,8 @@
 		57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */; };
 		57B94A1821DD45E5007D2FF5 /* ExistingRoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */; };
 		57B94A1A21DD4EAA007D2FF5 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */; };
-		C07CF47A245349E100981292 /* distanceMatrixObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CF479245349E100981292 /* distanceMatrixObj.swift */; };
-		C07CF47C24535CFB00981292 /* distanceMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CF47B24535CFB00981292 /* distanceMatrix.swift */; };
+		C07CF47A245349E100981292 /* DistanceMatrixObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CF479245349E100981292 /* DistanceMatrixObj.swift */; };
+		C07CF47C24535CFB00981292 /* DistanceMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07CF47B24535CFB00981292 /* DistanceMatrix.swift */; };
 		C0A64CA6244E1CB3002CCD7A /* RouteForMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A64CA5244E1CB3002CCD7A /* RouteForMaps.swift */; };
 		C0A64CA8244E1F3B002CCD7A /* DriverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A64CA7244E1F3B002CCD7A /* DriverLocation.swift */; };
 		EF59DE142440E2AC0081D719 /* statedictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF59DE132440E2AC0081D719 /* statedictionary.plist */; };
@@ -89,8 +89,8 @@
 		57B94A1521DD4550007D2FF5 /* EditRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRouteCell.swift; sourceTree = "<group>"; };
 		57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingRoutesController.swift; sourceTree = "<group>"; };
 		57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
-		C07CF479245349E100981292 /* distanceMatrixObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceMatrixObj.swift; sourceTree = "<group>"; };
-		C07CF47B24535CFB00981292 /* distanceMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = distanceMatrix.swift; sourceTree = "<group>"; };
+		C07CF479245349E100981292 /* DistanceMatrixObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceMatrixObj.swift; sourceTree = "<group>"; };
+		C07CF47B24535CFB00981292 /* DistanceMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceMatrix.swift; sourceTree = "<group>"; };
 		C0A64CA5244E1CB3002CCD7A /* RouteForMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteForMaps.swift; sourceTree = "<group>"; };
 		C0A64CA7244E1F3B002CCD7A /* DriverLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverLocation.swift; sourceTree = "<group>"; };
 		EF59DE132440E2AC0081D719 /* statedictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = statedictionary.plist; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				F3DA9C1D244E809900D0ECA1 /* EditRoute.swift */,
-				C07CF479245349E100981292 /* distanceMatrixObj.swift */,
+				C07CF479245349E100981292 /* DistanceMatrixObj.swift */,
 				57B949FC21D4096A007D2FF5 /* Route.swift */,
 				C0A64CA5244E1CB3002CCD7A /* RouteForMaps.swift */,
 				C0A64CA7244E1F3B002CCD7A /* DriverLocation.swift */,
@@ -212,7 +212,7 @@
 			children = (
 				F3659B342446215F00CECEE8 /* CommonFunctions.swift */,
 				F34659712448BCA20006DC65 /* Constants.swift */,
-				C07CF47B24535CFB00981292 /* distanceMatrix.swift */,
+				C07CF47B24535CFB00981292 /* DistanceMatrix.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -419,7 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C07CF47A245349E100981292 /* distanceMatrixObj.swift in Sources */,
+				C07CF47A245349E100981292 /* DistanceMatrixObj.swift in Sources */,
 				57B94A0721D582EE007D2FF5 /* RoutesEditor.swift in Sources */,
 				57B94A0921D6B9CA007D2FF5 /* Artwork.swift in Sources */,
 				57B94A0B21DA6DD3007D2FF5 /* DriversController.swift in Sources */,
@@ -436,7 +436,7 @@
 				EF67423F24514C6200A57D47 /* DriverEditTableViewCell.swift in Sources */,
 				57B94A0D21DA88A8007D2FF5 /* LocationCell.swift in Sources */,
 				FD5325B521CBF779001293DC /* RoutesController.swift in Sources */,
-				C07CF47C24535CFB00981292 /* distanceMatrix.swift in Sources */,
+				C07CF47C24535CFB00981292 /* DistanceMatrix.swift in Sources */,
 				FD5325B321CBF779001293DC /* AppDelegate.swift in Sources */,
 				F3DA9C17244DE99100D0ECA1 /* RouteDetail.swift in Sources */,
 				57B94A1221DC97FE007D2FF5 /* LocationsController.swift in Sources */,

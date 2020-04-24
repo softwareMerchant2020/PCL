@@ -242,8 +242,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             xCoord = UserDefaults.standard.double(forKey: "xCoord")
             yCoord = UserDefaults.standard.double(forKey: "yCoord")
         }
-        print(xCoord)
-        print(yCoord)
         let driverPoint: CLLocationCoordinate2D = CLLocationCoordinate2DMake(xCoord,yCoord)
         return driverPoint
     }

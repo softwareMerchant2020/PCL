@@ -16,7 +16,7 @@ class LocationsController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 8
-        RestManager.APIData(url: baseURL + getCustomer, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+        RestManager.APIData(url: baseURL + getAvailableCustomer, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
                     self.allLocations = try JSONDecoder().decode([Location].self, from: Data as! Data )
