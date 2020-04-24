@@ -53,3 +53,7 @@ func SerializedData(JSONObject:Any)->Data{
     let data = try? JSONSerialization.data(withJSONObject: JSONObject, options: [.prettyPrinted, .sortedKeys])
     return data!
 }
+
+
+
+

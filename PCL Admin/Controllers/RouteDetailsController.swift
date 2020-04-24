@@ -201,7 +201,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
                         self.locationManager.startMonitoring(for: geoFenceRegion)
                     }
                     
-                    if coordsOfATA.count>2
+                    if coordsOfATA.count>1
                     {
                         for z in Range(0...coordsOfATA.count-2)
                         {
@@ -233,9 +233,9 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     {
         var xCoord: Double = 0.0
         var yCoord: Double = 0.0
-        if driverLoc?.count != 0{
-            xCoord = driverLoc?[0].Lat ?? 0
-            yCoord = driverLoc?[0].Log ?? 0
+        if self.driverLoc?.count != 0{
+            xCoord = self.driverLoc?[0].Lat ?? 0
+            yCoord = self.driverLoc?[0].Log ?? 0
         }
         let driverPoint: CLLocationCoordinate2D = CLLocationCoordinate2DMake(xCoord,yCoord)
         return driverPoint
@@ -303,6 +303,5 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
-    
     
 }

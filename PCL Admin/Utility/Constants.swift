@@ -36,3 +36,8 @@ let getAdminDetails = "admin/GetDetailForAdmin"
 let getTotalSpecimensCollected = "admin/GetTotalSpecimensCollected"
 let CollectionStatus = ["notCollected","collected","rescheduled","missed","closed","other"]
 let getDriverLocation = "driver/GetDriverLocation"
+
+let DistanceMatrixAPIkey = "AIzaSyC9oRMEOqcpKDilX9mrEpLeywbxRLK5B-8"
+let DistanceMatrixAPIuptoOriginURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="
+let DistanceMatrixAPIdestinationURL = "&destinations="
+let DistanceMatrixAPIkeyURL = "&key="
