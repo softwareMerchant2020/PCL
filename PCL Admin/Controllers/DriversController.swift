@@ -14,6 +14,7 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     var delegate: RoutesEditor?
     var drivers = [Driver]()
     var isEditMode = false
+    var isAvailable = false
     
     
     override func viewDidLoad() {
@@ -29,15 +30,20 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func loadData()  {
-        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+        var urlStr:String!
+        if !isAvailable {
+            urlStr = baseURL +  getDriver
+        }
+        else {
+            urlStr = baseURL + getAvailableDriverAPI
+        }
+        
+        RestManager.APIData(url: urlStr, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
             (Data, Error) in
             if Error == nil{
                 do {
                     self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
                     DispatchQueue.main.async {
-                        if self.isEditMode {
-                            self.driversTable.register(UINib(nibName: "DriverEditTableViewCell", bundle: .main), forCellReuseIdentifier: "DriverEditTableViewCell")
-                        }
                         self.driversTable.reloadData()
                     }
                 } catch let JSONErr{
@@ -50,19 +56,11 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
         return drivers.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !isEditMode {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
             let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
             cell.textLabel?.text = drivers[indexPath.row].DriverName
             return cell
-        }
-        else
-        {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DriverEditTableViewCell", for: indexPath) as! DriverEditTableViewCell
-            cell.setCellData(driver: drivers[indexPath.row])
-            cell.viewController = self
-            return cell
-        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

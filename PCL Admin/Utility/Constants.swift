@@ -30,8 +30,8 @@ let addVehicleAPI = "vehicle/AddVehicle"
 let updateVehicleAPI = "vehicle/UpdateVehicle"
 let deleteVehicleAPI = "vehicle/DeleteVehicle?VehicleId="
 let getAvailableCustomer = "Customer/GetAvailabelCustomer"
-let getAvailableDriver = "driver/GetAvailableDriver"
-let getAvailableVehicle = "vehicle/GetAvailableVehicle"
+let getAvailableDriverAPI = "driver/GetAvailableDriver"
+let getAvailableVehicleAPI = "vehicle/GetAvailableVehicle"
 
 
 

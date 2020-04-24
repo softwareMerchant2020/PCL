@@ -14,7 +14,7 @@ class VehiclesController: UIViewController, UITableViewDataSource, UITableViewDe
     var delegate: RoutesEditor?
     var vehicles: [Vehicle]?
     var isEditMode = false
-    
+    var isAvailable:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,16 @@ class VehiclesController: UIViewController, UITableViewDataSource, UITableViewDe
         loadData()
     }
     func loadData()  {
-        RestManager.APIData(url: baseURL + getVehicle, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+        var urlStr:String!
+        
+        if !isAvailable {
+            urlStr = baseURL + getVehicle
+        }
+        else {
+            urlStr = baseURL + getAvailableVehicleAPI
+        }
+        
+        RestManager.APIData(url: urlStr, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
             (Data, Error) in
           if Error == nil{
               do {

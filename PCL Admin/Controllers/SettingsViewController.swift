@@ -48,6 +48,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case 2:
             let vehicleVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VehiclesController") as! VehiclesController
             vehicleVc.isEditMode = true
+            vehicleVc.isAvailable = false
             self.navigationController?.pushViewController(vehicleVc, animated: true)
             
 //            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddVehicleController") as! AddVehiclesViewController

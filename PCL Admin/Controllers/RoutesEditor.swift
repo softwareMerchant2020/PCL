@@ -89,6 +89,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriversController") as! DriversController
         presentingController.delegate = self
         presentingController.isEditMode = false
+        presentingController.isAvailable = true
         presentingController.modalPresentationStyle = UIModalPresentationStyle.popover
         present(presentingController, animated: true, completion: nil)
         
@@ -104,6 +105,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         let presentingController: VehiclesController
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VehiclesController") as! VehiclesController
         presentingController.delegate = self
+        presentingController.isAvailable = true
         presentingController.modalPresentationStyle = UIModalPresentationStyle.popover
         present(presentingController, animated: true, completion: nil)
         
