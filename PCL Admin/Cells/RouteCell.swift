@@ -24,9 +24,10 @@ class RouteCell: UITableViewCell {
     @IBOutlet var vehicleStatus: UILabel!
     @IBOutlet var locationStatus: UILabel!
     
-    func populateCell(_ route: [RouteDetail]) {
+    func populateCell(_ route: [RouteDetail], drivers:[Driver]?) {
         self.routeNo.text = String(route[0].RouteNo)
-        self.pickedUpBy.text = route[0].UpdatedByDriver
+        let driverName = drivers?.first(where:  {$0.DriverId == Int(route[0].UpdatedByDriver)})?.DriverName
+        self.pickedUpBy.text = driverName
         let centerPt: CGPoint = statusContainer.center
         
         var x = 0
