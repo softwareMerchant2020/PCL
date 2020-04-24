@@ -231,8 +231,12 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func makeDriverRealAgain() -> CLLocationCoordinate2D
     {
-        let xCoord: Double = driverLoc![0].Lat ?? 0.0
-        let yCoord: Double = driverLoc![0].Log ?? 0.0
+        var xCoord: Double = 0.0
+        var yCoord: Double = 0.0
+        if driverLoc?.count != 0{
+            xCoord = driverLoc?[0].Lat ?? 0
+            yCoord = driverLoc?[0].Log ?? 0
+        }
         let driverPoint: CLLocationCoordinate2D = CLLocationCoordinate2DMake(xCoord,yCoord)
         return driverPoint
     }
