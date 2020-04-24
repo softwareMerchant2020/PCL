@@ -24,9 +24,10 @@ class RouteCell: UITableViewCell {
     @IBOutlet var vehicleStatus: UILabel!
     @IBOutlet var locationStatus: UILabel!
     
-    func populateCell(_ route: [RouteDetail]) {
+    func populateCell(_ route: [RouteDetail], drivers:[Driver]?) {
         self.routeNo.text = String(route[0].RouteNo)
-        self.pickedUpBy.text = route[0].UpdatedByDriver
+        let driverName = drivers?.first(where:  {$0.DriverId == Int(route[0].UpdatedByDriver)})?.DriverName
+        self.pickedUpBy.text = driverName
         let centerPt: CGPoint = statusContainer.center
         
         var x = 0
@@ -39,19 +40,19 @@ class RouteCell: UITableViewCell {
             var imageName = ""
             switch CollectionStatus[aLocation.Status]
             {
-                case "collected":
-                    imageName = "greenDot.png"
-                    lastPickUpTime = aLocation.PickUp_Time ?? ""
-                case "notCollected":
-                    imageName = "greyDot.png"
-                case "rescheduled":
-                    imageName = "blueDot.png"
-                case "missed":
-                    imageName = "yellowDot.png"
-                case "closed":
-                    imageName = "closedDot.png"
-                case "other":
-                    imageName = "redDot.png"
+            case "collected":
+                imageName = "greenDot.png"
+                lastPickUpTime = aLocation.PickUp_Time ?? ""
+            case "notCollected":
+                imageName = "greyDot.png"
+            case "rescheduled":
+                imageName = "blueDot.png"
+            case "missed":
+                imageName = "yellowDot.png"
+            case "closed":
+                imageName = "closedDot.png"
+            case "other":
+                imageName = "redDot.png"
             default:
                 imageName = "redDot.png"
             }
@@ -61,7 +62,7 @@ class RouteCell: UITableViewCell {
             x+=1
         }
         
-       
+        
         let current = calculateRouteStatus(route: route)
         
         switch current {
@@ -82,34 +83,34 @@ class RouteCell: UITableViewCell {
         statusContainer.center = centerPt
     }
     func getCustomer(customerId:Int,  completionHandler: @escaping (Location) -> ())  {
-            RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Customer/GetCustomer" , httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil) { Data,Error in
-                if Error==nil {
-                    do {
-                        let customerList = try JSONDecoder().decode([Location].self, from: Data as! Data)
-                        for eachCustomer in customerList {
-                            if eachCustomer.CustomerId == customerId {
-                                completionHandler(eachCustomer)
-                            }
+        RestManager.APIData(url: "https://pclwebapi.azurewebsites.net/api/Customer/GetCustomer" , httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil) { Data,Error in
+            if Error==nil {
+                do {
+                    let customerList = try JSONDecoder().decode([Location].self, from: Data as! Data)
+                    for eachCustomer in customerList {
+                        if eachCustomer.CustomerId == customerId {
+                            completionHandler(eachCustomer)
                         }
-                    } catch {
-                        print("Error getting driver location")
                     }
+                } catch {
+                    print("Error getting driver location")
                 }
             }
-
         }
+        
+    }
     func calculateRouteStatus(route:[RouteDetail]) -> RouteStatus {
         var i:[Int] = [Int]()
         var numberCompleted = 0
         var status:RouteStatus = RouteStatus.delaying
         
         for aLocation in route {
-                if aLocation.Status == 0 {
-                    numberCompleted = numberCompleted + 1
-                    let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time ?? "")
-                    i.append(result)
-                }
+            if aLocation.Status == 0 {
+                numberCompleted = numberCompleted + 1
+                let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time ?? "")
+                i.append(result)
             }
+        }
         if (numberCompleted == route.count) {
             status = RouteStatus.completed
         }
@@ -125,35 +126,34 @@ class RouteCell: UITableViewCell {
             }
             
         }
-        return RouteStatus.completed
-        //return status
+        return status
     }
     func comparePickUpTime(forCustomer CustomerId:Int, recentPickupTime:String) -> (Int) {
         var status = 0
         
-           getCustomer(customerId: CustomerId) { (customer) in
-               let dateFormatter = DateFormatter()
-               dateFormatter.dateStyle = .none
-               dateFormatter.dateFormat = "h:mm a"
+        getCustomer(customerId: CustomerId) { (customer) in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .none
+            dateFormatter.dateFormat = "h:mm a"
             let dateObj = dateFormatter.date(from: customer.PickUpTime ?? "4:30 PM")
-               let dateobj2 = dateFormatter.date(from: recentPickupTime)
-
+            let dateobj2 = dateFormatter.date(from: recentPickupTime)
+            
             switch dateObj?.compare(dateobj2 ?? Date())
-               {
-               case .orderedAscending:
-                   print("picked earlier")
+            {
+            case .orderedAscending:
+                print("picked earlier")
                 status = 0
-               case .orderedSame:
-                   print("pickup on time")
+            case .orderedSame:
+                print("pickup on time")
                 status = 1
-               case .orderedDescending:
-                   print("pickup delayed")
+            case .orderedDescending:
+                print("pickup delayed")
                 status = 2
-               default:
-                   print("delayed")
+            default:
+                print("delayed")
                 status = 2
-               }
-           }
+            }
+        }
         return status
-       }
+    }
 }

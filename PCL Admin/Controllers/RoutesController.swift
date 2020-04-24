@@ -17,6 +17,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var getRoutes : [RouteDetail] = []
     var routeDictionary: [Int:Any]? = [:]
     var routeNumbers: [Int] = []
+    var drivers:[Driver]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,15 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                     DispatchQueue.main.async {
                         self.TotalSpecimensLbl.text = String(totalSpecimensCollected.TotalNumberOfSpecimens)
                     }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
+        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
                 } catch let JSONErr{
                     print(JSONErr)
                 }
@@ -124,7 +134,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.routesTable!.dequeueReusableCell(withIdentifier: "RouteCell") as! RouteCell
-        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail]())
+        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail](), drivers: self.drivers)
         return cell
     }
     
@@ -132,6 +142,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         UserDefaults.standard.set(routeNumbers[indexPath.row], forKey: "RouteNumberForMap")
         let presentingController: RouteDetailsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RouteDetails") as! RouteDetailsController
+        UserDefaults.standard.set(Int(self.getRoutes[indexPath.row].UpdatedByDriver), forKey: "DriverNumber")
         presentingController.routeNumber = self.getRoutes[indexPath.row].RouteNo
         performSegue(withIdentifier: "RouteDetails", sender: self)
     }

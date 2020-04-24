@@ -29,7 +29,8 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     {
         super.viewDidLoad()
         self.routeNumber = UserDefaults.standard.integer(forKey: "RouteNumberForMap")
-        getDriverLoc(driverNo: driverNumber ?? 3)
+        self.driverNumber = UserDefaults.standard.integer(forKey: "DriverNumber")
+        getDriverLoc(driverNo: self.driverNumber ?? 3)
         mapViewDisplay.layer.cornerRadius = 8
         mapViewDisplay.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
         mapViewDisplay.layer.borderWidth = 1
@@ -219,7 +220,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             (Data, Error) in
             if Error == nil{
                 do {
-                    print(baseURL + getDriverLocation + "?DriverId=" + String(driverNo))
                     self.driverLoc = try JSONDecoder().decode([DriverLocation].self, from: Data as! Data )
                     
                 } catch let JSONErr{
@@ -233,10 +233,17 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     {
         var xCoord: Double = 0.0
         var yCoord: Double = 0.0
-        if self.driverLoc?.count != 0{
-            xCoord = self.driverLoc?[0].Lat ?? 0
-            yCoord = self.driverLoc?[0].Log ?? 0
+        if driverLoc?.count != 0{
+            xCoord = driverLoc?[0].Lat ?? 0
+            yCoord = driverLoc?[0].Log ?? 0
+            UserDefaults.standard.set(xCoord, forKey: "xCoord")
+            UserDefaults.standard.set(yCoord, forKey: "yCoord")
+        } else {
+            xCoord = UserDefaults.standard.double(forKey: "xCoord")
+            yCoord = UserDefaults.standard.double(forKey: "yCoord")
         }
+        print(xCoord)
+        print(yCoord)
         let driverPoint: CLLocationCoordinate2D = CLLocationCoordinate2DMake(xCoord,yCoord)
         return driverPoint
     }

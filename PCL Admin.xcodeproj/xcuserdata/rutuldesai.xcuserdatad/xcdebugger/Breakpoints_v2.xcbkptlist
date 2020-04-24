@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "00BD101A-D8EC-4687-89F0-A2EEEFDDA442"
+            uuid = "3F5AAEC9-F9C0-4FD3-81C2-ADF1941CD80D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PCL Admin/Controllers/RoutesController.swift"
+            filePath = "PCL Admin/Cells/RouteCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "populateCell(_:drivers:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
