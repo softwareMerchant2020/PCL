@@ -30,7 +30,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let presentingController: UIViewController
         switch indexPath.row {
         case 0:
 //            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
@@ -54,7 +53,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddVehicleController") as! AddVehiclesViewController
 //                       presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         case 3:
-           presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
             self.performSegue(withIdentifier: "EditRoute", sender: self)
             return
         default:

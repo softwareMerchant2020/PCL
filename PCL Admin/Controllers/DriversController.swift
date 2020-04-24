@@ -35,7 +35,7 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
             urlStr = baseURL +  getDriver
         }
         else {
-            urlStr = baseURL + getAvailableDriverAPI
+            urlStr = baseURL + getAvailableDriver
         }
         
         RestManager.APIData(url: urlStr, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
@@ -58,9 +58,9 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-            let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-            cell.textLabel?.text = drivers[indexPath.row].DriverName
-            return cell
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.textLabel?.text = drivers[indexPath.row].DriverName
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -96,22 +96,22 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     func deleteDriver(driverObj:Driver)  {
         RestManager.APIData(url: baseURL + deleteDriverAPI + String(driverObj.DriverId), httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil) { (result, error) in
-                if (error == nil) {
-                    do {
-                        let resultdata = try JSONDecoder().decode(RequestResult.self, from: result as! Data)
-                        DispatchQueue.main.async {
+            if (error == nil) {
+                do {
+                    let resultdata = try JSONDecoder().decode(RequestResult.self, from: result as! Data)
+                    DispatchQueue.main.async {
                         let alert = UIAlertController(title:resultdata.Result, message: nil, preferredStyle: .alert)
                         self.present(alert, animated: true, completion: {
-                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                            self.dismiss(animated: true, completion: {
-                            self.driversTable.reloadData()
-                            }) }
+                            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                self.dismiss(animated: true, completion: {
+                                    self.driversTable.reloadData()
+                                }) }
                         })
                     }
-                    } catch {
-                            print("Decode error:\(error.localizedDescription)")
-                        }
-                    }
+                } catch {
+                    print("Decode error:\(error.localizedDescription)")
+                }
+            }
         }
     }
 }

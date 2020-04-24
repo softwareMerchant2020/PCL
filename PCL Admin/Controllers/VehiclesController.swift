@@ -28,7 +28,7 @@ class VehiclesController: UIViewController, UITableViewDataSource, UITableViewDe
             urlStr = baseURL + getVehicle
         }
         else {
-            urlStr = baseURL + getAvailableVehicleAPI
+            urlStr = baseURL + getAvailableVehicle
         }
         
         RestManager.APIData(url: urlStr, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){

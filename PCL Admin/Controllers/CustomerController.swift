@@ -25,6 +25,7 @@ class CustomerController: UIViewController {
     var message:String?
     var location:CLLocation?
     var Customer:Location?
+    var delegate:CustomersController?
     @IBOutlet weak var addCustomerLbl: UILabel!
     
     
@@ -60,6 +61,7 @@ class CustomerController: UIViewController {
         self.strDate = dateFormatter.string(from: sender.date)
     }
     @IBAction func cancelButtonClicked(){
+        delegate?.refreshTable()
         self.dismiss(animated: true, completion: nil)
     }
         
