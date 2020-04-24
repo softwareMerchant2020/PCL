@@ -27,6 +27,7 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
             super.viewDidLoad()
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addRoute))
         RestManager.APIData(url: baseURL + getRoute, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
@@ -57,6 +58,14 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
     
+    @objc func addRoute(){
+        let presentingController: RoutesEditor
+        presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
+        presentingController.isEditMode = false
+        self.present(presentingController, animated: true, completion: nil)
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.getRoutes.count
     }
@@ -83,6 +92,7 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
                         let driver =  self.getDrivers?.filter({$0.DriverId == self.editRoutes[0].Route.DriverId}).first
                         presentingController.driverName = driver?.DriverName
                         presentingController.myLocation = self.editRoutes[0].Customer
+                        presentingController.existingRouteController = self
                         presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
                         self.present(presentingController, animated: true, completion: nil)
                         //        performSegue(withIdentifier: "RouteDetails", sender: self)
@@ -95,3 +105,5 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 }
+
+

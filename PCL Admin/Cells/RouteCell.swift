@@ -125,7 +125,8 @@ class RouteCell: UITableViewCell {
             }
             
         }
-        return status
+        return RouteStatus.completed
+        //return status
     }
     func comparePickUpTime(forCustomer CustomerId:Int, recentPickupTime:String) -> (Int) {
         var status = 0
@@ -134,7 +135,7 @@ class RouteCell: UITableViewCell {
                let dateFormatter = DateFormatter()
                dateFormatter.dateStyle = .none
                dateFormatter.dateFormat = "h:mm a"
-            let dateObj = dateFormatter.date(from: customer.NextPickUpTime ?? "4:30 PM")
+            let dateObj = dateFormatter.date(from: customer.PickUpTime ?? "4:30 PM")
                let dateobj2 = dateFormatter.date(from: recentPickupTime)
 
                switch dateObj?.compare(dateobj2 ?? Date())

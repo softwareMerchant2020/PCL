@@ -15,6 +15,7 @@ class CustomerController: UIViewController {
     @IBOutlet var fields: [UITextField]!
     @IBOutlet var timePicker: UIDatePicker!
     var isSelectingState:Bool = false
+    var isEditMode:Bool = false
     var statePlist:Dictionary<String,Array<String>>?
     var stateList:[String] = []
     var selectedState:String?
@@ -23,41 +24,32 @@ class CustomerController: UIViewController {
     var strDate:String?
     var message:String?
     var location:CLLocation?
+    var Customer:Location?
+    @IBOutlet weak var addCustomerLbl: UILabel!
     
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let url = Bundle.main.url(forResource: "statedictionary", withExtension: "plist")!
-//           let stateData = try! Data(contentsOf: url)
-//        statePlist = try! PropertyListSerialization.propertyList(from: stateData, options: [], format: nil) as! Dictionary<String,Array<String>>
-//        if ((statePlist?.keys) != nil)
-//        {
-//            stateList.append(contentsOf: statePlist!.keys)
-//        }
-//        stateList = stateList.sorted()
-//
-//        timePicker.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
-//        timePicker.layer.borderWidth = 1
-//        timePicker.layer.cornerRadius = 8
-//        for aField in fields
-//        {
-//            aField.delegate = self
-//            aField.layer.borderColor = UIColor.init(red: 128/255, green: 25/255, blue: 50/255, alpha: 1).cgColor
-//            aField.layer.borderWidth = 1
-//            aField.layer.cornerRadius = 8
-//            if aField.tag == 3 {
-//                stateTextField = aField
-//            }
-//            else if aField.tag == 4
-//            {
-//                zipTextField = aField
-//            }
-//        }
-//        for aButton in buttons
-//        {
-//            aButton.layer.cornerRadius = 8
-//        }
+        if self.isEditMode{
+            self.fields[0].text = self.Customer?.CustomerName
+            self.fields[0].allowsEditingTextAttributes = true
+            self.fields[2].text = String(self.Customer?.Zip ?? 0)
+            self.fields[2].allowsEditingTextAttributes = true
+            self.fields[1].text = self.Customer?.StreetAddress
+            self.fields[1].allowsEditingTextAttributes = true
+            self.fields[3].text = self.Customer?.City
+            self.fields[3].allowsEditingTextAttributes = true
+            self.fields[4].text = self.Customer?.State
+            self.fields[4].allowsEditingTextAttributes = true
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat =  "hh:mm a"
+            dateFormatter.dateStyle = .none
+            let date = dateFormatter.date(from: self.Customer!.PickUpTime ?? "" )
+            self.timePicker.setDate(date ?? Date(), animated: true)
+            self.buttons[2].setTitle("Update", for: .normal)
+            self.addCustomerLbl.text = "Update Customer"
+        }
     }
     
     
@@ -69,20 +61,6 @@ class CustomerController: UIViewController {
     }
     @IBAction func cancelButtonClicked(){
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func createAddress(entry: Customer)-> String
-    {
-        let streetAddress: String = (entry.StreetAddress ?? "this was empty ")
-        let city: String = (entry.City) ?? " this was empty "
-        let state: String = (entry.State) ?? " this was empty "
-        let ZIPint = (entry.Zip) ?? 0
-        let ZIP = String(ZIPint)
-        let Seperator: String = ", "
-        
-        
-        let addressToGeocode: String = (streetAddress+Seperator+state+Seperator+city+Seperator+ZIP)
-        return(addressToGeocode)
     }
         
     func getCoordinate( addressString : String,
@@ -103,67 +81,128 @@ class CustomerController: UIViewController {
     
     
     @IBAction func addButtonClicked(_ sender: Any) {
-        
-        
-        if fields[0].text == "" || fields[1].text == "" || fields[2].text == "" || fields[3].text == "" || fields[4].text == ""{
-            self.message = "Please fill up all details!"
-            let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-            self.present(alert,animated: true)
-        } else {
-            let Seperator: String = ", "
-            let addressToGeocode: String = (fields[1].text! + Seperator + fields[3].text! + Seperator + fields[4].text! + Seperator + fields[2].text!)
-            
-            getCoordinate(addressString: addressToGeocode){
-                (CLLocationCoordinate2D, String) in
-                let jsonBody = [
-                    "CustomerName": self.fields[0].text!,
-                    "StreetAddress": self.fields[1].text!,
-                    "City": self.fields[3].text!,
-                    "State": self.fields[4].text!,
-                    "Zip": Int(self.fields[2].text!)!,
-                    "PickupTime": self.strDate!,
-                    "Cust_Lat": CLLocationCoordinate2D.latitude,
-                    "Cust_Log": CLLocationCoordinate2D.longitude
-                    ] as [String : Any]
-                RestManager.APIData(url: baseURL + addCustomer, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
-                    if Error == nil {
-                        do {
-                            let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
-                            
-                            if resultData.Result == "success"{
-                                self.message = "Customer Added"
-                                DispatchQueue.main.async {
-                                    let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                                     self.present(alert, animated: true, completion: {
-                                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                            self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                                    })
-                                }
-                            } else {
-                                self.message = resultData.Result
-                                DispatchQueue.main.async {
-                                    let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                                     self.present(alert, animated: true, completion: {
-                                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                            self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                                    })
-                                }
-                            }
+        if self.isEditMode{
+            if fields[0].text == "" || fields[1].text == "" || fields[2].text == "" || fields[3].text == "" || fields[4].text == ""{
+                self.message = "Please fill up all details!"
+                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                self.present(alert,animated: true)
+            } else {
+                let Seperator: String = ", "
+                     let addressToGeocode: String = (fields[1].text! + Seperator + fields[3].text! + Seperator + fields[4].text! + Seperator + fields[2].text!)
+                     
+                     getCoordinate(addressString: addressToGeocode){
+                         (CLLocationCoordinate2D, String) in
+                         let jsonBody = [
+                            "CustomerId": self.Customer?.CustomerId ?? 0,
+                             "CustomerName": self.fields[0].text!,
+                             "StreetAddress": self.fields[1].text!,
+                             "City": self.fields[3].text!,
+                             "State": self.fields[4].text!,
+                             "Zip": Int(self.fields[2].text!)!,
+                             "PickupTime": self.strDate ?? self.Customer?.PickUpTime ?? "",
+                             "Cust_Lat": CLLocationCoordinate2D.latitude,
+                             "Cust_Log": CLLocationCoordinate2D.longitude
+                             ] as [String : Any]
+                         RestManager.APIData(url: baseURL + updateCustomer, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+                             if Error == nil {
+                                 do {
+                                     let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                                     
+                                     if resultData.Result == "success"{
+                                         self.message = "Customer Updated"
+                                         DispatchQueue.main.async {
+                                             let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                              self.present(alert, animated: true, completion: {
+                                                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                                     self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                             })
+                                         }
+                                     } else {
+                                         self.message = resultData.Result
+                                         DispatchQueue.main.async {
+                                             let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                              self.present(alert, animated: true, completion: {
+                                                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                                     self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                             })
+                                         }
+                                     }
 
-                        } catch let JSONErr{
-                            self.message = JSONErr.localizedDescription
-                            DispatchQueue.main.async {
-                                let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
-                                 self.present(alert, animated: true, completion: {
-                                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
-                                        self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
-                                })
-                            }
-                        }
-                    }
-                }
+                                 } catch let JSONErr{
+                                     self.message = JSONErr.localizedDescription
+                                     DispatchQueue.main.async {
+                                         let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                          self.present(alert, animated: true, completion: {
+                                             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                                 self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                         })
+                                     }
+                                 }
+                             }
+                         }
+                     }
             }
-       }
+        } else {
+            if fields[0].text == "" || fields[1].text == "" || fields[2].text == "" || fields[3].text == "" || fields[4].text == ""{
+                 self.message = "Please fill up all details!"
+                 let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                 self.present(alert,animated: true)
+             } else {
+                 let Seperator: String = ", "
+                 let addressToGeocode: String = (fields[1].text! + Seperator + fields[3].text! + Seperator + fields[4].text! + Seperator + fields[2].text!)
+                 
+                 getCoordinate(addressString: addressToGeocode){
+                     (CLLocationCoordinate2D, String) in
+                     let jsonBody = [
+                         "CustomerName": self.fields[0].text!,
+                         "StreetAddress": self.fields[1].text!,
+                         "City": self.fields[3].text!,
+                         "State": self.fields[4].text!,
+                         "Zip": Int(self.fields[2].text!)!,
+                         "PickupTime": self.strDate!,
+                         "Cust_Lat": CLLocationCoordinate2D.latitude,
+                         "Cust_Log": CLLocationCoordinate2D.longitude
+                         ] as [String : Any]
+                     RestManager.APIData(url: baseURL + addCustomerURL, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
+                         if Error == nil {
+                             do {
+                                 let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
+                                 
+                                 if resultData.Result == "success"{
+                                     self.message = "Customer Added"
+                                     DispatchQueue.main.async {
+                                         let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                          self.present(alert, animated: true, completion: {
+                                             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                                 self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                         })
+                                     }
+                                 } else {
+                                     self.message = resultData.Result
+                                     DispatchQueue.main.async {
+                                         let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                          self.present(alert, animated: true, completion: {
+                                             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                                 self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                         })
+                                     }
+                                 }
+
+                             } catch let JSONErr{
+                                 self.message = JSONErr.localizedDescription
+                                 DispatchQueue.main.async {
+                                     let alert = UIAlertController(title: self.message, message: nil, preferredStyle: .alert)
+                                      self.present(alert, animated: true, completion: {
+                                         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                             self.dismiss(animated: true, completion: {self.cancelButtonClicked()}) }
+                                     })
+                                 }
+                             }
+                         }
+                     }
+                 }
+            }
+        }
     }
     func createPickerView(field:UITextField) {
         let pickerView = UIPickerView()

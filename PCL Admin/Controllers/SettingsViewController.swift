@@ -39,8 +39,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
            driversVC.isEditMode = true
             self.navigationController?.pushViewController(driversVC, animated: true)
         case 1:
-            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
-            presentingController.modalPresentationStyle = .pageSheet
+            let customersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomersController") as! CustomersController
+            customersVC.isEditMode = true
+             self.navigationController?.pushViewController(customersVC, animated: true)
 //        case 2:
 //            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
 //            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet

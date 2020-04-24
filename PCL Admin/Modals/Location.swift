@@ -25,7 +25,7 @@ struct Location: Decodable{
     var City: String?
     var CollectionStatus: String?
     var SpecimensCollected: Int?
-    var NextPickUpTime: String?
+    var PickUpTime: String?
     var CustomerId: Int
     var IsSelected: Bool
     var Cust_Lat: Double?

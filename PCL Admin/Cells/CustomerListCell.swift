@@ -34,7 +34,7 @@ class CustomerListCell: UITableViewCell {
         self.AddressLbl.text = address
         self.CustomerIDLbl.text = String(location.CustomerId)
         self.CustomerNameLbl.text = String(location.CustomerName!)
-        self.PickUpTimeLbl.text = String(location.NextPickUpTime ?? "this is bricked")
+        self.PickUpTimeLbl.text = String(location.PickUpTime ?? "this is bricked")
         self.SpecimensDistanceLbl.text = ("Specimen collected: "+String(location.SpecimensCollected ?? 0))
         if location.CollectionStatus == "NotCollected"{
             self.CollectionStatusLbl.text = "In-Process"
