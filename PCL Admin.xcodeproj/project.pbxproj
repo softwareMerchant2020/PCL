@@ -38,6 +38,7 @@
 		F3659B352446215F00CECEE8 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B342446215F00CECEE8 /* CommonFunctions.swift */; };
 		F3659B372446238C00CECEE8 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B362446238C00CECEE8 /* Customer.swift */; };
 		F3659B392446241B00CECEE8 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3659B382446241B00CECEE8 /* RequestResult.swift */; };
+		F3683B2A2451E5FB00851C40 /* CustomersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3683B292451E5FB00851C40 /* CustomersController.swift */; };
 		F3DA9C17244DE99100D0ECA1 /* RouteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA9C16244DE99100D0ECA1 /* RouteDetail.swift */; };
 		F3DA9C1E244E809900D0ECA1 /* EditRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA9C1D244E809900D0ECA1 /* EditRoute.swift */; };
 		F3DA9C20244F4BA000D0ECA1 /* TotalNumberOfSpecimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA9C1F244F4BA000D0ECA1 /* TotalNumberOfSpecimens.swift */; };
@@ -101,6 +102,7 @@
 		F3659B342446215F00CECEE8 /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 		F3659B362446238C00CECEE8 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		F3659B382446241B00CECEE8 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
+		F3683B292451E5FB00851C40 /* CustomersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersController.swift; sourceTree = "<group>"; };
 		F3DA9C16244DE99100D0ECA1 /* RouteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetail.swift; sourceTree = "<group>"; };
 		F3DA9C1D244E809900D0ECA1 /* EditRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRoute.swift; sourceTree = "<group>"; };
 		F3DA9C1F244F4BA000D0ECA1 /* TotalNumberOfSpecimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalNumberOfSpecimens.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */,
 				EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */,
 				57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */,
+				F3683B292451E5FB00851C40 /* CustomersController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				57B94A0B21DA6DD3007D2FF5 /* DriversController.swift in Sources */,
 				57B94A1621DD4550007D2FF5 /* EditRouteCell.swift in Sources */,
 				57B949F921D3E92D007D2FF5 /* RouteDetailsController.swift in Sources */,
+				F3683B2A2451E5FB00851C40 /* CustomersController.swift in Sources */,
 				F3659B372446238C00CECEE8 /* Customer.swift in Sources */,
 				F3659B392446241B00CECEE8 /* RequestResult.swift in Sources */,
 				F3DA9C22244F60B700D0ECA1 /* CustomerListCell.swift in Sources */,

@@ -10,8 +10,9 @@ import Foundation
 
 let baseURL = "https://pclwebapi.azurewebsites.net/api/"
 let totalSpecimens = "admin/GetTotalSpecimensCollected"
-let addCustomer = "Customer/AddCustomer"
+let addCustomerURL = "Customer/AddCustomer"
 let getCustomer = "Customer/GetCustomer"
+let updateCustomer = "Customer/UpdateCustomer"
 let addDriver = "driver/AddDriver"
 let getDriver = "driver/GetDriver"
 let updateDriver = "driver/UpdateDriver"

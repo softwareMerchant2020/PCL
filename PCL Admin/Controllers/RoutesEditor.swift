@@ -30,6 +30,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
     var routeLocations = [Location]()
     var routeNumberModel:RouteNumber?
     var routeNumber:Int?
+    var existingRouteController:ExistingRoutesController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,15 +173,15 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
                 customerIDs.append(contentsOf: String(self.routeLocations[0].CustomerId))
             }
             let jsonBody = [
-                "RouteNumber":String(self.routeNumber ?? 0),
+                "RouteNo":self.routeNumber ?? 0,
                 "RouteName": routeName.text ?? "",
-                "DriverId": selectedDriverID ?? 0,
+                "DriverId": selectedDriverID ?? self.myRoute?.DriverId ?? 0,
                 "VehicleNo": selectedVehicle,
                 "CustomerID": customerIDs
                 ] as [String : Any]
             
             RestManager.APIData(url: baseURL + editRoute, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: SerializedData(JSONObject: jsonBody)){Data,Error in
-                if Error == nil {
+                if Data != nil {
                     do {
                         let resultData = try JSONDecoder().decode(RequestResult.self, from: Data as! Data)
                         if resultData.Result == "success"{
@@ -274,6 +275,8 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
             }
         }
     }
-    @IBAction func cancelButtonClicked(){        self.dismiss(animated: true, completion: nil)
+    @IBAction func cancelButtonClicked(){
+        existingRouteController?.viewDidLoad()
+        self.dismiss(animated: true, completion: nil)
     }
 }
