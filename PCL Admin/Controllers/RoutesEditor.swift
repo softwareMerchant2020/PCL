@@ -88,6 +88,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
         let presentingController: DriversController
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriversController") as! DriversController
         presentingController.delegate = self
+        presentingController.isEditMode = false
         presentingController.modalPresentationStyle = UIModalPresentationStyle.popover
         present(presentingController, animated: true, completion: nil)
         

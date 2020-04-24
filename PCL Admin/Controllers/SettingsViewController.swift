@@ -46,8 +46,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
 //            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         case 2:
-            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddVehicleController") as! AddVehiclesViewController
-                       presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+            let vehicleVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VehiclesController") as! VehiclesController
+            vehicleVc.isEditMode = true
+            self.navigationController?.pushViewController(vehicleVc, animated: true)
+            
+//            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddVehicleController") as! AddVehiclesViewController
+//                       presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         case 3:
            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
             self.performSegue(withIdentifier: "EditRoute", sender: self)

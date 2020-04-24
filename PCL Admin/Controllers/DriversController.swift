@@ -18,8 +18,16 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addDriver))
         loadData()
     }
+    @objc func addDriver()  {
+        let presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
+        presentingController.delegate = self
+        presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+        self.present(presentingController, animated: true, completion: nil)
+    }
+    
     func loadData()  {
         RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
             (Data, Error) in
@@ -67,13 +75,45 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else
         {
-            print("In editing mode")
+            tableView.deselectRow(at: indexPath, animated: true)
+            let presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
+            presentingController.delegate = self
+            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+            self.present(presentingController, animated: true, completion: {
+                presentingController.setValuesForInputField(driver: self.drivers[indexPath.row])
+            })
         }
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            deleteDriver(driverObj: self.drivers[indexPath.row])
             drivers.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    func refreshTable() {
+        self.loadData()
+        self.driversTable.layoutSubviews()
+    }
+    func deleteDriver(driverObj:Driver)  {
+        RestManager.APIData(url: baseURL + deleteDriverAPI + String(driverObj.DriverId), httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil) { (result, error) in
+                if (error == nil) {
+                    do {
+                        let resultdata = try JSONDecoder().decode(RequestResult.self, from: result as! Data)
+                        DispatchQueue.main.async {
+                        let alert = UIAlertController(title:resultdata.Result, message: nil, preferredStyle: .alert)
+                        self.present(alert, animated: true, completion: {
+                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                            self.dismiss(animated: true, completion: {
+                            self.driversTable.reloadData()
+                            }) }
+                        })
+                    }
+                    } catch {
+                            print("Decode error:\(error.localizedDescription)")
+                        }
+                    }
         }
     }
 }
