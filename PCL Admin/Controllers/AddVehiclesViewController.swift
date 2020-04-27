@@ -46,7 +46,6 @@ class AddVehiclesViewController: UIViewController {
     }
    
     func updateVehicleInfo(vehicle:Vehicle)  {
-        print("update vehicle info")
         fields[0].text = vehicle.PlateNumber
         fields[1].text = vehicle.Manufacturer
         fields[2].text = vehicle.Model

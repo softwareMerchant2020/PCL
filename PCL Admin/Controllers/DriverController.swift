@@ -31,7 +31,6 @@ class DriverController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func setValuesForInputField(driver:Driver)  {
-        print("setValuesForInputField")
         let driverName:[String] = driver.DriverName.components(separatedBy: " ")
         fields[0].text = driverName[0]
         fields[1].text = driverName[1]

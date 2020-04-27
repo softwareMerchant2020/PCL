@@ -175,25 +175,19 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         var coordToAppend = CLLocationCoordinate2D()
         for i in Range(0...(routeDetails![0].Customer.count-1))
         {
-            print(i)
             addressToAdd = createAddress(entry: i)
             ListOfAddresses.append(addressToAdd)
         }
-        print("List of addresses",ListOfAddresses)
         
         for j in ListOfAddresses
         {
-            print(j)
             getCoordinate(addressString: j) { (CLLocationCoordinate2D, NSError) in
                 coordToAppend = CLLocationCoordinate2D
                 coordsOfATA.append(coordToAppend)
-                print("yf",coordsOfATA)
-                print(ListOfAddresses.count)
                 if ListOfAddresses.count>0
                 {
                     for k in coordsOfATA
                     {
-                        print(k)
                         let listOfDropOffs = [["title":"Pick Up Here!", "latitude":k.latitude, "longitude":k.longitude]]
                         self.createAnnot(locations: listOfDropOffs)
                         let geoFenceRegion = CLCircularRegion(center: k, radius: 100, identifier: "PickUp Location")
@@ -268,7 +262,6 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     {
         let DL = self.makeDriverRealAgain()
         let locationOfDriver = [["title":"driver is here","latitude":DL.latitude,"longitude":DL.longitude]]
-        print("updating location")
         let filteredAnnotations = mapViewDisplay.annotations.filter { annotation in
             if annotation is MKUserLocation { return false }          // don't remove MKUserLocation
             guard let title = annotation.title else { return false }  // don't remove annotations without any title
