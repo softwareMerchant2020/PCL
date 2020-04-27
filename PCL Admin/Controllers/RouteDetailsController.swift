@@ -24,7 +24,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var mapViewDisplay: MKMapView!
     var distanceMatrix = DistanceMatrixAPI()
-    var distanceString = [String]()
+    var distanceString:[String]?
     
     override func viewDidLoad()
     {
@@ -57,12 +57,12 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             let urlString = distanceMatrix.URLGenForDistanceMatrixAPI(startPoint: driverArr, endPoint: customerArr)
             distanceMatrix.distanceMatrixAPICall(URLForUse: urlString){distanceMatrixReturn,error in
                 if error == nil && distanceMatrixReturn?.rows[0].elements[0].distance.text != "" {
-                    self.distanceString.append(distanceMatrixReturn?.rows[0].elements[0].distance.text ?? "")
-                    
+                    self.distanceString?.append(distanceMatrixReturn?.rows[0].elements[0].distance.text ?? "")
+                    DispatchQueue.main.async {
+                        self.tableView.layoutSubviews()
+                    }
                 }
             }
-            
-            
         }
     }
     
@@ -80,7 +80,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView!.dequeueReusableCell(withIdentifier: "CustomerListCell") as! CustomerListCell
-        cell.populateCell((self.routeDetails?[0].Customer[indexPath.row])!)
+        cell.populateCell((self.routeDetails?[0].Customer[indexPath.row])!, distance: self.distanceString?[indexPath.row] ?? "")
         return cell
     }
     
@@ -165,8 +165,8 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
                     self.routeDetails = try JSONDecoder().decode([EditRoute].self, from: Data as! Data )
                     self.driverNumber =  self.routeDetails?[0].Route.DriverId
                     self.getAllCoordsForRoute()
+                    self.gettingDistanceMatrix(route: self.routeDetails ?? [EditRoute]())
                     DispatchQueue.main.async {
-                        //self.gettingDistanceMatrix(route: self.routeDetails)
                         self.tableView.delegate = self
                         self.tableView.dataSource = self
                         self.tableView.reloadData()

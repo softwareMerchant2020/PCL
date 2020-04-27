@@ -146,7 +146,6 @@ class RouteCell: UITableViewCell {
                     status = RouteStatus.delaying
                 }
             }
-            
         }
         return status
     }

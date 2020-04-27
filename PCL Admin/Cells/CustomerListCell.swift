@@ -29,7 +29,7 @@ class CustomerListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populateCell(_ location: Location) {
+    func populateCell(_ location: Location, distance:String) {
         self.CustomerNameLbl.text = location.CustomerName
         let address = location.StreetAddress
         self.AddressLbl.text = address
