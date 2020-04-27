@@ -17,6 +17,7 @@ class CustomerListCell: UITableViewCell {
     @IBOutlet weak var SpecimensDistanceLbl: UILabel!
     @IBOutlet weak var AddressLbl: UILabel!
     @IBOutlet weak var CustomerNameLbl: UILabel!
+    var distance = String()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,21 +29,27 @@ class CustomerListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populateCell(_ location: Location) {
+    func populateCell(_ location: Location, distance:String) {
         self.CustomerNameLbl.text = location.CustomerName
         let address = location.StreetAddress
         self.AddressLbl.text = address
         self.CustomerIDLbl.text = String(location.CustomerId)
         self.CustomerNameLbl.text = String(location.CustomerName!)
         self.PickUpTimeLbl.text = String(location.PickUpTime ?? "this is bricked")
-        self.SpecimensDistanceLbl.text = ("Specimen collected: "+String(location.SpecimensCollected ?? 0))
+        self.SpecimensDistanceLbl.text = ("Specimen collected: " + String(location.SpecimensCollected ?? 0))
+        
+        
         if location.CollectionStatus == "NotCollected"{
             self.CollectionStatusLbl.text = "In-Process"
             self.CollectionStatusImage.isHidden = true
             self.CollectionStatusLbl.adjustsFontSizeToFitWidth = true
-        } else{
+        } else if location.CollectionStatus == "Collected"{
             self.CollectionStatusLbl.text = location.CollectionStatus
             self.CollectionStatusImage.isHidden = false
+        } else {
+            self.CollectionStatusLbl.text = location.CollectionStatus
+            self.CollectionStatusImage.isHidden = true
+            self.CollectionStatusLbl.adjustsFontSizeToFitWidth = true
         }
         
     }

@@ -39,7 +39,7 @@ class CustomersController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func deleteCustomer(customer:Location){
-        RestManager.APIData(url: baseURL + deleteCustomerAPI + String(customer.CustomerId), httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil) { (result, error) in
+        RestManager.APIData(url: baseURL + deleteCustomerAPI + "?CustomerId=" + String(customer.CustomerId), httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil) { (result, error) in
             if (error == nil) {
                 do {
                     let resultdata = try JSONDecoder().decode(RequestResult.self, from: result as! Data)
@@ -69,6 +69,7 @@ class CustomersController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func addCustomer() {
         let presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
         presentingController.isEditMode = false
+        presentingController.delegate = self
         presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         present(presentingController, animated: true, completion: nil)
     }
@@ -93,6 +94,7 @@ class CustomersController: UIViewController, UITableViewDelegate, UITableViewDat
         let presentingController: CustomerController
         presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomerController") as! CustomerController
         presentingController.isEditMode = true
+        presentingController.delegate = self
         presentingController.Customer = self.getCustomers[indexPath.row]
         presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
         self.present(presentingController, animated: true, completion: nil)

@@ -11,6 +11,7 @@ import UIKit
 class LocationsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var addButton: UIButton!
     var allLocations: [Location] = []
+    var prevLocation: [Location] = []
     @IBOutlet weak var locationTableView: UITableView!
     var delegate: RoutesEditor?
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class LocationsController: UIViewController, UITableViewDataSource, UITableViewD
             if Error == nil{
                 do {
                     self.allLocations = try JSONDecoder().decode([Location].self, from: Data as! Data )
+                    self.allLocations.append(contentsOf: self.prevLocation)
                     DispatchQueue.main.async {
                         self.locationTableView.reloadData()
                     }
@@ -54,6 +56,7 @@ class LocationsController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBAction func addButtonClicked(_ sender: UIButton)
     {
+        self.delegate?.routeLocations.removeAll()
         for aLocation in allLocations
         {
             if aLocation.IsSelected

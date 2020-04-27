@@ -28,7 +28,7 @@ class LocationCell: UITableViewCell {
     func populateCell(_ location: Location) {
         self.name.text = location.CustomerName
         self.address.text = location.StreetAddress
-        self.accNo.text = String(location.CustomerId)
+        //self.accNo.text = String(location.CustomerId)
 //        self.seqNo.text = self.i
     }
 }

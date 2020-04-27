@@ -18,6 +18,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var routeDictionary: [Int:Any]? = [:]
     var routeNumbers: [Int] = []
     var drivers:[Driver]?
+    var routesData = [GetRoute]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,31 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
-        
+        totalSpecimensCollected()
+        getDrivers()
+        getRoutesData()
+    }
+    
+    func getDrivers(){
+        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
+                    
+                    DispatchQueue.main.async {
+                        self.routesTable?.dataSource = self
+                        self.routesTable?.delegate = self
+                        self.routesTable?.reloadData()
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
+    }
+    
+    
+    func totalSpecimensCollected()  {
         RestManager.APIData(url: baseURL + getTotalSpecimensCollected, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
@@ -66,22 +91,34 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
-        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+    }
+    
+    func getRoutesData(){
+        RestManager.APIData(url: baseURL + getRoute, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
-                    self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
+                    self.routesData = try JSONDecoder().decode([GetRoute].self, from: Data as! Data )
+                    DispatchQueue.main.async {
+                        self.routesTable?.dataSource = self
+                        self.routesTable?.delegate = self
+                        self.routesTable?.reloadData()
+                    }
                 } catch let JSONErr{
                     print(JSONErr)
                 }
             }
         }
-        
     }
+    
+    
     
     @objc func getAdminData(_ refreshControl: UIRefreshControl){
         self.routeNumbers.removeAll()
         self.routeDictionary?.removeAll()
         self.getRoutes.removeAll()
+        totalSpecimensCollected()
+        getDrivers()
+        getRoutesData()
         RestManager.APIData(url: baseURL + getAdminDetails, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
@@ -134,7 +171,8 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.routesTable!.dequeueReusableCell(withIdentifier: "RouteCell") as! RouteCell
-        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail](), drivers: self.drivers)
+        let route = self.routesData.first(where:{$0.Route.RouteNo == routeNumbers[indexPath.row]})
+        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail](), drivers: self.drivers, routeData:route)
         return cell
     }
     

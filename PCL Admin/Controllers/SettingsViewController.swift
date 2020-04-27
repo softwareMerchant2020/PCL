@@ -32,8 +32,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-//            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriverController") as! DriverController
-//            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
            let driversVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DriversController") as! DriversController
            driversVC.isEditMode = true
             self.navigationController?.pushViewController(driversVC, animated: true)
@@ -41,23 +39,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let customersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomersController") as! CustomersController
             customersVC.isEditMode = true
              self.navigationController?.pushViewController(customersVC, animated: true)
-//        case 2:
-//            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoutesEditor") as! RoutesEditor
-//            presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+
         case 2:
             let vehicleVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VehiclesController") as! VehiclesController
             vehicleVc.isEditMode = true
             vehicleVc.isAvailable = false
             self.navigationController?.pushViewController(vehicleVc, animated: true)
             
-//            presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddVehicleController") as! AddVehiclesViewController
-//                       presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
+
         case 3:
             self.performSegue(withIdentifier: "EditRoute", sender: self)
             return
         default:
             return
         }
-//        present(presentingController, animated: true, completion: nil)
     }
 }

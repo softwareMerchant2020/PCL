@@ -33,6 +33,7 @@ class CustomerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.isEditMode{
+//            print(self.Customer)
             self.fields[0].text = self.Customer?.CustomerName
             self.fields[0].allowsEditingTextAttributes = true
             self.fields[2].text = String(self.Customer?.Zip ?? 0)
@@ -44,8 +45,10 @@ class CustomerController: UIViewController {
             self.fields[4].text = self.Customer?.State
             self.fields[4].allowsEditingTextAttributes = true
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat =  "hh:mm a"
+            dateFormatter.locale = Locale(identifier: "en_US")
+            dateFormatter.dateFormat =  "h:m a"
             dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
             let date = dateFormatter.date(from: self.Customer!.PickUpTime ?? "" )
             self.timePicker.setDate(date ?? Date(), animated: true)
             self.buttons[2].setTitle("Update", for: .normal)
@@ -61,7 +64,7 @@ class CustomerController: UIViewController {
         self.strDate = dateFormatter.string(from: sender.date)
     }
     @IBAction func cancelButtonClicked(){
-        delegate?.refreshTable()
+        self.delegate?.refreshTable()
         self.dismiss(animated: true, completion: nil)
     }
         
@@ -79,8 +82,6 @@ class CustomerController: UIViewController {
             }
         }
     }
-    
-    
     
     @IBAction func addButtonClicked(_ sender: Any) {
         if self.isEditMode{
