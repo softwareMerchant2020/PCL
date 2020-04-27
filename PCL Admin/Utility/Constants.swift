@@ -36,7 +36,7 @@ let getAvailableVehicle = "vehicle/GetAvailableVehicle"
 let addUpdateTransactionStatus = "admin/AddUpdateTransactionStatus"
 let getAdminDetails = "admin/GetDetailForAdmin"
 let getTotalSpecimensCollected = "admin/GetTotalSpecimensCollected"
-let CollectionStatus = ["notCollected","collected","rescheduled","missed","closed","other"]
+let CollectionStatus = ["notCollected","collected","rescheduled","missed","closed","other","arrived"]
 let getDriverLocation = "driver/GetDriverLocation"
 
 let DistanceMatrixAPIkey = "AIzaSyC9oRMEOqcpKDilX9mrEpLeywbxRLK5B-8"

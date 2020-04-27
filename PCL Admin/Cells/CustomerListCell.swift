@@ -43,9 +43,13 @@ class CustomerListCell: UITableViewCell {
             self.CollectionStatusLbl.text = "In-Process"
             self.CollectionStatusImage.isHidden = true
             self.CollectionStatusLbl.adjustsFontSizeToFitWidth = true
-        } else{
+        } else if location.CollectionStatus == "Collected"{
             self.CollectionStatusLbl.text = location.CollectionStatus
             self.CollectionStatusImage.isHidden = false
+        } else {
+            self.CollectionStatusLbl.text = location.CollectionStatus
+            self.CollectionStatusImage.isHidden = true
+            self.CollectionStatusLbl.adjustsFontSizeToFitWidth = true
         }
         
     }

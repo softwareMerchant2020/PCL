@@ -3,4 +3,54 @@
    uuid = "6E7E8908-03CA-4465-B94B-1D26297EAAB2"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "722224AF-FE00-4A09-A88E-20EC45C97747"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PCL Admin/Controllers/RoutesController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "722224AF-FE00-4A09-A88E-20EC45C97747 - f6eb1adbf6fb3bbd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PCL_Admin.RoutesController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "PCL Admin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rutuldesai/Desktop/PCL/PCL%20Admin/Controllers/RoutesController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "755">
+               </Location>
+               <Location
+                  uuid = "722224AF-FE00-4A09-A88E-20EC45C97747 - b4dc0412394f99a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PCL_Admin.GetRoute) -&gt; Swift.Bool in PCL_Admin.RoutesController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "PCL Admin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rutuldesai/Desktop/PCL/PCL%20Admin/Controllers/RoutesController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
