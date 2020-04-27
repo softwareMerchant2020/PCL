@@ -97,9 +97,9 @@ class RouteCell: UITableViewCell {
 //            imageView.frame = CGRect(x: (statusPixel+5)*x, y: 0, width: statusPixel, height: statusPixel)
 //            x+=1
         }
+        if let customers = routeData?.Customer {
         
-        
-        let current = calculateRouteStatus(route: route)
+        let current = calculateRouteStatus(route: route, allCustomers: customers)
         
         switch current {
         case .delaying:
@@ -112,20 +112,20 @@ class RouteCell: UITableViewCell {
             vehicleStatus.textColor = UIColor.init(red: 0/255, green: 153/255, blue: 0/255, alpha: 1)
             vehicleStatus.text = "Completed"
         }
-        
+        }
         self.pickedUpAt.text = lastPickUpTime
         self.specimenCount.text = String(specimenCount)
         //statusContainer.frame=CGRect(x: statusContainer.frame.origin.x, y: statusContainer.frame.origin.y, width: CGFloat((statusPixel+5)*route.locations.count-10), height: statusContainer.frame.size.height)
         statusContainer.center = centerPt
     }
     
-    func calculateRouteStatus(route:[RouteDetail]) -> RouteStatus {
+    func calculateRouteStatus(route:[RouteDetail], allCustomers:[Customer]) -> RouteStatus {
         var i:[Int] = [Int]()
         var numberCompleted = 0
         var status:RouteStatus = RouteStatus.onTime
         
         for aLocation in route {
-            if aLocation.Status == 0 {
+            if (aLocation.Status == 1) {
                 numberCompleted = numberCompleted + 1
                 let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time ?? "")
                 i.append(result)
@@ -133,7 +133,7 @@ class RouteCell: UITableViewCell {
                 
             }
         }
-        if (numberCompleted == route.count) {
+        if (numberCompleted == allCustomers.count) {
             status = RouteStatus.completed
         }
         else
