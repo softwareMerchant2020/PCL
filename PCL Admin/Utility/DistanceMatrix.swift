@@ -10,7 +10,6 @@ import Foundation
 
 class DistanceMatrixAPI
 {
-    var distanceMatrixReturn: DistanceMatrixObj?
     
     func URLGenForDistanceMatrixAPI(startPoint: [Double], endPoint: [Double])-> String
     {
@@ -24,17 +23,18 @@ class DistanceMatrixAPI
         return(URLForUse)
     }
     
-    func distanceMatrixAPICall(URLForUse: String)
+    func distanceMatrixAPICall(URLForUse: String, completion:@escaping(DistanceMatrixObj?, NSError?) -> Void )
     {
         RestManager.APIData(url: URLForUse , httpMethod: "get", body: nil) { (Data, Error) in
             if Error == nil{
                 do {
-                    self.distanceMatrixReturn = try JSONDecoder().decode(DistanceMatrixObj.self, from: Data as! Data )
-                    print(self.distanceMatrixReturn ?? "this came back empty")
+                    let distanceMatrixReturn = try JSONDecoder().decode(DistanceMatrixObj.self, from: Data as! Data )
+                    completion(distanceMatrixReturn, nil)
                 } catch let JSONErr{
                     print(JSONErr)
                 }
             }
+            completion(nil,Error as NSError?)
         }
     }
 }

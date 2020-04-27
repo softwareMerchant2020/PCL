@@ -61,7 +61,7 @@ class CustomerController: UIViewController {
         self.strDate = dateFormatter.string(from: sender.date)
     }
     @IBAction func cancelButtonClicked(){
-        delegate?.refreshTable()
+        self.delegate?.refreshTable()
         self.dismiss(animated: true, completion: nil)
     }
         
@@ -79,8 +79,6 @@ class CustomerController: UIViewController {
             }
         }
     }
-    
-    
     
     @IBAction func addButtonClicked(_ sender: Any) {
         if self.isEditMode{

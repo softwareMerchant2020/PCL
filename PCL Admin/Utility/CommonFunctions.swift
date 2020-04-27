@@ -25,6 +25,25 @@ func Alert(message:String) -> UIAlertController {
     return alert
 }
 
+func getCustomer(customerId:Int,  completionHandler: @escaping (Location) -> ())  {
+    RestManager.APIData(url: baseURL + getCustomerURL , httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil) { Data,Error in
+        if Error==nil {
+            do {
+                let customerList = try JSONDecoder().decode([Location].self, from: Data as! Data)
+                for eachCustomer in customerList {
+                    if eachCustomer.CustomerId == customerId {
+                        completionHandler(eachCustomer)
+                    }
+                }
+            } catch {
+                print("Error getting driver location")
+            }
+        }
+    }
+    
+}
+
+
 func AlertText(message:String)->(UIAlertController,String){
     let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
     var email:String = ""

@@ -82,23 +82,7 @@ class RouteCell: UITableViewCell {
         //statusContainer.frame=CGRect(x: statusContainer.frame.origin.x, y: statusContainer.frame.origin.y, width: CGFloat((statusPixel+5)*route.locations.count-10), height: statusContainer.frame.size.height)
         statusContainer.center = centerPt
     }
-    func getCustomer(customerId:Int,  completionHandler: @escaping (Location) -> ())  {
-        RestManager.APIData(url: baseURL + getCustomerURL , httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil) { Data,Error in
-            if Error==nil {
-                do {
-                    let customerList = try JSONDecoder().decode([Location].self, from: Data as! Data)
-                    for eachCustomer in customerList {
-                        if eachCustomer.CustomerId == customerId {
-                            completionHandler(eachCustomer)
-                        }
-                    }
-                } catch {
-                    print("Error getting driver location")
-                }
-            }
-        }
-        
-    }
+    
     func calculateRouteStatus(route:[RouteDetail]) -> RouteStatus {
         var i:[Int] = [Int]()
         var numberCompleted = 0

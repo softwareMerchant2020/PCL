@@ -23,7 +23,8 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var mapViewDisplay: MKMapView!
-    
+    var distanceMatrix = DistanceMatrixAPI()
+    var distanceString = [String]()
     
     override func viewDidLoad()
     {
@@ -48,6 +49,30 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         gettingLoc()
     }
     
+    func gettingDistanceMatrix(route:[EditRoute]){
+        let driverArr = driverLocForDistanceMatrix(xcoord: UserDefaults.standard.double(forKey: "xCoord"),ycoord: UserDefaults.standard.double(forKey: "yCoord"))
+        let customers = route[0].Customer
+        for customer in customers{
+            let customerArr = driverLocForDistanceMatrix(xcoord: customer.Cust_Lat ?? 0, ycoord: customer.Cust_Log ?? 0)
+            let urlString = distanceMatrix.URLGenForDistanceMatrixAPI(startPoint: driverArr, endPoint: customerArr)
+            distanceMatrix.distanceMatrixAPICall(URLForUse: urlString){distanceMatrixReturn,error in
+                if error == nil && distanceMatrixReturn?.rows[0].elements[0].distance.text != "" {
+                    self.distanceString.append(distanceMatrixReturn?.rows[0].elements[0].distance.text ?? "")
+                    
+                }
+            }
+            
+            
+        }
+    }
+    
+    func driverLocForDistanceMatrix(xcoord:Double,ycoord:Double)->[Double]
+    {
+        var driverLocArray = [Double]()
+        driverLocArray.append(xcoord)
+        driverLocArray.append(ycoord)
+        return driverLocArray
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.routeDetails?[0].Customer.count ?? 0
@@ -141,6 +166,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
                     self.driverNumber =  self.routeDetails?[0].Route.DriverId
                     self.getAllCoordsForRoute()
                     DispatchQueue.main.async {
+                        //self.gettingDistanceMatrix(route: self.routeDetails)
                         self.tableView.delegate = self
                         self.tableView.dataSource = self
                         self.tableView.reloadData()
@@ -173,7 +199,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         var coordsOfATA = [CLLocationCoordinate2D]()
         var ListOfAddresses = [String]()
         var coordToAppend = CLLocationCoordinate2D()
-        for i in Range(0...(routeDetails![0].Customer.count-1))
+        for i in Range(0...((routeDetails?[0].Customer.count)!-1))
         {
             print(i)
             addressToAdd = createAddress(entry: i)
