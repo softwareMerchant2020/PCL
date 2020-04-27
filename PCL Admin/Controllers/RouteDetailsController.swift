@@ -246,12 +246,20 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         return driverPoint
     }
     
+    func driverLocForDistanceMatrix()->[Double]
+    {
+        var driverLocArray = [Double]()
+        driverLocArray.append(UserDefaults.standard.double(forKey: "xCoord"))
+        driverLocArray.append(UserDefaults.standard.double(forKey: "yCoord"))
+        return driverLocArray
+    }
+    
     func gettingLoc()
     {
         let delayTime = DispatchTime.now() + 5.0
         DispatchQueue.main.asyncAfter(deadline: delayTime, execute:
             {
-                self.getDriverLoc(driverNo: 3)
+                self.getDriverLoc(driverNo: self.driverNumber ?? 0)
                 self.helloDriver()
         })
     }
@@ -271,43 +279,10 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         mapViewDisplay.removeAnnotations(filteredAnnotations)
         gettingLoc()
     }
-
-    
-    
-    func tempFunc()-> CLLocationCoordinate2D
+    @IBAction func refreshDrivrLoc(_ sender: UIBarButtonItem)
     {
-        let destX = 40.078574
-        let destY = -75.859861
-        let trial: CLLocationCoordinate2D = CLLocationCoordinate2DMake(destX,destY)
-        return trial
+        self.getDriverLoc(driverNo: self.driverNumber ?? 0)
+        self.helloDriver()
     }
-    
-    func getETA(destination: CLLocationCoordinate2D)
-    {
-        let driverPoint = makeDriverRealAgain()
-        let sourcePlacemark = MKPlacemark(coordinate: driverPoint)
-        let destinationPlacemark = MKPlacemark(coordinate: destination)
-        
-        let sourceItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationItem = MKMapItem(placemark: destinationPlacemark)
-        
-        let destinationRequest = MKDirections.Request()
-        
-        destinationRequest.source = sourceItem
-        destinationRequest.destination = destinationItem
-        destinationRequest.transportType = .automobile
-        
-        let directions = MKDirections(request: destinationRequest)
-        
-        directions.calculate { response, error in
-            guard error == nil, let response = response else {return}
-
-            for route in response.routes {
-                let eta = route.expectedTravelTime
-                print(eta)
-            }
-        }
-    }
-    
     
 }
