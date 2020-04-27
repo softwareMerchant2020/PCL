@@ -156,6 +156,7 @@ class RoutesEditor: UIViewController, UITableViewDataSource, UITableViewDelegate
             presentingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LocationsController") as! LocationsController
             presentingController.modalPresentationStyle = UIModalPresentationStyle.pageSheet
             presentingController.delegate = self
+            presentingController.prevLocation = self.myLocation ?? [Location]()
             present(presentingController, animated: true, completion: nil)
         }
 //        performSegue(withIdentifier: "RouteDetails", sender: self)
