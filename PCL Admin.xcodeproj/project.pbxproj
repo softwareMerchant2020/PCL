@@ -158,15 +158,15 @@
 				FD5325B421CBF779001293DC /* RoutesController.swift */,
 				57B94A0621D582EE007D2FF5 /* RoutesEditor.swift */,
 				57B949F821D3E92D007D2FF5 /* RouteDetailsController.swift */,
+				57B94A1121DC97FE007D2FF5 /* LocationsController.swift */,
 				57B94A0221D55BDF007D2FF5 /* DriverController.swift */,
 				57B94A0A21DA6DD3007D2FF5 /* DriversController.swift */,
 				57B94A0421D5756F007D2FF5 /* CustomerController.swift */,
 				F3683B292451E5FB00851C40 /* CustomersController.swift */,
-				FD5325E021CBFA90001293DC /* SettingsViewController.swift */,
-				57B94A1121DC97FE007D2FF5 /* LocationsController.swift */,
-				57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */,
-				EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */,
 				57B94A1921DD4EAA007D2FF5 /* VehiclesController.swift */,
+				EF9191B5244646D900137E2B /* AddVehiclesViewController.swift */,
+				FD5325E021CBFA90001293DC /* SettingsViewController.swift */,
+				57B94A1721DD45E5007D2FF5 /* ExistingRoutesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

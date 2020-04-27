@@ -52,7 +52,32 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
+        totalSpecimensCollected()
+        getDrivers()
+       
         
+    }
+    
+    func getDrivers(){
+        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
+            if Error == nil{
+                do {
+                    self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
+                    
+                    DispatchQueue.main.async {
+                        self.routesTable?.dataSource = self
+                        self.routesTable?.delegate = self
+                        self.routesTable?.reloadData()
+                    }
+                } catch let JSONErr{
+                    print(JSONErr)
+                }
+            }
+        }
+    }
+    
+    
+    func totalSpecimensCollected()  {
         RestManager.APIData(url: baseURL + getTotalSpecimensCollected, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {
@@ -66,22 +91,16 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
-        RestManager.APIData(url: baseURL + getDriver, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
-            if Error == nil{
-                do {
-                    self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
-                } catch let JSONErr{
-                    print(JSONErr)
-                }
-            }
-        }
-        
     }
+    
+    
     
     @objc func getAdminData(_ refreshControl: UIRefreshControl){
         self.routeNumbers.removeAll()
         self.routeDictionary?.removeAll()
         self.getRoutes.removeAll()
+        totalSpecimensCollected()
+        getDrivers()
         RestManager.APIData(url: baseURL + getAdminDetails, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
             if Error == nil{
                 do {

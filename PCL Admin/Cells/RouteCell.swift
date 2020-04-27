@@ -86,13 +86,15 @@ class RouteCell: UITableViewCell {
     func calculateRouteStatus(route:[RouteDetail]) -> RouteStatus {
         var i:[Int] = [Int]()
         var numberCompleted = 0
-        var status:RouteStatus = RouteStatus.delaying
+        var status:RouteStatus = RouteStatus.onTime
         
         for aLocation in route {
             if aLocation.Status == 0 {
                 numberCompleted = numberCompleted + 1
                 let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time ?? "")
                 i.append(result)
+            } else if aLocation.Status == 1 {
+                
             }
         }
         if (numberCompleted == route.count) {
@@ -135,7 +137,7 @@ class RouteCell: UITableViewCell {
                 status = 2
             default:
                 print("delayed")
-                status = 2
+                status = 0
             }
         }
         return status
