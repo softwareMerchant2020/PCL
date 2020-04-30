@@ -59,11 +59,13 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
             distanceMatrix.distanceMatrixAPICall(URLForUse: urlString){distanceMatrixReturn,error in
                 if error == nil && distanceMatrixReturn?.rows[0].elements[0].distance.text != "" {
                     self.distanceString?.append(distanceMatrixReturn?.rows[0].elements[0].distance.text ?? "")
-                    DispatchQueue.main.async {
-                        self.tableView.layoutSubviews()
-                    }
                 }
             }
+        }
+        DispatchQueue.main.async {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
         }
     }
     
@@ -167,11 +169,11 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
                     self.driverNumber =  self.routeDetails?[0].Route.DriverId
                     self.getAllCoordsForRoute()
                     self.gettingDistanceMatrix(route: self.routeDetails ?? [EditRoute]())
-                    DispatchQueue.main.async {
-                        self.tableView.delegate = self
-                        self.tableView.dataSource = self
-                        self.tableView.reloadData()
-                    }
+//                    DispatchQueue.main.async {
+//                        self.tableView.delegate = self
+//                        self.tableView.dataSource = self
+//                        self.tableView.reloadData()
+//                    }
                     
                 } catch let JSONErr{
                     print(JSONErr.localizedDescription)
