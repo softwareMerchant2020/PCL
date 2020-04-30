@@ -75,18 +75,20 @@ class RouteCell: UITableViewCell {
             specimenCount += Int(aLocation.NumberOfSpecimens)
         }
         if let customers = routeData?.Customer {
-            let current = calculateRouteStatus(route: route, allCustomers: customers, driverLocation:driversLocs?[Int(route[0].UpdatedByDriver)!])
-        
-        switch current {
-        case .delaying:
-            vehicleStatus.textColor = UIColor.init(red: 204/255, green: 0/255, blue: 0/255, alpha: 1)
-            vehicleStatus.text = "Delaying"
-        case .onTime:
-            vehicleStatus.textColor = UIColor.init(red: 0/255, green: 120/255, blue: 0/255, alpha: 1)
-            vehicleStatus.text = "On Time"
-        case .completed:
-            vehicleStatus.textColor = UIColor.init(red: 0/255, green: 153/255, blue: 0/255, alpha: 1)
-            vehicleStatus.text = "Completed"
+           calculateRouteStatus(route: route, allCustomers: customers, driverLocation: driversLocs?[Int(route[0].UpdatedByDriver)!]) { (current) in
+            DispatchQueue.main.async {
+                switch current {
+                case .delaying:
+                    self.vehicleStatus.textColor = UIColor.init(red: 204/255, green: 0/255, blue: 0/255, alpha: 1)
+                    self.vehicleStatus.text = "Delaying"
+                case .onTime:
+                    self.vehicleStatus.textColor = UIColor.init(red: 0/255, green: 120/255, blue: 0/255, alpha: 1)
+                    self.vehicleStatus.text = "On Time"
+                case .completed:
+                    self.vehicleStatus.textColor = UIColor.init(red: 0/255, green: 153/255, blue: 0/255, alpha: 1)
+                    self.vehicleStatus.text = "Completed"
+                }
+            }
             }
         }
         self.pickedUpAt.text = lastPickUpTime
@@ -95,9 +97,9 @@ class RouteCell: UITableViewCell {
         statusContainer.center = centerPt
     }
 
-    func calculateRouteStatus(route:[RouteDetail], allCustomers:[Location], driverLocation:DriverLocation?) -> RouteStatus {
+    func calculateRouteStatus(route:[RouteDetail], allCustomers:[Location], driverLocation:DriverLocation?,  completionHandler:@escaping (RouteStatus) -> ()) {
         if driverLocation == nil {
-            return RouteStatus.onTime
+            return
         }
         var numberCompleted = 0
         var status:RouteStatus = RouteStatus.onTime
@@ -119,7 +121,7 @@ class RouteCell: UITableViewCell {
             }
         }
         if (numberCompleted == allCustomers.count) {
-            status = RouteStatus.completed
+            completionHandler(RouteStatus.completed)
         }
         else
         {
@@ -132,7 +134,7 @@ class RouteCell: UITableViewCell {
                     dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     
-                    let dateObj = dateFormatter.date(from: cust.PickUpTime!)
+                        let dateObj = dateFormatter.date(from: cust.PickUpTime!)
                     let nowDate:String = dateFormatter.string(from: Date())
                     var latestDateObj = dateFormatter.date(from: nowDate)
                     latestDateObj = latestDateObj?.addingTimeInterval(TimeInterval(timeInSeconds))
@@ -146,12 +148,12 @@ class RouteCell: UITableViewCell {
                             status = RouteStatus.delaying
                         case .none:
                             status  = RouteStatus.onTime
-                    }
+                        }
+                     completionHandler(status)
                     }
                 }
             }
         }
-        return status
     }
     func calculateETA(custLoc:Location, driverLoc:DriverLocation, completionHandler:@escaping (Int) -> ()) {
         let distanceMatrix = DistanceMatrixAPI()

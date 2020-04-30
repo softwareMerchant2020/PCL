@@ -35,11 +35,11 @@ class CustomerListCell: UITableViewCell {
         self.AddressLbl.text = address
         self.CustomerIDLbl.text = String(location.CustomerId)
         self.CustomerNameLbl.text = String(location.CustomerName!)
-        var str = location.PickUpTime
+        var str = location.PickUpTime!
         for _ in 0...10{
             str.removeFirst()
         }
-        self.PickUpTimeLbl.text = String(str)
+        self.PickUpTimeLbl.text = String(str )
         self.SpecimensDistanceLbl.text = ("Specimen collected: " + String(location.SpecimensCollected ?? 0))
         
         
