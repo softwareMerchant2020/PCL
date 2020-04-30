@@ -132,7 +132,7 @@ class RouteCell: UITableViewCell {
                     dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     
-                    let dateObj = dateFormatter.date(from: cust.PickUpTime!)
+                        let dateObj = dateFormatter.date(from: cust.PickUpTime ?? "")
                     let nowDate:String = dateFormatter.string(from: Date())
                     var latestDateObj = dateFormatter.date(from: nowDate)
                     latestDateObj = latestDateObj?.addingTimeInterval(TimeInterval(timeInSeconds))

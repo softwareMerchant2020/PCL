@@ -49,7 +49,7 @@ class CustomerController: UIViewController {
             dateFormatter.timeStyle = .short
             dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            let date = dateFormatter.date(from: self.Customer!.PickUpTime)
+            let date = dateFormatter.date(from: self.Customer!.PickUpTime ?? "")
             self.timePicker.setDate(date ?? Date(), animated: true)
             self.buttons[2].setTitle("Update", for: .normal)
             self.addCustomerLbl.text = "Update Customer"
