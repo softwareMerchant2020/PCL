@@ -10,5 +10,5 @@ import Foundation
 
 struct GetRoute: Decodable {
     var Route:Route
-    var Customer:[Customer]
+    var Customer:[Location]
 }

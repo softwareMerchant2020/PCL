@@ -74,5 +74,11 @@ func SerializedData(JSONObject:Any)->Data{
 }
 
 
-
+func driverLocForDistanceMatrix(xcoord:Double,ycoord:Double)->[Double]
+   {
+       var driverLocArray = [Double]()
+       driverLocArray.append(xcoord)
+       driverLocArray.append(ycoord)
+       return driverLocArray
+   }
 

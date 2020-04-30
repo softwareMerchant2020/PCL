@@ -19,6 +19,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var routeNumbers: [Int] = []
     var drivers:[Driver]?
     var routesData = [GetRoute]()
+    var driverLocs:Dictionary<Int, DriverLocation> = Dictionary<Int, DriverLocation>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,7 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
             if Error == nil{
                 do {
                     self.drivers = try JSONDecoder().decode([Driver].self, from: Data as! Data )
-                    
+                    self.getDriverLocations(drivers: self.drivers ?? [])
                     DispatchQueue.main.async {
                         self.routesTable?.dataSource = self
                         self.routesTable?.delegate = self
@@ -76,6 +77,25 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+    func getDriverLocations(drivers:[Driver]) {
+        for aDriver in drivers {
+            RestManager.APIData(url: baseURL + getDriverLocation + "?DriverId=" + String(aDriver.DriverId), httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){
+                (Data, Error) in
+                if Error == nil{
+                    do {
+                        let driverLoc = try JSONDecoder().decode([DriverLocation].self, from: Data as! Data )
+                        self.driverLocs[aDriver.DriverId] = driverLoc[0]
+                        DispatchQueue.main.async {
+                            self.routesTable?.dataSource = self
+                            self.routesTable?.delegate = self
+                            self.routesTable?.reloadData()
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                }}
+    }
     
     func totalSpecimensCollected()  {
         RestManager.APIData(url: baseURL + getTotalSpecimensCollected, httpMethod: RestManager.HttpMethod.get.self.rawValue, body: nil){Data,Error in
@@ -171,8 +191,10 @@ class RoutesController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.routesTable!.dequeueReusableCell(withIdentifier: "RouteCell") as! RouteCell
-        let route = self.routesData.first(where:{$0.Route.RouteNo == routeNumbers[indexPath.row]})
-        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail](), drivers: self.drivers, routeData:route)
+        let route = self.routesData.filter { (routeObj) -> Bool in
+            routeObj.Route.RouteNo == routeNumbers[indexPath.row]
+        }.first
+        cell.populateCell(self.routeDictionary?[routeNumbers[indexPath.row]] as? [RouteDetail] ?? [RouteDetail](), drivers: self.drivers, routeData:route, driversLocs: self.driverLocs)
         return cell
     }
     

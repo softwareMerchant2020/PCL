@@ -102,7 +102,7 @@ class CustomerController: UIViewController {
                              "StreetAddress": self.fields[1].text!,
                              "City": self.fields[3].text!,
                              "State": self.fields[4].text!,
-                             "Zip": Int(self.fields[2].text!)!,
+                             "Zip": self.fields[2].text!,
                              "PickupTime": self.strDate ?? self.Customer?.PickUpTime ?? "",
                              "Cust_Lat": CLLocationCoordinate2D.latitude,
                              "Cust_Log": CLLocationCoordinate2D.longitude
@@ -162,7 +162,7 @@ class CustomerController: UIViewController {
                          "StreetAddress": self.fields[1].text!,
                          "City": self.fields[3].text!,
                          "State": self.fields[4].text!,
-                         "Zip": Int(self.fields[2].text!)!,
+                         "Zip": self.fields[2].text!,
                          "PickupTime": self.strDate!,
                          "Cust_Lat": CLLocationCoordinate2D.latitude,
                          "Cust_Log": CLLocationCoordinate2D.longitude

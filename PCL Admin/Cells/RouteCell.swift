@@ -24,7 +24,7 @@ class RouteCell: UITableViewCell {
     @IBOutlet var vehicleStatus: UILabel!
     @IBOutlet var locationStatus: UILabel!
     
-    func populateCell(_ route: [RouteDetail], drivers:[Driver]?, routeData:GetRoute?) {
+    func populateCell(_ route: [RouteDetail], drivers:[Driver]?, routeData:GetRoute?, driversLocs:Dictionary<Int, DriverLocation>?) {
         self.routeNo.text = String(route[0].RouteNo)
         let driverName = drivers?.first(where:  {$0.DriverId == Int(route[0].UpdatedByDriver)})?.DriverName
         self.pickedUpBy.text = driverName
@@ -70,40 +70,12 @@ class RouteCell: UITableViewCell {
                 x+=1
             }
         }
-
-
-        
-        
         for aLocation in route
         {
             specimenCount += Int(aLocation.NumberOfSpecimens)
-//            var imageName = ""
-//            switch CollectionStatus[aLocation.Status]
-//            {
-//            case "collected":
-//                imageName = "greenDot.png"
-//                lastPickUpTime = aLocation.PickUp_Time ?? ""
-//            case "notCollected":
-//                imageName = "greyDot.png"
-//            case "rescheduled":
-//                imageName = "blueDot.png"
-//            case "missed":
-//                imageName = "yellowDot.png"
-//            case "closed":
-//                imageName = "closedDot.png"
-//            case "other":
-//                imageName = "redDot.png"
-//            default:
-//                imageName = "greyDot.png"
-//            }
-//            let imageView = UIImageView(image: UIImage(named: imageName)!)
-//            statusContainer.addSubview(imageView)
-//            imageView.frame = CGRect(x: (statusPixel+5)*x, y: 0, width: statusPixel, height: statusPixel)
-//            x+=1
         }
         if let customers = routeData?.Customer {
-        
-        let current = calculateRouteStatus(route: route, allCustomers: customers)
+            let current = calculateRouteStatus(route: route, allCustomers: customers, driverLocation:driversLocs?[Int(route[0].UpdatedByDriver)!])
         
         switch current {
         case .delaying:
@@ -115,26 +87,35 @@ class RouteCell: UITableViewCell {
         case .completed:
             vehicleStatus.textColor = UIColor.init(red: 0/255, green: 153/255, blue: 0/255, alpha: 1)
             vehicleStatus.text = "Completed"
-        }
+            }
         }
         self.pickedUpAt.text = lastPickUpTime
         self.specimenCount.text = String(specimenCount)
         //statusContainer.frame=CGRect(x: statusContainer.frame.origin.x, y: statusContainer.frame.origin.y, width: CGFloat((statusPixel+5)*route.locations.count-10), height: statusContainer.frame.size.height)
         statusContainer.center = centerPt
     }
-    
-    func calculateRouteStatus(route:[RouteDetail], allCustomers:[Customer]) -> RouteStatus {
-        var i:[Int] = [Int]()
+
+    func calculateRouteStatus(route:[RouteDetail], allCustomers:[Location], driverLocation:DriverLocation?) -> RouteStatus {
+        if driverLocation == nil {
+            return RouteStatus.onTime
+        }
         var numberCompleted = 0
         var status:RouteStatus = RouteStatus.onTime
         
         for aLocation in route {
             if (aLocation.Status == 1) {
                 numberCompleted = numberCompleted + 1
-                let result = comparePickUpTime(forCustomer: aLocation.CustomerId, recentPickupTime: aLocation.PickUp_Time ?? "")
-                i.append(result)
-            } else if aLocation.Status == 1 {
-                
+            }
+        }
+        var index = 0
+        
+        for aCustomer in allCustomers {
+            if aCustomer.CollectionStatus == "Not Collected" {
+                break
+            }
+            else {
+                index = index + 1
+                continue
             }
         }
         if (numberCompleted == allCustomers.count) {
@@ -142,43 +123,46 @@ class RouteCell: UITableViewCell {
         }
         else
         {
-            for stat in i {
-                if stat == 0 || stat == 1 {
-                    status = RouteStatus.onTime
-                }
-                else {
-                    status = RouteStatus.delaying
+            if index < allCustomers.count {
+                let cust = allCustomers[index]
+                if !(cust.Cust_Lat == 0.0) {
+                    calculateETA(custLoc: cust, driverLoc: driverLocation!) { (timeInSeconds) in
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateStyle = .none
+                    dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    
+                    let dateObj = dateFormatter.date(from: cust.PickUpTime!)
+                    let nowDate:String = dateFormatter.string(from: Date())
+                    var latestDateObj = dateFormatter.date(from: nowDate)
+                    latestDateObj = latestDateObj?.addingTimeInterval(TimeInterval(timeInSeconds))
+                    switch latestDateObj?.compare(dateObj ?? Date())
+                    {
+                        case .orderedAscending:
+                            status = RouteStatus.onTime
+                        case .orderedSame:
+                            status = RouteStatus.onTime
+                        case .orderedDescending:
+                            status = RouteStatus.delaying
+                        case .none:
+                            status  = RouteStatus.onTime
+                    }
+                    }
                 }
             }
         }
         return status
     }
-    func comparePickUpTime(forCustomer CustomerId:Int, recentPickupTime:String) -> (Int) {
-        var status = 0
-        
-        getCustomer(customerId: CustomerId) { (customer) in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .none
-            dateFormatter.dateFormat = "h:mm a"
-            let dateObj = dateFormatter.date(from: customer.PickUpTime ?? "4:30 PM")
-            let dateobj2 = dateFormatter.date(from: recentPickupTime)
-            
-            switch dateObj?.compare(dateobj2 ?? Date())
-            {
-            case .orderedAscending:
-                print("picked earlier")
-                status = 0
-            case .orderedSame:
-                print("pickup on time")
-                status = 1
-            case .orderedDescending:
-                print("pickup delayed")
-                status = 2
-            default:
-                print("delayed")
-                status = 0
-            }
+    func calculateETA(custLoc:Location, driverLoc:DriverLocation, completionHandler:@escaping (Int) -> ()) {
+        let distanceMatrix = DistanceMatrixAPI()
+
+        let customerArr = driverLocForDistanceMatrix(xcoord: custLoc.Cust_Lat ?? 0, ycoord: custLoc.Cust_Log ?? 0)
+        let driverArr = driverLocForDistanceMatrix(xcoord: driverLoc.Lat ?? 0, ycoord: driverLoc.Log ?? 0)
+        let urlString = distanceMatrix.URLGenForDistanceMatrixAPI(startPoint: driverArr, endPoint: customerArr)
+        distanceMatrix.distanceMatrixAPICall(URLForUse: urlString) { (distanceMatObject, error) in
+            if (distanceMatObject != nil && distanceMatObject?.rows[0].elements[0].duration.value != 0) {
+                    completionHandler((distanceMatObject?.rows[0].elements[0].duration.value)!)
+                    }
         }
-        return status
     }
 }
