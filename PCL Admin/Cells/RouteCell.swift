@@ -39,11 +39,15 @@ class RouteCell: UITableViewCell {
             for customer in customers{
                 let currentRouteCustomer = route.first(where:{$0.CustomerId == customer.CustomerId})
                 if let currentRoute = currentRouteCustomer{
+                    var str = currentRoute.PickUp_Time
+                    for _ in 0...10{
+                        str?.removeFirst()
+                    }
                     switch CollectionStatus[currentRoute.Status]
                     {
                     case "collected":
                         imageName = "greenDot.png"
-                        lastPickUpTime = currentRoute.PickUp_Time ?? ""
+                        lastPickUpTime = str ?? ""
                     case "notCollected":
                         imageName = "greyDot.png"
                     case "rescheduled":

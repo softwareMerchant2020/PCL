@@ -15,5 +15,5 @@ struct Customer: Decodable
     var StreetAddress: String?
     var City: String?
     var State: String?
-    var Zip: Int?
+    var Zip: String?
 }

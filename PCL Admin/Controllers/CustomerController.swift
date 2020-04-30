@@ -36,7 +36,7 @@ class CustomerController: UIViewController {
 //            print(self.Customer)
             self.fields[0].text = self.Customer?.CustomerName
             self.fields[0].allowsEditingTextAttributes = true
-            self.fields[2].text = String(self.Customer?.Zip ?? 0)
+            self.fields[2].text = self.Customer?.Zip ?? ""
             self.fields[2].allowsEditingTextAttributes = true
             self.fields[1].text = self.Customer?.StreetAddress
             self.fields[1].allowsEditingTextAttributes = true
@@ -45,11 +45,11 @@ class CustomerController: UIViewController {
             self.fields[4].text = self.Customer?.State
             self.fields[4].allowsEditingTextAttributes = true
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US")
-            dateFormatter.dateFormat =  "h:m a"
             dateFormatter.dateStyle = .none
             dateFormatter.timeStyle = .short
-            let date = dateFormatter.date(from: self.Customer!.PickUpTime ?? "" )
+            dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            let date = dateFormatter.date(from: self.Customer!.PickUpTime)
             self.timePicker.setDate(date ?? Date(), animated: true)
             self.buttons[2].setTitle("Update", for: .normal)
             self.addCustomerLbl.text = "Update Customer"
@@ -61,6 +61,7 @@ class CustomerController: UIViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale(identifier: "en_US")
         self.strDate = dateFormatter.string(from: sender.date)
     }
     @IBAction func cancelButtonClicked(){

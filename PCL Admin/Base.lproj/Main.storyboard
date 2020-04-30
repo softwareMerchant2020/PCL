@@ -435,7 +435,7 @@ Philadelphia, PA 19151</string>
                                         <rect key="frame" x="0.0" y="298.5" width="480" height="62.5"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="6h2-Un-A6O">
                                         <rect key="frame" x="0.0" y="398" width="480" height="62.5"/>
@@ -1069,7 +1069,7 @@ Philadelphia, PA 19151</string>
                                                 <rect key="frame" x="492" y="0.0" width="216" height="45"/>
                                                 <color key="textColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorIB">
                                                         <color key="value" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1091,11 +1091,8 @@ Philadelphia, PA 19151</string>
                                         <color key="textColor" red="0.50196078430000002" green="0.098039215690000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFT-lT-3xZ">
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bFT-lT-3xZ">
                                         <rect key="frame" x="0.0" y="310.5" width="708" height="242.5"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="567638699.11035895">
-                                            <!--2018-12-27 21:24:59 +0000-->
-                                        </date>
                                         <connections>
                                             <action selector="datePickerValueChanged:" destination="xdO-2q-ine" eventType="valueChanged" id="cWb-a0-a6W"/>
                                         </connections>

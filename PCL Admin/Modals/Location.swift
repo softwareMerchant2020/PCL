@@ -21,11 +21,11 @@ struct Location: Decodable{
     var CustomerName: String?
     var StreetAddress: String?
     var State: String?
-    var Zip: Int?
+    var Zip: String?
     var City: String?
     var CollectionStatus: String?
     var SpecimensCollected: Int?
-    var PickUpTime: String?
+    var PickUpTime: String
     var CustomerId: Int
     var IsSelected: Bool
     var Cust_Lat: Double?

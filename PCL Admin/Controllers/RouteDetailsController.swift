@@ -19,6 +19,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
     var routeNumber: Int?
     var driverNumber: Int?
     var routeNo:Int?
+    var customer:[Location]?
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -184,8 +185,7 @@ class RouteDetailsController: UIViewController, UITableViewDataSource, UITableVi
         let streetAddress: String = (routeDetails?[0].Customer[entry].StreetAddress ?? "this was empty ")
         let city: String = (routeDetails?[0].Customer[entry].City) ?? " this was empty "
         let state: String = (routeDetails?[0].Customer[entry].State) ?? " this was empty "
-        let ZIPint = (routeDetails?[0].Customer[entry].Zip) ?? 0
-        let ZIP = String(ZIPint)
+        let ZIP = (routeDetails?[0].Customer[entry].Zip) ?? ""
         let Seperator: String = ", "
         
         let addressToGeocode: String = (streetAddress+Seperator+state+Seperator+city+Seperator+ZIP)
