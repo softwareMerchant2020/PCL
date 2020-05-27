@@ -26,6 +26,8 @@ let getRoute = "Route/GetRoute"
 let getLatestRouteNumber = "Route/GetLatestRouteNumber"
 let getRouteDetail = "Route/GetRouteDetail"
 let editRoute = "Route/EditRoute"
+let deleteRouteAPI = "Route/DeleteRoute?RouteNumber="
+
 let getVehicle = "vehicle/GetVehicle"
 let addVehicleAPI = "vehicle/AddVehicle"
 let updateVehicleAPI = "vehicle/UpdateVehicle"

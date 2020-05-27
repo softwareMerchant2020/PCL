@@ -95,6 +95,43 @@ class ExistingRoutesController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                deleteRoute(routeNo: self.getRoutes[indexPath.row].Route.RouteNo!, atIndex:indexPath)
+            }
+    }
+    func deleteRoute(routeNo:Int, atIndex:IndexPath)  {
+        let url = baseURL + deleteRouteAPI + String(routeNo)
+        RestManager.APIData(url: url, httpMethod: RestManager.HttpMethod.post.self.rawValue, body: nil) { (data, error) in
+            if (error==nil) {
+                do {
+                    let result = try JSONDecoder().decode(RequestResult.self, from: data as! Data)
+                    if result.Result == "success" {
+                        DispatchQueue.main.async {
+                            self.routesTable?.reloadData()
+                             self.getRoutes.remove(at: atIndex.row)
+                            self.routesTable?.deleteRows(at: [atIndex], with: .fade)
+                        }
+                    }
+                    else
+                    {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title:result.Result, message: nil, preferredStyle: .alert)
+                            self.present(alert, animated: true, completion: {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_ ) in
+                                    self.dismiss(animated: true, completion: {
+                                    }) }
+                            })
+                        }
+                        
+                    }
+                } catch let jsonErr {
+                    print(jsonErr.localizedDescription)
+                }
+            }
+        }
+        
+    }
 }
 
 
