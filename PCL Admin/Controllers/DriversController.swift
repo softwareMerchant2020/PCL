@@ -86,8 +86,8 @@ class DriversController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteDriver(driverObj: self.drivers[indexPath.row])
-//            drivers.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
+            drivers.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     func refreshTable() {
